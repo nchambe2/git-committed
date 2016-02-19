@@ -24,17 +24,6 @@ ActiveRecord::Schema.define(version: 20160219195436) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "filters", force: :cascade do |t|
-    t.integer  "filterable_id"
-    t.string   "filterable_type"
-    t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-
-  add_index "filters", ["filterable_type", "filterable_id"], name: "index_filters_on_filterable_type_and_filterable_id", using: :btree
-
   create_table "genders", force: :cascade do |t|
     t.string "name", null: false
   end
