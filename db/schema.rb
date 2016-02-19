@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219020446) do
+ActiveRecord::Schema.define(version: 20160219195436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,13 +25,17 @@ ActiveRecord::Schema.define(version: 20160219020446) do
   end
 
   create_table "filters", force: :cascade do |t|
-    t.integer  "filterable_id",   null: false
-    t.string   "filterable_type", null: false
+    t.integer  "filterable_id"
+    t.string   "filterable_type"
+    t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
-  create_table "gender_identities", force: :cascade do |t|
+
+  add_index "filters", ["filterable_type", "filterable_id"], name: "index_filters_on_filterable_type_and_filterable_id", using: :btree
+
+  create_table "genders", force: :cascade do |t|
     t.string "name", null: false
   end
 
@@ -118,14 +122,19 @@ ActiveRecord::Schema.define(version: 20160219020446) do
     t.string   "username",              null: false
     t.string   "email",                 null: false
     t.string   "zip_code",              null: false
-    t.datetime "birthdate",             null: false
-    t.integer  "gender_identity_id"
+    t.date     "birthday",              null: false
+    t.integer  "gender_id"
     t.integer  "sexual_orientation_id"
     t.integer  "sexual_preference_id"
     t.integer  "text_editor_id"
     t.integer  "os_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+  end
+
+  create_table "users_text_editors", force: :cascade do |t|
+    t.integer "text_editor_id"
+    t.integer "user_id"
   end
 
 end

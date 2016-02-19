@@ -7,8 +7,8 @@ class Users < ActiveRecord::Migration
       t.string :username, null: false
       t.string :email, null: false
       t.string :zip_code, null: false
-      t.datetime :birthdate, null: false
-      t.references :gender_identity
+      t.date   :birthday, null: false
+      t.references :gender
       t.references :sexual_orientation
       t.references :sexual_preference
       t.references :text_editor

@@ -1,0 +1,23 @@
+<%= form_for :user, url: login_path do |f| %>
+  <table>
+    <tr>
+      <td><%= f.label :username %></td>
+      <td><%= f.text_field :username %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :password %></td>
+      <td><%= f.password_field :password %></td>
+    </tr>
+    <tr>
+      <td><%= f.submit :submit %></td>
+    </tr>
+  </table>
+<% end %>
+
+<% if @errors %>
+  <ul>
+  <% @errors.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+<% end %>
