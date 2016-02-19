@@ -1,4 +1,4 @@
 class TextEditor < ActiveRecord::Base
-  belongs_to :user
+  has_many :users
   validates :name, null: false
 end
