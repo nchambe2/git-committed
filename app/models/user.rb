@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  has_one :gender_identity
-  has_one :sexual_orientation
-  has_many :sexual_preferences
+  belongs_to :gender
+  belongs_to :sexual_orientation
+  belongs_to :sexual_preference
   has_many :text_editors
   has_many :oss
 
@@ -13,5 +13,5 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
   validates :zip_code, presence: true
-  validates :birthdate, presence: true
+  validates :birthday, presence: true
 end

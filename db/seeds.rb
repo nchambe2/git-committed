@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+orientations = ['straight', 'gay', 'lesbian', 'bi', 'trans', 'queer', 'asexual']
+orientations.each do |orientation|
+  SexualOrientation.create(name: orientation)
+end
+
+
+genders = ['male', 'female']
+genders.each do |gender|
+  Gender.create(name: gender)
+end
