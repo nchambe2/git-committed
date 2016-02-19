@@ -156,6 +156,7 @@ DEPENDENCIES
   jquery-rails
   pg (~> 0.15)
   rails (= 4.2.5.1)
+  rake
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simplecov

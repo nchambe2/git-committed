@@ -32,15 +32,11 @@ ActiveRecord::Schema.define(version: 20160219020446) do
   end
 
   create_table "gender_identities", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name", null: false
   end
 
   create_table "languages", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name", null: false
   end
 
   create_table "likes", force: :cascade do |t|
@@ -52,9 +48,7 @@ ActiveRecord::Schema.define(version: 20160219020446) do
   end
 
   create_table "oss", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name", null: false
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -66,39 +60,27 @@ ActiveRecord::Schema.define(version: 20160219020446) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string   "title",      null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "title", null: false
   end
 
   create_table "relationship_types", force: :cascade do |t|
-    t.string   "type",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "type", null: false
   end
 
   create_table "sexual_orientations", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name", null: false
   end
 
   create_table "sexual_preferences", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name", null: false
   end
 
   create_table "skills", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name", null: false
   end
 
   create_table "text_editors", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name", null: false
   end
 
   create_table "user_filters", force: :cascade do |t|

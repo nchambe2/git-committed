@@ -34,6 +34,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'simplecov', :require => false, :group => :test
 
+
+
 # gem 'aws-s3', '~> 0.6.3'
 
 group :development, :test do
