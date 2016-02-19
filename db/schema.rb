@@ -76,13 +76,6 @@ ActiveRecord::Schema.define(version: 20160219195436) do
     t.string "name", null: false
   end
 
-  create_table "user_filters", force: :cascade do |t|
-    t.integer  "filter_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "user_languages", force: :cascade do |t|
     t.integer  "language_id"
     t.integer  "user_id"
