@@ -13,6 +13,7 @@ class Users < ActiveRecord::Migration
       t.references :sexual_preference
       t.references :text_editor
       t.references :os
+
       t.timestamps(null: false)
     end
   end
