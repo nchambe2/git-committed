@@ -4,6 +4,7 @@ class Likes < ActiveRecord::Migration
       t.references :liker
       t.references :liked
       t.boolean :pulled
+
       t.timestamps(null: false)
     end
   end

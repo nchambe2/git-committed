@@ -1,11 +1,9 @@
 class Profiles < ActiveRecord::Migration
   def change
-    create_table :profile do |t|
+    create_table :profiles do |t|
       t.string :picture
-      t.string :about_me
-
-      t.references :answer
-      t.references :profile
+      t.text :about_me
+      t.references :user, null: false
 
       t.timestamps(null: false)
     end

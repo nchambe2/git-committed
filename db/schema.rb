@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219014332) do
+ActiveRecord::Schema.define(version: 20160219020446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,9 @@ ActiveRecord::Schema.define(version: 20160219014332) do
   end
 
   create_table "gender_identities", force: :cascade do |t|
-    t.string "name"
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "languages", force: :cascade do |t|
@@ -50,14 +52,15 @@ ActiveRecord::Schema.define(version: 20160219014332) do
   end
 
   create_table "oss", force: :cascade do |t|
-    t.string "name"
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "profile", force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
     t.string   "picture"
-    t.string   "about_me"
-    t.integer  "answer_id"
-    t.integer  "profile_id"
+    t.text     "about_me"
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,11 +78,15 @@ ActiveRecord::Schema.define(version: 20160219014332) do
   end
 
   create_table "sexual_orientations", force: :cascade do |t|
-    t.string "name"
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sexual_preferences", force: :cascade do |t|
-    t.string "name"
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "skills", force: :cascade do |t|
@@ -89,7 +96,37 @@ ActiveRecord::Schema.define(version: 20160219014332) do
   end
 
   create_table "text_editors", force: :cascade do |t|
-    t.string "name"
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_filters", force: :cascade do |t|
+    t.integer  "filter_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_languages", force: :cascade do |t|
+    t.integer  "language_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "user_seekings", force: :cascade do |t|
+    t.integer  "relationship_type_id"
+    t.integer  "user_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "user_skills", force: :cascade do |t|
+    t.integer  "skill_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
