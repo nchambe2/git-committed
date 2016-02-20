@@ -1,26 +1,32 @@
 <h1>Filters:</h1>
 
-  <p>
-    <%= label_tag "Programming Languages:" %>
-    <% @programming_languages.each do |programming_language| %>
-       <p><%= check_box_tag(programming_language) %><%= programming_language %></p>
-    <% end %>
-  </p>
+ <%= form_for :filter, url: filters_path do |f| %>
+    <p>
+      <%= f.label "Programming Languages:" %>
+      <% @programming_languages.each do |programming_language| %>
+         <p><%= f.check_box(programming_language) %><%= programming_language %></p>
+      <% end %>
+    </p>
 
-  <p>
-    <%= label_tag "Skills:" %>
-    <% @skills.each do |skill| %>
-       <p><%= check_box_tag(skill) %><%= skill %></p>
-    <% end %>
-  </p>
+    <p>
+      <%= f.label "Skills:" %>
+      <% @skills.each do |skill| %>
+         <p><%= f.check_box(skill) %><%= skill %></p>
+      <% end %>
+    </p>
 
-  <p>
-    <%= label_tag "Sexual Preferences:" %>
-    <% @sexual_prefences.each do |sexual_prefence| %>
-       <p><%= check_box_tag(sexual_prefence) %><%= sexual_prefence %></p>
-    <% end %>
-  </p>
+    <p>
+      <%= f.label "Sexual Preferences:" %>
+      <% @sexual_prefences.each do |sexual_prefence| %>
+         <p><%= f.check_box(sexual_prefence) %><%= sexual_prefence %></p>
+      <% end %>
+    </p>
 
-  <p>
-    <%= label_tag "Age:" %>
-  </p>
+    <p>
+      <%= f.label "Minimum Age:" %>
+      <%= f.select :age, options_for_select((18..99).step(1))%>
+      <%= f.label "Maximum Age:" %>
+      <%= f.select :age, options_for_select((18..99).step(1)) %>
+    </p>
+    <%= f.submit %>
+  <% end %>
