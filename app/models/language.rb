@@ -6,4 +6,5 @@ class Language <ActiveRecord::Base
   def self.language_names
       self.pluck("name")
   end
+
 end
