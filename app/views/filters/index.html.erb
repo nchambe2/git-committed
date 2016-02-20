@@ -2,15 +2,15 @@
 
   <p>
     <%= label_tag "Programming Languages:" %>
-    <%= @programming_languages.each do |programming_language| %>
-       <p><%= check_box_tag(:programming_language, programming_language.name) %></p>
+    <% @programming_languages.each do |programming_language| %>
+       <p><%= check_box_tag(programming_language) %><%= programming_language %></p>
     <% end %>
   </p>
 
   <p>
     <%= label_tag "Skills:" %>
-    <%= @skills.each do |skill| %>
-       <p><%= check_box_tag(skill.name) %></p>
+    <% @skills.each do |skill| %>
+       <p><%= check_box_tag(skill) %><%= skill %></p>
     <% end %>
   </p>
 
