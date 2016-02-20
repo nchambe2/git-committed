@@ -1,17 +1,15 @@
 <%= form_for :user, url: login_path do |f| %>
-  <table>
-    <tr>
-      <td><%= f.label :username %></td>
-      <td><%= f.text_field :username %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :password %></td>
-      <td><%= f.password_field :password %></td>
-    </tr>
-    <tr>
-      <td><%= f.submit :submit %></td>
-    </tr>
-  </table>
+  <div class="input-group">
+    <%= f.label :username, class: "input-group-addon" %>
+    <%= f.text_field :username, class: "form-control" %>
+	</div>
+	<div class="input-group">
+    <%= f.label :password, class: "input-group-addon" %>
+    <%= f.password_field :password, class: "form-control" %>
+	</div>
+	<div class="center input-group">
+    <%= f.submit :submit, class: "submit btn btn-default" %>
+	</div>
 <% end %>
 
 <% if @errors %>

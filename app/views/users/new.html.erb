@@ -1,51 +1,49 @@
 <%= form_for @user do |f| %>
-<table>
-<tr>
-  <td><%= f.label :first_name %></td>
-  <td><%= f.text_field :first_name %></td>
-</tr>
-<tr>
-  <td><%= f.label :last_name %></td>
-  <td><%= f.text_field :last_name %></td>
-</tr>
-<tr>
-  <td><%= f.label :email %></td>
-  <td><%= f.email_field :email %></td>
-</tr>
-<tr>
-  <td><%= f.label :username %></td>
-  <td><%= f.text_field :username %></td>
-</tr>
-<tr>
-  <td><%= f.label :password %></td>
-  <td><%= f.password_field :password %></td>
-<tr>
-  <td><%= f.label :password_confirmation %></td>
-  <td><%= f.password_field :password_confirmation %></td>
-</tr>
-<tr>
-  <td><%= f.label :birthday %></td>
-  <td><%= f.date_select :birthday, :default => {:year => Time.now.year, :month => 'Jan', :day => 1}, :start_year => Time.now.year - 18, :end_year => 1920 %></td>
-</tr>
-<tr>
-  <td><%= f.label :gender %></td>
-  <td><%= select_tag(:gender_id, options_for_select([['', 0], ['male', 1], [
-    'female', 2]])) %></td>
-</tr>
-<tr>
-  <td><%= f.label :sexual_orientation %></td>
-  <td><%= select_tag(:sexual_orientation_id, options_for_select([['', 0], ['straight', 1], [
-    'gay', 2], ['lesbian', 3], ['bi', 4], ['trans', 5], ['queer', 6], ['asexual', 7]])) %></td>
-</tr>
+	<div class="input-group">
+	  <%= f.label :first_name %><br>
+	  <%= f.text_field :first_name, class: "form-control" %>
+	</div>
+	<div class="input-group">
+	  <%= f.label :last_name %><br>
+	  <%= f.text_field :last_name, class: "form-control" %>
+	</div>
+	<div class="input-group">
+	  <%= f.label :email %><br>
+	  <%= f.email_field :email, class: "form-control" %>
+	</div>
+	<div class="input-group">
+	  <%= f.label :username %><br>
+	  <%= f.text_field :username, class: "form-control" %>
+	</div>
+	<div class="input-group">
+	  <%= f.label :password %><br>
+	  <%= f.password_field :password, class: "form-control" %>
+	</div>
+	<div class="input-group">
+	  <%= f.label :password_confirmation %><br>
+	  <%= f.password_field :password_confirmation, class: "form-control" %>
+	</div>
+	<div class="input-group">
+	  <%= f.label :birthday %><br>
+	  <%= f.date_select :birthday, start_year: Date.today.year - 99, end_year: Date.today.year - 18, default: {year: Date.today.year - 18} %>
+	</div>
+	<div class="input-group">
+	  <%= f.label :gender_id %><br>
+	  <%= select_tag(:gender_id, options_for_select([['', 0], ['male', 1], [
+	    'female', 2]])) %>
+	</div>
+	<div class="input-group">
+	  <%= f.label :sexual_orientation_id %><br>
+	  <%= select_tag(:sexual_orientation_id, options_for_select([['', 0], ['straight', 1], ['gay', 2], ['lesbian', 3], ['bi', 4], ['trans', 5], ['queer', 6], ['asexual', 7]])) %>
+	</div>
 
-<tr>
-  <td><%= f.label :zip_code %></td>
-  <td><%= f.text_field :zip_code %></td>
-</tr>
-<tr>
-  <td colspan='2'><%= f.submit :submit %></td>
-</tr>
-</table>
+	<div class="input-group">
+	  <%= f.label :zip_code %><br>
+	  <%= f.text_field :zip_code %>
+	</div>
+	<div class="center input-group">
+	  <%= f.submit :submit, class: 'submit btn btn-default' %>
+	</div>
 <% end %>
 
 <% if @errors %>
@@ -55,9 +53,3 @@
   <% end %>
   </ul>
 <% end %>
-
-
-<!-- <tr>
-  <td> f.label :sexual_preference </td>
-  <td> f.text_field :sexual_preference </td>
-</tr> -->
