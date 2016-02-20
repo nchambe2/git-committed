@@ -1,0 +1,19 @@
+.input-group-addon {
+	width: 7em;
+}
+
+form {
+	margin: 0 auto;
+	width: 19em;
+}
+
+.center {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.submit, .submit:hover {
+	margin: 0.75em 0;
+	width: 19em;
+	background-color: peachpuff;
+}

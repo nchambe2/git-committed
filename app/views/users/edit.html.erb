@@ -1,6 +1,6 @@
 <h2>Account Settings</h2>
 
-<%= form_for @user, url: user_path(@user) do |f| %>
+<!-- <%= form_for @user, url: user_path(@user) do |f| %>
 <table>
   <tr>
     <td><%= f.label :username %></td>
@@ -22,6 +22,28 @@
     <td colspan='2'><%= f.submit :submit %></td>
   </tr>
 </table>
+<% end %> -->
+
+<%= form_for @user, url: user_path(@user) do |f| %>
+	<div class="input-group">
+		<%= f.label :username, class: "input-group-addon" %>
+    <%= f.text_field :username, class: "form-control" %>
+	</div>
+  <div class="input-group">
+    <%= f.label :email, class: "input-group-addon" %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+  <div class="input-group">
+    <%= f.label :password, class: "input-group-addon" %>
+    <%= f.password_field :password, placeholder: "Password", class: "form-control" %>
+  </div>
+  <div class="input-group">
+    <div class="input-group-addon"></div>
+    <%= f.password_field :password_confirmation, placeholder: "Confirm password", class: "form-control" %>
+  </div>
+  <div class="center input-group">
+    <%= f.submit :submit, class: "submit btn btn-default" %>
+  </div>
 <% end %>
 
 <% if @errors %>
