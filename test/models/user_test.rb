@@ -36,4 +36,30 @@ class UserTest < ActiveSupport::TestCase
     assert_not user.valid?
     assert_equal [:birthday], user.errors.keys
   end
+
+  test "should respond to gender" do
+    user = User.new
+    user.respond_to?(:first_name)
+  end
+
+  test "should respond to sexual_orientation" do
+    user = User.new
+    user.respond_to?(:sexual_orientation)
+  end
+
+  test "should respond to sexual preference" do
+    user = User.new
+    user.respond_to?(:sexual_preference)
+  end
+
+  test "should respond to text editors" do
+    user = User.new
+    user.respond_to?(:text_editors)
+  end
+
+  test "should respond to operating system" do
+    user = User.new
+    user.respond_to?(:oss)
+  end
+
 end
