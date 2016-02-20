@@ -1,0 +1,32 @@
+body {
+	margin: 0;
+}
+
+header {
+	background-color: #A8E6CE;
+	padding: 1em;
+	margin-bottom: 2em;
+}
+
+.logo {
+	margin: 0;
+}
+
+.grey, .grey:hover {
+	color: darkslategray;
+}
+
+.navbar {
+	float: right;
+	min-height: 0;
+	margin-bottom: 0;
+}
+
+.btn {
+	    margin-bottom: 0;
+}
+
+.dropdown-menu {
+	left: -54px;
+	margin: 0;
+}
