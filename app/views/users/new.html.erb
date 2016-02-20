@@ -25,16 +25,16 @@
 </tr>
 <tr>
   <td><%= f.label :birthday %></td>
-  <td><%= f.date_select :birthday %></td>
+  <td><%= f.date_select :birthday, :default => {:year => Time.now.year, :month => 'Jan', :day => 1}, :start_year => Time.now.year - 18, :end_year => 1920 %></td>
 </tr>
 <tr>
   <td><%= f.label :gender %></td>
-  <td><%= select_tag(:gender, options_for_select([['', 0], ['male', 1], [
+  <td><%= select_tag(:gender_id, options_for_select([['', 0], ['male', 1], [
     'female', 2]])) %></td>
 </tr>
 <tr>
   <td><%= f.label :sexual_orientation %></td>
-  <td><%= select_tag(:sexual_orientation, options_for_select([['', 0], ['straight', 1], [
+  <td><%= select_tag(:sexual_orientation_id, options_for_select([['', 0], ['straight', 1], [
     'gay', 2], ['lesbian', 3], ['bi', 4], ['trans', 5], ['queer', 6], ['asexual', 7]])) %></td>
 </tr>
 
