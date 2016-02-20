@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160219195436) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "oss", force: :cascade do |t|
+  create_table "operating_systems", force: :cascade do |t|
     t.string "name", null: false
   end
 

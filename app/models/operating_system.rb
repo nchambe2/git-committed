@@ -1,4 +1,4 @@
-class OS < ActiveRecord::Base
+class OperatingSystem < ActiveRecord::Base
   has_many :users
   validates :name, presence: true
 end
