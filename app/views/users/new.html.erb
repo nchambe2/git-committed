@@ -37,6 +37,10 @@
 	  <%= select_tag(:sexual_orientation_id, options_for_select([['', 0], ['straight', 1], ['gay', 2], ['lesbian', 3], ['bi', 4], ['trans', 5], ['queer', 6], ['asexual', 7]])) %>
 	</div>
 	<div class="input-group">
+	  <%= f.label :sexual_preference_id %><br>
+	  <%= select_tag(:sexual_preference_id, options_for_select([['', 0], ['male', 1], ['female', 2], ['male & female', 3]])) %>
+	</div>
+	<div class="input-group">
 	  <%= f.label :zip_code %><br>
 	  <%= f.text_field :zip_code %>
 	</div>
