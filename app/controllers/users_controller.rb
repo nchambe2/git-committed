@@ -9,8 +9,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    p @user.gender = Gender.find_by(id: params[:gender_id])
-    p @user.sexual_orientation = SexualOrientation.find_by(id: params[:sexual_orientation_id])
+    @user.gender = Gender.find_by(id: params[:gender_id])
+    @user.sexual_orientation = SexualOrientation.find_by(id: params[:sexual_orientation_id])
 
 
     if @user.save
@@ -52,9 +52,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :email, :username, :password, :password_confirmation, :birthday, :gender_id, :sexual_orientation_id, :sexual_preference_id, :zip_code)
   end
 
-  # why do we need the current user method in here?
-  # def current_user
-  #   return nil if session[:user_id].nil?
-  #   User.find_by(id: session[:user_id])
-  # end
 end
