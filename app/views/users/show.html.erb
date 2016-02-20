@@ -1,1 +1,17 @@
 User: <%= @user.username %>
+
+<div>
+  <p>
+    <%= @user.first_name %>
+    <%= @user.last_name %>
+    <%= @user.calculate_age(@user.birthday) %> years old
+  </p>
+  <%= @user.email %>
+  <%= @user.zip_code %>
+</div>
+
+<div>
+  <p>
+    <%= Gender.find_by(id: @user.gender_id ).name %> looking for <%= SexualOrientation.find_by(id: @user.sexual_orientation_id ).name%>
+  </p>
+</div>
