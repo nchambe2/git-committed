@@ -1,2 +1,4 @@
+coverage
 tmp/*
 log/development.log
+
