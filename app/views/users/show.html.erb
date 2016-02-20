@@ -1,1 +1,14 @@
 User: <%= @user.username %>
+
+<div>
+  <%= @user.first_name %>
+  <%= @user.last_name %>
+  <%= @user.email %>
+  <%= @user.calculate_age(@user.birthday) %>
+  <%= @user.zip_code %>
+</div>
+
+<div>
+  <%= @user.gender %> looking for <%= @user.sexual_orientation %>
+  <%= @user.sexual_preference%>
+</div>
