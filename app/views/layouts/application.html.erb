@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Git Commited</title>
+  <title>Git Committed</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= link_to("logout", logout_path, method: :delete) %>
-
+  <h1><%= link_to("Git Committed", root_path) %></h1>
+  <% if current_user %>
+    <%= current_user.username -%>
+    <%= link_to("account settings", edit_user_path(current_user)) %>
+    <%= link_to("logout", logout_path, method: :delete) %>
+  <% else %>
+    <%= link_to("login", login_path) %>
+    <%= link_to("register", new_user_path) %>
+  <% end %>
 <%= yield %>
 
 </body>
