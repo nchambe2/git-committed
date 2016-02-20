@@ -17,12 +17,12 @@ orientations.each do |orientation|
  SexualOrientation.create!(name: orientation)
 end
 
-preferences = ['straight', 'gay', 'lesbian', 'bi', 'trans', 'queer', 'asexual']
+preferences = ['male', 'female','either', 'both']
 preferences.each do |preference|
  SexualPreference.create!(name: preference)
 end
 
-text_editors = ['Sublime Text', 'Atom', 'Vim', 'Emacs', 'Notepad++', 'BBEdit', 'UltraEdit', 'Dreamweaver', 'Coda', 'Brackets']
+text_editors = ['Sublime Text', 'Atom', 'Vim', 'Emacs', 'Notepad++', 'BBEdit', 'UltraEdit', 'Dreamweaver', 'Coda', 'Brackets','TextMate']
 text_editors.each do |editor|
  TextEditor.create!(name: editor)
 end
