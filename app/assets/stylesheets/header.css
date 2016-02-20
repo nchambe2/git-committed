@@ -2,24 +2,14 @@ body {
 	margin: 0;
 }
 
-header {
-	background-color: #A8E6CE;
-	padding: 1em;
-	margin-bottom: 2em;
-}
-
 .logo {
+	font-weight: 500;
+	font-size: 2em;
 	margin: 0;
 }
 
 .grey, .grey:hover {
 	color: darkslategray;
-}
-
-.navbar {
-	float: right;
-	min-height: 0;
-	margin-bottom: 0;
 }
 
 .btn {
@@ -29,4 +19,36 @@ header {
 .dropdown-menu {
 	left: -54px;
 	margin: 0;
+}
+
+.navbar {
+	background-color: #A8E6CE;
+}
+
+.navbar-toggle, .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+	background-color: white;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+	background-color: #97cfb9;
+}
+
+@media only screen and (max-width: 767px){
+	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+		background-color: honeydew;
+	}
+	
+	ul.nav > li:hover {
+		background-color: #E7E7E7;
+	}
+}
+
+@media only screen and (min-width: 768px){
+	.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse, .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+		background-color: transparent;
+	}
+	
+	ul.nav li:hover {
+		background-color: #97cfb9;
+	}
 }

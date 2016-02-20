@@ -1,3 +1,11 @@
 .inlineblock {
 	display: inline-block;
 }
+
+.content {
+	margin: 5em 2em;
+}
+
+.heading {
+	border-bottom: 1px solid grey;
+}
