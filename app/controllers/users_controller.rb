@@ -11,8 +11,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.gender = Gender.find_by(id: params[:gender_id])
     @user.sexual_orientation = SexualOrientation.find_by(id: params[:sexual_orientation_id])
-
-
     if @user.save
       session[:user_id] = @user.id
       redirect_to user_path(@user)
