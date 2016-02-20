@@ -1,4 +1,5 @@
 class TextEditor < ActiveRecord::Base
-  has_many :users
+  has_many :user_text_editors
+  has_many :users, through: :user_text_editors
   validates :name, null: false
 end
