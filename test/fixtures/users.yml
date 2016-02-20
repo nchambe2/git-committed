@@ -1,0 +1,24 @@
+# cheeky:
+#     first_name: "Cheeky"
+#     last_name: "Miller"
+#     password: "password"
+#     username: "cheeky"
+#     email: "cheeky@gmail.com"
+#     zip_code: "60314"
+#     birthday: "10/10/1998"
+
+# walker:
+#   last_name: "Walker"
+#   password: "password"
+#   username: "walke"
+#   email: "walker@gmail.com"
+#   zip_code: "60314"
+#   birthday: "10/10/2000"
+
+# walsh:
+#   first_name: "Walsh"
+#   password: "password"
+#   username: "walsh"
+#   email: "walsh@gmail.com"
+#   zip_code: "60314"
+#   birthday: "10/10/1999"
