@@ -13,6 +13,7 @@ form {
 }
 
 .submit, .submit:hover {
+	font-weight: 900;
 	margin: 0.75em 0;
 	width: 19em;
 	background-color: peachpuff;
