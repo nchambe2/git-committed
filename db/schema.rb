@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219195436) do
+ActiveRecord::Schema.define(version: 20160220191735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20160219195436) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "oss", force: :cascade do |t|
+  create_table "operating_systems", force: :cascade do |t|
     t.string "name", null: false
   end
 
@@ -99,6 +99,11 @@ ActiveRecord::Schema.define(version: 20160219195436) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "user_operating_systems", force: :cascade do |t|
+    t.integer "operating_system_id"
+    t.integer "user_id"
+  end
+
   create_table "user_seekings", force: :cascade do |t|
     t.integer  "relationship_type_id"
     t.integer  "user_id"
@@ -113,6 +118,11 @@ ActiveRecord::Schema.define(version: 20160219195436) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_text_editors", force: :cascade do |t|
+    t.integer "text_editor_id"
+    t.integer "user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name",            null: false
     t.string   "last_name",             null: false
@@ -125,14 +135,9 @@ ActiveRecord::Schema.define(version: 20160219195436) do
     t.integer  "sexual_orientation_id"
     t.integer  "sexual_preference_id"
     t.integer  "text_editor_id"
-    t.integer  "os_id"
+    t.integer  "operating_system_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-  end
-
-  create_table "users_text_editors", force: :cascade do |t|
-    t.integer "text_editor_id"
-    t.integer "user_id"
   end
 
 end
