@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-
+  has_one :profile
   belongs_to :gender
   belongs_to :sexual_orientation
   belongs_to :sexual_preference
