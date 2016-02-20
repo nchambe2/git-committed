@@ -12,7 +12,7 @@ class Users < ActiveRecord::Migration
       t.references :sexual_orientation
       t.references :sexual_preference
       t.references :text_editor
-      t.references :os
+      t.references :operating_system
 
       t.timestamps(null: false)
     end
