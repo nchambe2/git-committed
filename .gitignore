@@ -1,4 +1,7 @@
 coverage
 tmp/*
 log/development.log
+.env
+
+
 
