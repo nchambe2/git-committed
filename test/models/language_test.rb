@@ -10,6 +10,7 @@ class LanguageTest < ActiveSupport::TestCase
   test "should not save without name" do
     language = Language.new
     assert_not language.valid?
+    assert_equal [:name], language.errors.keys
   end
 
   test "should respond to filters" do
