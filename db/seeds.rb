@@ -17,20 +17,20 @@ orientations.each do |orientation|
  SexualOrientation.create!(name: orientation)
 end
 
-preferences = ['straight', 'gay', 'lesbian', 'bi', 'trans', 'queer', 'asexual']
+preferences = ['male', 'female','male & female']
 preferences.each do |preference|
  SexualPreference.create!(name: preference)
 end
 
-text_editors = ['Sublime Text', 'Atom', 'Vim', 'Emacs', 'Notepad++', 'BBEdit', 'UltraEdit', 'Dreamweaver', 'Coda', 'Brackets']
+text_editors = ['Sublime Text', 'Atom', 'Vim', 'Emacs', 'Notepad++', 'BBEdit', 'UltraEdit', 'Dreamweaver', 'Coda', 'Brackets','TextMate']
 text_editors.each do |editor|
  TextEditor.create!(name: editor)
 end
 
-# operating_systems = ['Microsoft Windows', 'Apple Mac OS X', 'Linux', 'Unix']
-# operating_systems.each do |system|
-#  OS.create!(name: system)
-# end
+operating_systems = ['Microsoft Windows', 'Apple Mac OS X', 'Linux', 'Unix']
+operating_systems.each do |system|
+ OperatingSystem.create!(name: system)
+end
 
 
 matt = User.create!(first_name: "Matt",
@@ -42,7 +42,7 @@ matt = User.create!(first_name: "Matt",
                    birthday: " 08/08/1987",
                    gender_id: Gender.find_by(name: "male").id,
                    sexual_orientation_id: SexualOrientation.find_by(name: "straight").id,
-                   sexual_preference_id: SexualPreference.find_by(name: "straight").id)
+                   sexual_preference_id: SexualPreference.find_by(name: "female").id)
 
 
 casey = User.create!(first_name: "Casey",
@@ -54,4 +54,4 @@ casey = User.create!(first_name: "Casey",
                     birthday: " 06/06/1988",
                     gender_id: Gender.find_by(name: "female").id,
                     sexual_orientation_id: SexualOrientation.find_by(name: "straight").id,
-                    sexual_preference_id: SexualPreference.find_by(name: "straight").id)
+                    sexual_preference_id: SexualPreference.find_by(name: "male").id)
