@@ -16,8 +16,8 @@
 
   <p>
     <%= label_tag "Sexual Preferences:" %>
-    <%= @sexual_prefences.each do |sexual_prefence| %>
-       <p><%= check_box_tag(sexual_prefence.name) %></p>
+    <% @sexual_prefences.each do |sexual_prefence| %>
+       <p><%= check_box_tag(sexual_prefence) %><%= sexual_prefence %></p>
     <% end %>
   </p>
 
