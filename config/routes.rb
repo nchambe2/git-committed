@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
   get '/profile', to: 'profiles#show'
+  get '/profile/edit', to: 'profiles#edit'
 
   get  '/filters', to: 'filters#index', as: 'filters'
   post '/filters', to: 'filters#create'
