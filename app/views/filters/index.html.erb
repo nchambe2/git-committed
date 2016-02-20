@@ -1,0 +1,22 @@
+<h1>Filters:</h1>
+
+  <p>
+    <%= label_tag "Programming Languages:" %>
+    <%= @programming_languages.each do |programming_language| %>
+       <p><%= check_box_tag(:programming_language, programming_language.name) %></p>
+    <% end %>
+  </p>
+
+  <p>
+    <%= label_tag "Skills:" %>
+    <%= @skills.each do |skill| %>
+       <p><%= check_box_tag(skill.name) %></p>
+    <% end %>
+  </p>
+
+  <p>
+    <%= label_tag "Sexual Preferences:" %>
+    <%= @sexual_prefences.each do |sexual_prefence| %>
+       <p><%= check_box_tag(sexual_prefence.name) %></p>
+    <% end %>
+  </p>
