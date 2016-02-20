@@ -17,7 +17,7 @@ orientations.each do |orientation|
  SexualOrientation.create!(name: orientation)
 end
 
-preferences = ['male', 'female','either', 'both']
+preferences = ['male', 'female','male & female']
 preferences.each do |preference|
  SexualPreference.create!(name: preference)
 end
