@@ -15,3 +15,18 @@ header {
 .grey, .grey:hover {
 	color: darkslategray;
 }
+
+.navbar {
+	float: right;
+	min-height: 0;
+	margin-bottom: 0;
+}
+
+.btn {
+	    margin-bottom: 0;
+}
+
+.dropdown-menu {
+	left: -54px;
+	margin: 0;
+}
