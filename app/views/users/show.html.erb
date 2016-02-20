@@ -12,6 +12,6 @@ User: <%= @user.username %>
 
 <div>
   <p>
-    <%= Gender.find_by(id: @user.gender_id ).name %> looking for <%= SexualOrientation.find_by(id: @user.sexual_orientation_id ).name%>
+    <%= @user.gender.name %> looking for <%= @user.sexual_orientation.name %>
   </p>
 </div>
