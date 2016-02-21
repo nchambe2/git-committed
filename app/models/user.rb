@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :text_editors, through: :user_text_editors
   has_many :user_operating_systems
   has_many :operating_systems, through: :user_operating_systems
+  has_many :user_languages
+  has_many :languages, through: :user_languages
 
 
   validates :first_name, presence: true

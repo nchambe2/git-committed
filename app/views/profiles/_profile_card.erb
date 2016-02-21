@@ -1,12 +1,37 @@
 <div class="row">
   <div class="thumbnail profile_card center align-left">
-    <img src="<%= profile.picture %>" class="left profile_pic">
+		<% if profile.picture %>
+			<%= image_tag(profile.picture, class: "left profile_pic") %>
+		<% else %>
+			<%= image_tag("ninja.png", class: "left profile_pic") %>
+		<% end %>
 		<div class="profile_heading">
-			<h3 class="left no-margin"><%= profile.user.first_name %></h3>
-			<h3 class="right no-margin"><%= profile.user.age %></h3>
+			<h3 class="left no-margin"><%= link_to(profile.user.first_name, profile_path(profile), class: "grey") %></h3>
+			<h3 class="right no-margin grey"><%= profile.user.age %></h3>
 		</div>
     <div class="caption profile_card_info ">
     	<p><%= profile.about_me %></p>
+			<p><strong>Languages:</strong>
+			<% if profile.user.languages.empty? %>
+				N/A
+			<% else %>
+				<%= separate_with_commas(profile.user.languages) %>
+			<% end %>
+			</p>
+			<p><strong>Text Editors:</strong>
+			<% if profile.user.text_editors.empty? %>
+				N/A
+			<% else %>
+				<%= separate_with_commas(profile.user.text_editors) %>
+			<% end %>
+			</p>
+			<p><strong>Operating Systems:</strong>
+			<% if profile.user.operating_systems.empty? %>
+				N/A
+			<% else %>
+				<%= separate_with_commas(profile.user.operating_systems) %>
+			<% end %>
+			</p>
     </div>
 	</div>
 </div>
