@@ -1,7 +1,10 @@
 class FiltersController < ApplicationController
-  def index
+  def edit
     @programming_languages = Language.language_names
     @skills = Skill.skill_names
     @sexual_preferences = SexualPreference.sexual_preference_names
+  end
+  
+  def update
   end
 end

@@ -1,3 +1,5 @@
 <% @profiles.each do |profile| %>
 	<%= render partial: 'profiles/profile_card', locals: {profile: profile} %>
 <% end %>
+
+<%= paginate @profiles %>

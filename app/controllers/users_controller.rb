@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if current_user
+      redirect_to edit_profile_path(current_user.profile)
+    else
+      @user = User.new
+    end
   end
 
   def create
@@ -15,7 +19,8 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      Profile.create(user: @user)
+      redirect_to profile_path(@user.profile)
     else
       @errors = @user.errors.full_messages
       render template: 'users/new'
@@ -23,7 +28,30 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    if current_user
+      @user = User.find_by(id: params[:id])
+      if @user.nil? # change to 404
+        redirect_to root_path
+      else
+        redirect_to profile_path(@user.profile)
+      end
+    else
+      redirect_to login_path
+    end
+  end
+  
+  def edit
+    current_user ? (@user = current_user) : (redirect_to login_path)
+  end
+
+  def update
+    @user = current_user
+    if @user.update_attributes(user_params)
+      redirect_to profile_path(@user.profile)
+    else
+      @errors = @user.errors.full_messages
+      render template: 'account_settings/edit'
+    end
   end
 
   def destroy

@@ -2,21 +2,26 @@ Rails.application.routes.draw do
 
   root 'users#index'
 
-  resources :users
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
   get '/browse', to: 'profiles#index'
 
-  get '/account_settings', to: 'account_settings#edit', as: 'account_settings'
-  patch '/account_settings', to: 'account_settings#update'
   get '/profile/:id', to: 'profiles#show', as: 'profile'
   get '/profile/:id/edit', to: 'profiles#edit', as: 'edit_profile'
   patch '/profile/:id', to: 'profiles#update', as: 'update_profile'
 
-  get  '/filters', to: 'filters#index', as: 'filters'
-  post '/filters', to: 'filters#create'
+  get  '/filters', to: 'filters#edit', as: 'filters'
+  post '/filters', to: 'filters#update'
+  
+  
+  
+  get '/account/new', to: 'users#new', as: 'new_account'
+  post '/account', to: 'users#create', as: 'account'
+  patch '/account', to: 'users#update'
+  delete '/account', to: 'users#destroy'
+  get '/account/settings', to: 'users#edit', as: 'account_settings'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,6 +1,11 @@
 class ProfilesController < ApplicationController
+  
   def index
-    @profiles = Profile.all.order(updated_at: :desc)
+    if current_user
+      @profiles = Profile.all.order(updated_at: :desc).where.not(id: current_user.profile.id).page params[:page]
+    else
+      redirect_to login_path
+    end
   end
 
   def show
@@ -13,6 +18,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
+    profile = Profile.find_by(id: params[:id])
     @user = current_user
     @genders = Gender.all.gender_names
     @programming_languages = Language.all.language_names
@@ -22,6 +28,11 @@ class ProfilesController < ApplicationController
     @relationship_types = RelationshipType.relationship_type_names
     @sexual_preferences = SexualPreference.all.sexual_preference_names
     @sexual_orientations = SexualOrientation.all.orientation_names
+    
+    if profile != current_user.profile
+      redirect_to edit_profile_path(current_user.profile)
+    end
+    
   end
 
   def update
