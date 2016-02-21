@@ -3,5 +3,5 @@ class Profile < ActiveRecord::Base
   has_many :answers
   has_many :questions, through: :answers
   
-  paginates_per 15
+  paginates_per 1
 end

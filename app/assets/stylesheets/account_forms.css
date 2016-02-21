@@ -4,6 +4,7 @@
 
 form {
 	margin: 1em auto;
+/*	overflow: hidden;*/
 	width: 19em;
 }
 

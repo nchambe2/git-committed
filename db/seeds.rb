@@ -81,3 +81,7 @@ casey = User.create!(first_name: "Casey",
                     gender_id: Gender.find_by(name: "female").id,
                     sexual_orientation_id: SexualOrientation.find_by(name: "straight").id,
                     sexual_preference_id: SexualPreference.find_by(name: "female-seeking-male").id)
+
+
+Profile.create(user: matt)
+Profile.create(user: casey)
