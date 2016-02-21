@@ -2,9 +2,14 @@ class ProfilesController < ApplicationController
   def index
     @profiles = Profile.all.order(updated_at: :desc)
   end
-  
+
   def show
-    @user = current_user
+    @profile = Profile.find_by(id: params[:id])
+    if @profile
+      @user = @profile.user
+    else
+      redirect_to login_path #change to 404 page path
+    end
   end
 
   def edit
@@ -24,7 +29,7 @@ class ProfilesController < ApplicationController
     @user = User.find(current_user.id)
     @profile.update_attributes(update_profile)
     @user.update_attributes(update_user)
-    redirect_to profile_path
+    redirect_to profile_path(@profile)
   end
 
   private
