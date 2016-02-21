@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   get '/account_settings', to: 'account_settings#edit', as: 'account_settings'
   patch '/account_settings', to: 'account_settings#update'
 
-  get '/profile', to: 'profiles#show'
+
+  get '/profile/:id', to: 'profiles#show', as: 'profile'
+  get '/profile/:id/edit', to: 'profiles#edit', as: 'edit_profile'
+  patch '/profile/:id', to: 'profiles#update'
+
 
   get  '/filters', to: 'filters#index', as: 'filters'
   post '/filters', to: 'filters#create'

@@ -1,3 +1,7 @@
+User: <%= @user.username %>
+<h4>View your <%= link_to "Profile",  profile_path(@user) %></h4>
+<h4>Edit your <%= link_to "Profile", edit_profile_path(@user) %></h4>
+
 <div>
   <p>
     <%= @user.username %>
