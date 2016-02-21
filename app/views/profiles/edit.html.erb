@@ -1,0 +1,87 @@
+<%= form_for :profile, url: update_profile_path, method: :patch do |f| %>
+  <p>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+ </p>
+
+ <p>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+ </p>
+
+ <p>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+ </p>
+
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+ </p>
+
+  <p>
+    <%= f.label "Gender:" %><br>
+    <%= f.select :gender_id, options_for_select(@genders) %>
+  </p>
+
+ <p>
+    <%= f.label :about_me %><br>
+    <%= f.text_area :about_me %>
+ </p>
+
+  <p>
+    <%= f.label "Programming Languages:" %>
+    <% @programming_languages.each do |programming_language| %>
+       <p>
+        <%= f.check_box(programming_language) %>
+        <%= programming_language %>
+      </p>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.label "Text Editors:" %>
+    <% @text_editors.each do |text_editor| %>
+       <p>
+        <%= f.check_box(text_editor) %>
+        <%= text_editor %>
+      </p>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.label "Operating Systems:" %>
+    <% @operating_systems.each do |operating_system| %>
+       <p>
+        <%= f.check_box(operating_system) %>
+        <%= operating_system %>
+      </p>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.label "Skills:" %>
+    <% @skills.each do |skill| %>
+       <p>
+        <%= f.check_box(skill) %>
+        <%= skill %>
+      </p>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.label "Seeking:" %><br>
+    <%= f.select :relationship_type_id, options_for_select(@relationship_types) %>
+  </p>
+
+  <p>
+    <%= f.label "Sexual Preference:" %><br>
+    <%= f.select :sexual_preference_id, options_for_select(@sexual_preferences) %>
+  </p>
+
+  <p>
+    <%= f.label "Sexual Orientation:" %><br>
+    <%= f.select :sexual_orientation_id, options_for_select(@sexual_preferences) %>
+  </p>
+  <%= f.submit %>
+<% end %>

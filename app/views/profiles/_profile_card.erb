@@ -8,6 +8,7 @@
 		<div class="profile_heading">
 			<h3 class="left no-margin"><%= link_to(profile.user.first_name, profile_path(profile), class: "grey") %></h3>
 			<h3 class="right no-margin grey"><%= profile.user.age %></h3>
+			<h3 class="right no-margin grey"><%= profile.user.sexual_orientation.name %></h3>
 		</div>
     <div class="caption profile_card_info ">
     	<p><%= profile.about_me %></p>

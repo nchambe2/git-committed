@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   patch '/account_settings', to: 'account_settings#update'
   get '/profile/:id', to: 'profiles#show', as: 'profile'
   get '/profile/:id/edit', to: 'profiles#edit', as: 'edit_profile'
-  patch '/profile/:id', to: 'profiles#update'
+  patch '/profile/:id', to: 'profiles#update', as: 'update_profile'
 
   get  '/filters', to: 'filters#index', as: 'filters'
   post '/filters', to: 'filters#create'
