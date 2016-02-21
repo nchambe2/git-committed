@@ -1,6 +1,6 @@
 <h1 class="center">Account Settings</h1>
 
-<%= form_for @user, url: account_settings_path(@user) do |f| %>
+<%= form_for @user, url: account_path, method: :patch do |f| %>
   <div class="input-group">
     <%= f.label :username, class: "input-group-addon" %>
     <%= f.text_field :username, class: "form-control" %>

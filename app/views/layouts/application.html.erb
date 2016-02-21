@@ -29,7 +29,9 @@
 	    <div class="collapse navbar-collapse navbar-right" id="myNavbar">
 	      <ul class="nav navbar-nav">
 	        <li><%= link_to("home", root_path) %></li>
-					<li><%= link_to("browse", browse_path) %></li>
+					<% if current_user %>
+						<li><%= link_to("browse", browse_path) %></li>
+					<% end %>
 	        <li class="dropdown">
 						<% if current_user %>
 		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">account<span class="caret"></span></a>
@@ -41,7 +43,7 @@
 							</ul>
 						<% else %>
 		          <li><%= link_to("login", login_path) %></li>
-							<li><%= link_to("register", new_user_path) %></li>
+							<li><%= link_to("register", new_account_path) %></li>
 						<% end %>
           </ul>
 	      </ul>
