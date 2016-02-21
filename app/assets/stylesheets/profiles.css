@@ -1,17 +1,63 @@
 .thumbnail {
 	overflow: hidden;
+	padding: 0;
 }
 
 .profile_card {
-	width: 50em;
-}
-
-.profile_pic {
-	width: 17em;
-	height: 17em;
-	border-right: 1px solid grey;
+	margin-bottom: 1em;
 }
 
 .profile_card_info {
-	width: 32em;
+	overflow: hidden;
+}
+
+@media only screen and (max-width: 675px) {
+	.profile_pic {
+		display: block;
+		float: none;
+	}
+
+	.profile_heading {
+		display: block;
+		overflow: hidden;
+		margin-bottom: 0.5em;
+		background-color: #A6E7CE;
+		padding: 0.5em;
+	}
+
+	.profile_card_info {
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 475px){
+	.profile_card {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 675px) and (min-width: 476px){
+	.profile_card {
+		width: 30em;
+	}
+}
+
+@media only screen and (min-width: 676px){
+	.profile_card {
+		width: 45em;
+	}
+
+	.profile_pic {
+		width: 17em;
+		height: 17em;
+		border-right: 1px solid grey;
+	}
+
+	.profile_heading {
+		overflow: hidden;
+		margin-bottom: 0.5em;
+		background-color: #A6E7CE;
+		padding: 0.5em;
+	}
+
 }

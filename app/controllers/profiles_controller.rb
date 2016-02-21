@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   def index
-    @profiles = Profile.all
+    @profiles = Profile.all.order(updated_at: :desc)
   end
   
   def show

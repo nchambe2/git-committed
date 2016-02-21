@@ -4,11 +4,15 @@ class User < ActiveRecord::Base
   belongs_to :gender
   belongs_to :sexual_orientation
   belongs_to :sexual_preference
-  has_many   :user_text_editors
-  has_many   :skills, through: :user_skills
-  has_many   :text_editors, through: :user_text_editors
-  has_many   :user_operating_systems
-  has_many   :operating_systems, through: :user_operating_systems
+
+  has_many :user_text_editors
+  has_many :text_editors, through: :user_text_editors
+  has_many :user_skills
+  has_many :skills, through: :user_skills
+  has_many :user_operating_systems
+  has_many :operating_systems, through: :user_operating_systems
+  has_many :user_languages
+  has_many :languages, through: :user_languages
 
 
   validates :first_name, presence: true
@@ -19,7 +23,7 @@ class User < ActiveRecord::Base
   validates :zip_code, presence: true
   validates :birthday, presence: true
 
-  def calculate_age(birthday)
+  def age
     (Date.today - birthday).to_i / 365
   end
 end
