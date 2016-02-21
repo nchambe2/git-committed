@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  
+
   def index
     if current_user
       @profiles = Profile.all.order(updated_at: :desc).where.not(id: current_user.profile.id).page params[:page]
@@ -18,21 +18,21 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    profile = Profile.find_by(id: params[:id])
+    @profile = Profile.find_by(id: params[:id])
     @user = current_user
-    @genders = Gender.all.gender_names
-    @programming_languages = Language.all.language_names
-    @text_editors = TextEditor.all.editor_names
-    @operating_systems = OperatingSystem.all.system_names
-    @skills = Skill.all.skill_names
-    @relationship_types = RelationshipType.relationship_type_names
-    @sexual_preferences = SexualPreference.all.sexual_preference_names
-    @sexual_orientations = SexualOrientation.all.orientation_names
-    
+    @genders = Gender.all
+    @programming_languages = Language.all
+    @text_editors = TextEditor.all
+    @operating_systems = OperatingSystem.all
+    @skills = Skill.all
+    @relationship_types = RelationshipType.all
+    @sexual_preferences = SexualPreference.all
+    @sexual_orientations = SexualOrientation.all
+
     if profile != current_user.profile
       redirect_to edit_profile_path(current_user.profile)
     end
-    
+
   end
 
   def update
