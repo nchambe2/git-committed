@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :text_editors, through: :user_text_editors
   has_many :user_operating_systems
   has_many :operating_systems, through: :user_operating_systems
+  has_many :user_languages
+  has_many :languages, through: :user_languages
 
 
   validates :first_name, presence: true
@@ -18,7 +20,8 @@ class User < ActiveRecord::Base
   validates :zip_code, presence: true
   validates :birthday, presence: true
 
-  def calculate_age(birthday)
+  # def calculate_age(birthday)
+  def age
     (Date.today - birthday).to_i / 365
   end
 end
