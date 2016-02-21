@@ -4,3 +4,211 @@
 UserTest: test_the_username
 ---------------------------
   [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (21.4ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "filters" DISABLE TRIGGER ALL;ALTER TABLE "genders" DISABLE TRIGGER ALL;ALTER TABLE "languages" DISABLE TRIGGER ALL;ALTER TABLE "likes" DISABLE TRIGGER ALL;ALTER TABLE "operating_systems" DISABLE TRIGGER ALL;ALTER TABLE "profiles" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "relationship_types" DISABLE TRIGGER ALL;ALTER TABLE "sexual_orientations" DISABLE TRIGGER ALL;ALTER TABLE "sexual_preferences" DISABLE TRIGGER ALL;ALTER TABLE "skills" DISABLE TRIGGER ALL;ALTER TABLE "text_editors" DISABLE TRIGGER ALL;ALTER TABLE "user_filters" DISABLE TRIGGER ALL;ALTER TABLE "user_languages" DISABLE TRIGGER ALL;ALTER TABLE "user_operating_systems" DISABLE TRIGGER ALL;ALTER TABLE "user_seekings" DISABLE TRIGGER ALL;ALTER TABLE "user_skills" DISABLE TRIGGER ALL;ALTER TABLE "user_text_editors" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (43.9ms)[0m  DELETE FROM "users"
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "filters" ENABLE TRIGGER ALL;ALTER TABLE "genders" ENABLE TRIGGER ALL;ALTER TABLE "languages" ENABLE TRIGGER ALL;ALTER TABLE "likes" ENABLE TRIGGER ALL;ALTER TABLE "operating_systems" ENABLE TRIGGER ALL;ALTER TABLE "profiles" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "relationship_types" ENABLE TRIGGER ALL;ALTER TABLE "sexual_orientations" ENABLE TRIGGER ALL;ALTER TABLE "sexual_preferences" ENABLE TRIGGER ALL;ALTER TABLE "skills" ENABLE TRIGGER ALL;ALTER TABLE "text_editors" ENABLE TRIGGER ALL;ALTER TABLE "user_filters" ENABLE TRIGGER ALL;ALTER TABLE "user_languages" ENABLE TRIGGER ALL;ALTER TABLE "user_operating_systems" ENABLE TRIGGER ALL;ALTER TABLE "user_seekings" ENABLE TRIGGER ALL;ALTER TABLE "user_skills" ENABLE TRIGGER ALL;ALTER TABLE "user_text_editors" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------
+SexualPreferenceTest: test_should_save_with_name
+------------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------------
+SexualPreferenceTest: test_should_respond_to_filters
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------------
+SexualPreferenceTest: test_should_not_save_without_name
+-------------------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+UserTest: test_should_not_save_without_email
+--------------------------------------------
+  [1m[35mUser Exists (29.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'walsh' LIMIT 1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+UserTest: test_should_not_save_without_first_name
+-------------------------------------------------
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'walke' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'walker@gmail.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------
+UserTest: test_should_respond_to_gender
+---------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------
+UserTest: test_should_respond_to_sexual_preference
+--------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------
+UserTest: test_should_save_a_valid_user
+---------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'cheeky' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'cheeky@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------
+UserTest: test_should_not_save_without_last_name
+------------------------------------------------
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'walsh' LIMIT 1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'walsh@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+UserTest: test_should_respond_to_operating_system
+-------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+UserTest: test_should_not_save_without_username
+-----------------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'fldance@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------
+UserTest: test_should_respond_to_sexual_orientation
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+UserTest: test_should_respond_to_text_editors
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+UserTest: test_should_not_save_without_birthday
+-----------------------------------------------
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'looky@gmail.com' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'cookie@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+UserLanguageTest: test_should_respond_to_language
+-------------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+UserLanguageTest: test_should_respond_to_user
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+UserSeekingTest: test_should_respond_to_user
+--------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+UserSeekingTest: test_should_respond_to_operating_system
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------
+LanguageTest: test_should_save_with_name
+----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+LanguageTest: test_should_respond_to_filters
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+LanguageTest: test_should_not_save_without_name
+-----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+UserFilterTest: test_should_respond_to_user
+-------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+UserFilterTest: test_should_respond_to_filter_
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------------------------
+UserOperatingSystemTest: test_should_respond_to_operating_system
+----------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+----------------------------------------------------
+UserOperatingSystemTest: test_should_respond_to_user
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+SexualOrientationTest: test_should_save_with_name
+-------------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------
+SexualOrientationTest: test_should_respond_to_users
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+SexualOrientationTest: test_should_not_save_without_name
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+OperatingSystemTest: test_should_save_with_name
+-----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------------------------
+OperatingSystemTest: test_should_respond_to_user_operating_systems
+------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+OperatingSystemTest: test_should_respond_to_users
+-------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------------
+OperatingSystemTest: test_should_not_save_without_name
+------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------
+SkillTest: test_should_save_with_name
+-------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+SkillTest: test_should_respond_to_filters
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+SkillTest: test_should_not_save_without_name
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------
+GenderTest: test_should_save_with_name
+--------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+GenderTest: test_should_not_save_without_name
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------
+GenderTest: test_should_respond_to_users
+----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
