@@ -50,7 +50,7 @@ class UsersController < ApplicationController
       redirect_to profile_path(@user.profile)
     else
       @errors = @user.errors.full_messages
-      render template: 'account_settings/edit'
+      render template: 'users/edit'
     end
   end
 

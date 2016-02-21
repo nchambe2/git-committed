@@ -3,11 +3,11 @@
 <%= form_for @user, url: account_path, method: :patch do |f| %>
   <div class="input-group">
     <%= f.label :username, class: "input-group-addon" %>
-    <%= f.text_field :username, class: "form-control" %>
+    <%= f.text_field :username, class: "form-control", validate: true %>
   </div>
   <div class="input-group">
     <%= f.label :email, class: "input-group-addon" %>
-    <%= f.text_field :email, class: "form-control" %>
+    <%= f.text_field :email, class: "form-control", validate: true %>
   </div>
   <div class="input-group">
     <%= f.label :password, class: "input-group-addon" %>
@@ -20,12 +20,4 @@
   <div class="center input-group">
     <%= f.submit :submit, class: "submit btn btn-default" %>
   </div>
-<% end %>
-
-<% if @errors %>
-  <ul>
-  <% @errors.each do |error| %>
-    <li><%= error %></li>
-  <% end %>
-  </ul>
 <% end %>
