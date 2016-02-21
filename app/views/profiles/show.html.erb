@@ -1,0 +1,18 @@
+<div>
+  <p>
+    <%= @profile.user.username %> <%= @profile.user.calculate_age(@user.birthday) %> years old
+  </p>
+
+</div>
+
+<div>
+  <p>
+    <%= @profile.user.sexual_orientation.name %> <%= @profile.user.gender.name %> looking for  <%= @profile.user.sexual_preference.name %>
+  </p>
+</div>
+
+<div>
+  <p>
+    <%= @profile.about_me %>
+  </p>
+</div>
