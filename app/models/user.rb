@@ -18,7 +18,8 @@ class User < ActiveRecord::Base
   validates :zip_code, presence: true
   validates :birthday, presence: true
 
-  def calculate_age(birthday)
+  # def calculate_age(birthday)
+  def age
     (Date.today - birthday).to_i / 365
   end
 end
