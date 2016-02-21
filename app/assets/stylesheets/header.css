@@ -5,7 +5,6 @@ body {
 .logo {
 	font-weight: 500;
 	font-size: 2em;
-	margin: 0;
 }
 
 .grey, .grey:hover {
@@ -13,7 +12,7 @@ body {
 }
 
 .btn {
-	    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .dropdown-menu {
@@ -23,6 +22,14 @@ body {
 
 .navbar {
 	background-color: #A8E6CE;
+}
+
+.navbar-nav {
+  margin: -1px -17px;
+}
+
+.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+   max-height: none;
 }
 
 .navbar-toggle, .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
