@@ -15,6 +15,6 @@ class LanguageTest < ActiveSupport::TestCase
 
   test "should respond to filters" do
     language = Language.new
-    language.respond_to?(:filters)
+    assert_respond_to(language, :filters)
   end
 end
