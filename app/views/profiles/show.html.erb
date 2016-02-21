@@ -1,0 +1,15 @@
+
+<h1><%= @user.username %></h1>
+
+<div>
+  <p>
+    <%= @user.calculate_age(@user.birthday) %> years old
+  </p>
+</div>
+
+<div>
+  <p>
+    <%= @user.sexual_orientation.name %> <%= @user.gender.name %> looking for <%= @user.sexual_preference.name %>
+  </p>
+
+</div>
