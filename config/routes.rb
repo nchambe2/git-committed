@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get '/profile', to: 'profiles#show'
   get '/profile/edit', to: 'profiles#edit'
+  patch '/profile', to: 'profiles#update'
+
 
   get  '/filters', to: 'filters#index', as: 'filters'
   post '/filters', to: 'filters#create'
