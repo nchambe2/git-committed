@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
-  get '/profile', to: 'profiles#show'
-  get '/profile/edit', to: 'profiles#edit'
-  patch '/profile', to: 'profiles#update'
+  get '/profile/:id', to: 'profiles#show', as: 'profile'
+  get '/profile/:id/edit', to: 'profiles#edit', as: 'edit_profile'
+  patch '/profile/:id', to: 'profiles#update'
 
 
   get  '/filters', to: 'filters#index', as: 'filters'
