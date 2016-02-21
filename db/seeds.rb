@@ -13,11 +13,18 @@ SexualPreference.destroy_all
 TextEditor.destroy_all
 OperatingSystem.destroy_all
 User.destroy_all
+RelationshipType.destroy_all
 
 programming_languages = ['Ruby', 'Javascript', 'C', 'Java', 'C#', 'C++' 'Scala', 'Haskell', 'Objective-C', 'Python', 'PHP']
 
 programming_languages.each do |programming_language|
   Language.create!(name: programming_language)
+end
+
+relationships = ['Short Term Project', 'Long Term Project']
+
+relationships.each do |relationship|
+  RelationshipType.create!(name: relationship)
 end
 
 skill_sets = ['Manual Testing', 'Agile Methodology', 'Watefall Methodology', 'SQL', 'AWS', 'Build Pipelines', 'Shell Scripting', 'Test Automation', 'User Experience', 'Presenting']
@@ -26,7 +33,7 @@ skill_sets.each do |skill_set|
   Skill.create!(name: skill_set)
 end
 
-genders = ['male', 'female']
+genders = ['male', 'female', 'other']
 genders.each do |gender|
  Gender.create!(name: gender)
 end
@@ -36,7 +43,7 @@ orientations.each do |orientation|
  SexualOrientation.create!(name: orientation)
 end
 
-preferences = ['male', 'female','male & female']
+preferences = ['male-seeking-male', 'female-seeking-female', 'male-seeking-female', 'female-seeking-male']
 preferences.each do |preference|
  SexualPreference.create!(name: preference)
 end
@@ -61,7 +68,7 @@ matt = User.create!(first_name: "Matt",
                    birthday: " 08/08/1987",
                    gender_id: Gender.find_by(name: "male").id,
                    sexual_orientation_id: SexualOrientation.find_by(name: "straight").id,
-                   sexual_preference_id: SexualPreference.find_by(name: "female").id)
+                   sexual_preference_id: SexualPreference.find_by(name: "male-seeking-female").id)
 
 
 casey = User.create!(first_name: "Casey",
@@ -73,4 +80,4 @@ casey = User.create!(first_name: "Casey",
                     birthday: " 06/06/1988",
                     gender_id: Gender.find_by(name: "female").id,
                     sexual_orientation_id: SexualOrientation.find_by(name: "straight").id,
-                    sexual_preference_id: SexualPreference.find_by(name: "male").id)
+                    sexual_preference_id: SexualPreference.find_by(name: "female-seeking-male").id)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220191735) do
+ActiveRecord::Schema.define(version: 20160221025429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160220191735) do
   end
 
   create_table "relationship_types", force: :cascade do |t|
-    t.string "type", null: false
+    t.string "name", null: false
   end
 
   create_table "sexual_orientations", force: :cascade do |t|

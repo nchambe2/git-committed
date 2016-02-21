@@ -1,6 +1,7 @@
 <div>
   <p>
-    <%= @user.username %> <%= @user.calculate_age(@user.birthday) %> years old
+    <%= @user.username %>
+    <%= @user.calculate_age(@user.birthday) %> years old
   </p>
 
 </div>
@@ -8,6 +9,7 @@
 <div>
   <p>
     <%= @user.sexual_orientation.name %> <%= @user.gender.name %> looking for  <%= @user.sexual_preference.name %>
-
   </p>
 </div>
+
+
