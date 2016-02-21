@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20160220191735) do
   create_table "filters", force: :cascade do |t|
     t.integer  "filterable_id"
     t.string   "filterable_type"
-    t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

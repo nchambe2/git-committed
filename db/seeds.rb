@@ -5,7 +5,26 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Language.destroy_all
+Gender.destroy_all
+Skill.destroy_all
+SexualOrientation.destroy_all
+SexualPreference.destroy_all
+TextEditor.destroy_all
+OperatingSystem.destroy_all
+User.destroy_all
 
+programming_languages = ['Ruby', 'Javascript', 'C', 'Java', 'C#', 'C++' 'Scala', 'Haskell', 'Objective-C', 'Python', 'PHP']
+
+programming_languages.each do |programming_language|
+  Language.create!(name: programming_language)
+end
+
+skill_sets = ['Manual Testing', 'Agile Methodology', 'Watefall Methodology', 'SQL', 'AWS', 'Build Pipelines', 'Shell Scripting', 'Test Automation', 'User Experience', 'Presenting']
+
+skill_sets.each do |skill_set|
+  Skill.create!(name: skill_set)
+end
 
 genders = ['male', 'female']
 genders.each do |gender|
