@@ -1,0 +1,32 @@
+<h1>Filters:</h1>
+
+ <%= form_for :filter, url: filters_path do |f| %>
+    <p>
+      <%= f.label "Programming Languages:" %>
+      <% @programming_languages.each do |programming_language| %>
+         <p><%= f.check_box(programming_language) %><%= programming_language %></p>
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label "Skills:" %>
+      <% @skills.each do |skill| %>
+         <p><%= f.check_box(skill) %><%= skill %></p>
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label "Sexual Preferences:" %>
+      <% @sexual_prefences.each do |sexual_prefence| %>
+         <p><%= f.check_box(sexual_prefence) %><%= sexual_prefence %></p>
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label "Minimum Age:" %>
+      <%= f.select :age, options_for_select((18..99).step(1))%>
+      <%= f.label "Maximum Age:" %>
+      <%= f.select :age, options_for_select((18..99).step(1)) %>
+    </p>
+    <%= f.submit %>
+  <% end %>

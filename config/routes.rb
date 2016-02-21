@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 
   get '/profile', to: 'profiles#show'
   get '/browse', to: 'profiles#index'
+
+  get  '/filters', to: 'filters#index', as: 'filters'
+  post '/filters', to: 'filters#create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :user_operating_systems
   has_many :operating_systems, through: :user_operating_systems
 
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :password, presence: true, allow_nil: true, length: {minimum: 8, maximum: 25}
