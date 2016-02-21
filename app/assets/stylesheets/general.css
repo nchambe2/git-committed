@@ -34,3 +34,7 @@
 .no-margin {
 	margin: 0;
 }
+
+label {
+	padding: 0;
+}

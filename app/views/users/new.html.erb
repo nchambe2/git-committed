@@ -1,29 +1,29 @@
 <h1 class="center">Create an Account</h1>
 
 <%= form_for @user, url: account_path do |f| %>
-	<div class="input-group">
-	  <%= f.label :first_name %><br>
-	  <%= f.text_field :first_name, class: "form-control" %>
+  <div class="input-group">
+    <%= f.label :first_name, class: "input-group-addon" %>
+    <%= f.text_field :first_name, class: "form-control", validate: true %>
+	</div>
+  <div class="input-group">
+    <%= f.label :last_name, class: "input-group-addon" %>
+    <%= f.text_field :last_name, class: "form-control" %>
+	</div>
+  <div class="input-group">
+    <%= f.label :email, class: "input-group-addon" %>
+    <%= f.email_field :email, class: "form-control" %>
+	</div>
+  <div class="input-group">
+    <%= f.label :username, class: "input-group-addon" %>
+    <%= f.text_field :username, class: "form-control" %>
 	</div>
 	<div class="input-group">
-	  <%= f.label :last_name %><br>
-	  <%= f.text_field :last_name, class: "form-control" %>
+    <%= f.label :password, class: "input-group-addon" %>
+    <%= f.password_field :password, placeholder: "Password", class: "form-control" %>
 	</div>
 	<div class="input-group">
-	  <%= f.label :email %><br>
-	  <%= f.email_field :email, class: "form-control" %>
-	</div>
-	<div class="input-group">
-	  <%= f.label :username %><br>
-	  <%= f.text_field :username, class: "form-control" %>
-	</div>
-	<div class="input-group">
-	  <%= f.label :password %><br>
-	  <%= f.password_field :password, class: "form-control" %>
-	</div>
-	<div class="input-group">
-	  <%= f.label :password_confirmation %><br>
-	  <%= f.password_field :password_confirmation, class: "form-control" %>
+    <div class="input-group-addon"></div>
+    <%= f.password_field :password_confirmation, placeholder: "Confirm password", class: "form-control" %>
 	</div>
 	<div class="input-group">
 	  <%= f.label :birthday %><br>
@@ -43,18 +43,10 @@
 	  <%= select_tag(:sexual_preference_id, options_for_select([['', 0], ['male', 1], ['female', 2], ['male & female', 3]])) %>
 	</div>
 	<div class="input-group">
-	  <%= f.label :zip_code %><br>
-	  <%= f.text_field :zip_code %>
+	  <%= f.label :zip_code, class: "input-group-addon" %>
+	  <%= f.text_field :zip_code, class: "form-control" %>
 	</div>
 	<div class="center input-group">
 	  <%= f.submit :submit, class: 'submit btn btn-default' %>
 	</div>
-<% end %>
-
-<% if @errors %>
-  <ul>
-  <% @errors.each do |error| %>
-    <li><%= error %></li>
-  <% end %>
-  </ul>
 <% end %>
