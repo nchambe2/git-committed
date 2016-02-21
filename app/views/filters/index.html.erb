@@ -17,16 +17,14 @@
 
     <p>
       <%= f.label "Sexual Preferences:" %>
-      <% @sexual_prefences.each do |sexual_prefence| %>
-         <p><%= f.check_box(sexual_prefence) %><%= sexual_prefence %></p>
-      <% end %>
+      <%= f.select :sexual_preference_id, options_for_select(@sexual_preferences), selected: current_user.sexual_preference_id %>
     </p>
 
     <p>
       <%= f.label "Minimum Age:" %>
-      <%= f.select :age, options_for_select((18..99).step(1))%>
+      <p><%= f.select :age, options_for_select((18..99).step(1))%></p>
       <%= f.label "Maximum Age:" %>
-      <%= f.select :age, options_for_select((18..99).step(1)) %>
+      <p><%= f.select :age, options_for_select((18..99).step(1)) %><p>
     </p>
     <%= f.submit %>
   <% end %>

@@ -1,8 +1,7 @@
-class FiltersController < ActionController::Base
+class FiltersController < ApplicationController
   def index
-    # @user = User.find(current_user.id)
     @programming_languages = Language.language_names
     @skills = Skill.skill_name
-    @sexual_prefences = SexualPreference.sexual_preference_names
+    @sexual_preferences = SexualPreference.sexual_preference_names
   end
 end
