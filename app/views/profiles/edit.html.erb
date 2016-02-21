@@ -21,70 +21,79 @@
 
   <p>
     <%= f.label "Gender:" %><br>
-    <%= @genders.each do |g| %>
-      <%= f.select :gender_id, @genders.collect {|g| g.name, g.id }) %>
-    <% end %>
+    <%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] } %>
   </p>
 
+ <%= fields_for :about_me, @profile.about_me do |p| %>
+   <p>
+      <%= p.label :name %><br>
+      <%= p.text_area :name %>
+   </p>
+ <% end %>
 
- <p>
-    <%= f.label :about_me %><br>
-    <%= f.text_area :about_me %>
- </p>
+ <%= fields_for :languages, @programming_languages do |l| %>
+    <p>
+      <%= l.label "Programming Languages:" %>
+      <% @programming_languages.each do |programming_language| %>
+         <p>
+          <%= l.check_box :name %>
+          <%= programming_language.name %>
+        </p>
+      <% end %>
+    </p>
+ <% end %>
 
+<%= fields_for :editors, @text_editors do |t| %>
   <p>
-    <%= f.label "Programming Languages:" %>
-    <% @programming_languages.each do |programming_language| %>
-       <p>
-        <%= f.check_box(programming_language) %>
-        <%= programming_language %>
-      </p>
-    <% end %>
-  </p>
-
-  <p>
-    <%= f.label "Text Editors:" %>
+    <%= t.label "Text Editors:" %>
     <% @text_editors.each do |text_editor| %>
        <p>
-        <%= f.check_box(text_editor) %>
-        <%= text_editor %>
+        <%= t.check_box :name %>
+        <%= text_editor.name %>
       </p>
     <% end %>
   </p>
+<% end %>
 
+<%= fields_for :operating_systems, @operating_systems do |o| %>
   <p>
-    <%= f.label "Operating Systems:" %>
+    <%= o.label "Operating Systems:" %>
     <% @operating_systems.each do |operating_system| %>
        <p>
-        <%= f.check_box(operating_system) %>
-        <%= operating_system %>
+        <%= o.check_box :name %>
+        <%= operating_system.name %>
       </p>
     <% end %>
   </p>
+<% end %>
 
+<%= fields_for :skills, @skills do |s| %>
   <p>
-    <%= f.label "Skills:" %>
+    <%= s.label "Skills:" %>
     <% @skills.each do |skill| %>
        <p>
-        <%= f.check_box(skill) %>
-        <%= skill %>
+        <%= s.check_box :name %>
+        <%= skill.name %>
       </p>
     <% end %>
   </p>
+<% end %>
 
+<%= fields_for :relationship_types, @relationship_types do |rt| %>
   <p>
-    <%= f.label "Seeking:" %><br>
-    <%= f.select :relationship_type_id, options_for_select(@relationship_types) %>
+    <%= rt.label "Seeking:" %><br>
+    <%= rt.select :name, @relationship_types.collect {|r| [r.name, r.id] } %>
   </p>
+<% end %>
 
   <p>
     <%= f.label "Sexual Preference:" %><br>
-    <%= f.select :sexual_preference_id, options_for_select(@sexual_preferences) %>
+    <%= f.select :sexual_preference_id, @sexual_preferences.collect {|sp| [sp.name, sp.id]} %>
   </p>
 
   <p>
     <%= f.label "Sexual Orientation:" %><br>
-    <%= f.select :sexual_orientation_id, options_for_select(@sexual_preferences) %>
+    <%= f.select :sexual_orientation_id, @sexual_orientations.collect { |so| [so.name, so.id]  } %>
   </p>
   <%= f.submit %>
 <% end %>

@@ -29,7 +29,7 @@ class ProfilesController < ApplicationController
     @sexual_preferences = SexualPreference.all
     @sexual_orientations = SexualOrientation.all
 
-    if profile != current_user.profile
+    if @profile != current_user.profile
       redirect_to edit_profile_path(current_user.profile)
     end
 
