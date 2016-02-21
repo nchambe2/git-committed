@@ -1,0 +1,17 @@
+.thumbnail {
+	overflow: hidden;
+}
+
+.profile_card {
+	width: 50em;
+}
+
+.profile_pic {
+	width: 17em;
+	height: 17em;
+	border-right: 1px solid grey;
+}
+
+.profile_card_info {
+	width: 32em;
+}
