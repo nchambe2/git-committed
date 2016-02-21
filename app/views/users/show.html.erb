@@ -1,18 +1,25 @@
 User: <%= @user.username %>
 <h4>View your <%= link_to "Profile",  profile_path(@user) %></h4>
 <h4>Edit your <%= link_to "Profile", edit_profile_path(@user) %></h4>
+
 <div>
   <p>
+    <%= @user.username %>
     <%= @user.first_name %>
     <%= @user.last_name %>
     <%= @user.calculate_age(@user.birthday) %> years old
   </p>
-  <%= @user.email %>
-  <%= @user.zip_code %>
 </div>
 
 <div>
   <p>
-    <%= @user.gender.name %> looking for <%= @user.sexual_orientation.name %> <%= @user.sexual_preference.name %>
+    <%= @user.email %>
+    <%= @user.zip_code %>
+  </p>
+</div>
+
+<div>
+  <p>
+    <%= @user.sexual_orientation.name %> <%= @user.gender.name %> looking for  <%= @user.sexual_preference.name %>
   </p>
 </div>

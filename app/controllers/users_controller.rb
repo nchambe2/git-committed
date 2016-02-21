@@ -26,24 +26,6 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
   end
 
-  def update
-    @user = current_user
-    if @user.update_attributes(user_params)
-      redirect_to root_path
-    else
-      @errors = @user.errors.full_messages
-      render template: 'users/edit'
-    end
-  end
-
-  def edit
-    if current_user
-      @user = current_user
-    else
-      redirect_to login_path
-    end
-  end
-
   def destroy
   end
 

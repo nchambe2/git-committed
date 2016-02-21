@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
+  get '/account_settings', to: 'account_settings#edit', as: 'account_settings'
+  patch '/account_settings', to: 'account_settings#update'
+
+
   get '/profile/:id', to: 'profiles#show', as: 'profile'
   get '/profile/:id/edit', to: 'profiles#edit', as: 'edit_profile'
   patch '/profile/:id', to: 'profiles#update'
