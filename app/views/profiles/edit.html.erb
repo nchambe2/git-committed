@@ -24,10 +24,10 @@
     <%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] } %>
   </p>
 
- <%= fields_for :about_me, @profile.about_me do |p| %>
+ <%= fields_for :profile, @profile do |p| %>
    <p>
-      <%= p.label :name %><br>
-      <%= p.text_area :name %>
+      <%= p.label :about_me %><br>
+      <%= p.text_area :about_me %>
    </p>
  <% end %>
 

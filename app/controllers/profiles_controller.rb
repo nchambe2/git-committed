@@ -49,7 +49,7 @@ class ProfilesController < ApplicationController
   end
 
   def update_user
-    params.require(:profile).permit(:username,
+    params.require(:user).permit(:username,
                                  :first_name,
                                  :last_name,
                                  :email,
