@@ -29,6 +29,11 @@
     <%= f.text_area :about_me %>
  </p>
 
+ <p>
+    <%= f.label :github_link %><br>
+    <%= f.text_field :github_link %>
+ </p>
+
   <p>
     <%= f.label "Programming Languages:" %>
     <% @programming_languages.each do |programming_language| %>
