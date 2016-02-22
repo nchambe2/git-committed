@@ -31,6 +31,7 @@ gem 'aws-sdk-resources'
 gem 's3_direct_upload'
 
 gem 'kaminari'
+gem 'will_paginate', '~> 3.0.6'
 
 gem 'client_side_validations'
 
@@ -59,4 +60,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # gem 'spring'
 end
-

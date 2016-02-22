@@ -2,7 +2,10 @@ class ProfilesController < ApplicationController
 
   def index
     if current_user
-      @profiles = Profile.all.order(updated_at: :desc).where.not(id: current_user.profile.id).page params[:page]
+      filters = current_user.user_filters.where(active:true).map(&:filter).map(&:filterable)
+      all_profiles = Profile.all.order(updated_at: :desc).where.not(id: current_user.profile.id)
+      filtered = filter_profiles(all_profiles, filters).map(&:id)
+      @profiles = Profile.find(filtered).paginate(:per_page => 10)
     else
       redirect_to login_path
     end
@@ -20,7 +23,6 @@ class ProfilesController < ApplicationController
   def edit
     @profile = Profile.find_by(id: params[:id])
     @user = current_user
-
     @genders = Gender.all
     @programming_languages = Language.all
     @text_editors = TextEditor.all
@@ -56,12 +58,23 @@ class ProfilesController < ApplicationController
                                  :last_name,
                                  :email,
                                  :gender,
-                                 :programming_languages,
+                                 :languages,
                                  :text_editors,
                                  :operating_systems,
                                  :skills,
                                  :seeking,
                                  :sexual_preferences,
                                  :sexual_orientations)
+  end
+
+  def filter_profiles(profiles, filters)
+    filtered = []
+    profiles.each do |profile|
+      user_traits = [profile.user.languages, profile.user.text_editors, profile.user.skills, profile.user.operating_systems].flatten
+      if filters.any? {|det| user_traits.include?(det)}
+        filtered << profile
+      end
+    end
+    filtered
   end
 end
