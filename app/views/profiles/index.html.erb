@@ -2,4 +2,4 @@
 	<%= render partial: 'profiles/profile_card', locals: {profile: profile} %>
 <% end %>
 
-<div class="pagination_div"><%= paginate @profiles %></div>
+<div class="pagination_div"><%= will_paginate @profiles %></div>

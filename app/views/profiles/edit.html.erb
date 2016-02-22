@@ -1,9 +1,4 @@
 <%= form_for :profile, url: update_profile_path, method: :patch do |f| %>
-  <p>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
- </p>
-
  <p>
     <%= f.label :first_name %>
     <%= f.text_field :first_name %>
@@ -36,10 +31,10 @@
 
   <p>
     <%= f.label "Programming Languages:" %>
-    <% @programming_languages.each do |programming_language| %>
+    <% @languages.each do |language| %>
        <p>
-        <%= f.check_box(programming_language) %>
-        <%= programming_language %>
+        <%= f.check_box(language) %>
+        <%= language %>
       </p>
     <% end %>
   </p>
