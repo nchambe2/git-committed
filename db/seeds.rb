@@ -15,14 +15,14 @@ OperatingSystem.destroy_all
 User.destroy_all
 RelationshipType.destroy_all
 
-programming_languages = ['Ruby', 'Javascript', 'C', 'Java', 'C#', 'C++' 'Scala', 'Haskell', 'Objective-C', 'Python', 'PHP']
+programming_languages = ['Ruby', 'Javascript', 'C', 'Java', 'C#', 'C++', 'Scala', 'Haskell', 'Objective-C', 'Python', 'PHP']
 
 programming_languages.each do |programming_language|
   lang = Language.create!(name: programming_language)
   lang.filters.create
 end
 
-relationships = ['Short Term Project', 'Long Term Project']
+relationships = ['Coding pair', 'Coding bae']
 
 relationships.each do |relationship|
   rt = RelationshipType.create!(name: relationship)

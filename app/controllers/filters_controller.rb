@@ -4,10 +4,12 @@ class FiltersController < ApplicationController
     @skills = Filter.where(filterable_type:"Skill")
     @text_editors = Filter.where(filterable_type:"TextEditor")
     @operating_systems = Filter.where(filterable_type:"OperatingSystem")
-    # @sexual_preferences = Filter.where(filterable_type:"SexualPreference"
+    @rel_types = Filter.where(filterable_type:"RelationshipType")
+
+    # @sexual_preferences = Filter.where(filterable_type:"SexualPreference")
     @sexual_preferences = SexualPreference.pluck("name")
 
-    @user_filters = current_user.user_filters
+    @user_filters = current_user.user_filters.where(active: true).pluck('id')
   end
 
   def update
