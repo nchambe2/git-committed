@@ -25,8 +25,8 @@ gem 'jbuilder', '~> 2.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'paperclip'
 gem 'aws-sdk', '~> 1'
+gem 'paperclip'
 gem 'aws-sdk-resources'
 gem 's3_direct_upload'
 

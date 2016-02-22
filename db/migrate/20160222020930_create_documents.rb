@@ -1,6 +1,8 @@
 class CreateDocuments < ActiveRecord::Migration
   def change
     create_table :documents do |t|
+      t.string :link
+      t.string :name
       t.references :profile, null: false
       t.string :direct_upload_url, null: false
       t.attachment :upload
