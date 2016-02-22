@@ -32,11 +32,6 @@
 		</p>
 	<% end %>
 
-  <p>
-    <%= f.label "Gender:" %><br>
-    <%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] } %>
-  </p>
-
    <%= fields_for :profile, @profile do |p| %>
      <p>
         <%= p.label :about_me %><br>
@@ -56,8 +51,10 @@
         <%= l.label "Programming Languages:" %>
         <% @programming_languages.each do |programming_language| %>
            <p>
-            <%= l.check_box :name %>
-            <%= programming_language.name %>
+            <% @user_languages.each do |lang| %>
+              <%= l.check_box :name, { checked: lang.id = programming_language.id } %>
+              <%= programming_language.name %>
+            <% end %>
           </p>
         <% end %>
       </p>
@@ -68,7 +65,7 @@
 			<%= t.label "Text Editors:" %>
 			<% @text_editors.each do |text_editor| %>
 				<p>
-					<%= t.check_box :name %>
+					<%= t.check_box :name, {checked: @user.text_editor_id == text_editor.id } %>
 					<%= text_editor.name %>
 				</p>
 			<% end %>
@@ -80,7 +77,7 @@
 			<%= o.label "Operating Systems:" %>
 			<% @operating_systems.each do |operating_system| %>
 				<p>
-					<%= o.check_box :name %>
+					<%= o.check_box :name, {checked: @user.operating_system_id == operating_system.id } %>
 					<%= operating_system.name %>
 				</p>
 			<% end %>

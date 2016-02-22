@@ -31,6 +31,7 @@ class ProfilesController < ApplicationController
     @relationship_types = RelationshipType.all
     @sexual_preferences = SexualPreference.all
     @sexual_orientations = SexualOrientation.all
+    p @user_languages = @user.languages
 
     if @profile != current_user.profile
       redirect_to edit_profile_path(current_user.profile)
