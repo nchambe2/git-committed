@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  
+
   def index
     if current_user
       @profiles = Profile.all.order(updated_at: :desc).where.not(id: current_user.profile.id).page params[:page]
@@ -28,11 +28,11 @@ class ProfilesController < ApplicationController
     @relationship_types = RelationshipType.relationship_type_names
     @sexual_preferences = SexualPreference.all.sexual_preference_names
     @sexual_orientations = SexualOrientation.all.orientation_names
-    
+
     if profile != current_user.profile
       redirect_to edit_profile_path(current_user.profile)
     end
-    
+
   end
 
   def update
@@ -45,7 +45,7 @@ class ProfilesController < ApplicationController
 
   private
   def update_profile
-    params.require(:profile).permit(:about_me)
+    params.require(:profile).permit(:about_me, :github_link)
   end
 
   def update_user
