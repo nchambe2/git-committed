@@ -18,19 +18,22 @@ RelationshipType.destroy_all
 programming_languages = ['Ruby', 'Javascript', 'C', 'Java', 'C#', 'C++' 'Scala', 'Haskell', 'Objective-C', 'Python', 'PHP']
 
 programming_languages.each do |programming_language|
-  Language.create!(name: programming_language)
+  lang = Language.create!(name: programming_language)
+  lang.filters.create
 end
 
 relationships = ['Short Term Project', 'Long Term Project']
 
 relationships.each do |relationship|
-  RelationshipType.create!(name: relationship)
+  rt = RelationshipType.create!(name: relationship)
+  rt.filters.create
 end
 
 skill_sets = ['Manual Testing', 'Agile Methodology', 'Watefall Methodology', 'SQL', 'AWS', 'Build Pipelines', 'Shell Scripting', 'Test Automation', 'User Experience', 'Presenting']
 
 skill_sets.each do |skill_set|
-  Skill.create!(name: skill_set)
+  skill = Skill.create!(name: skill_set)
+  skill.filters.create
 end
 
 genders = ['male', 'female', 'other']
@@ -50,12 +53,14 @@ end
 
 text_editors = ['Sublime Text', 'Atom', 'Vim', 'Emacs', 'Notepad++', 'BBEdit', 'UltraEdit', 'Dreamweaver', 'Coda', 'Brackets','TextMate']
 text_editors.each do |editor|
- TextEditor.create!(name: editor)
+ te = TextEditor.create!(name: editor)
+ te.filters.create
 end
 
 operating_systems = ['Microsoft Windows', 'Apple Mac OS X', 'Linux', 'Unix']
 operating_systems.each do |system|
- OperatingSystem.create!(name: system)
+ op_system = OperatingSystem.create!(name: system)
+ op_system.filters.create
 end
 
 
@@ -85,3 +90,11 @@ casey = User.create!(first_name: "Casey",
 
 Profile.create(user: matt)
 Profile.create(user: casey)
+
+Filter.all.each do |filter|
+  matt.user_filters.create(filter: filter)
+end
+
+Filter.all.each do |filter|
+  casey.user_filters.create(filter: filter)
+end
