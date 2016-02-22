@@ -20,14 +20,15 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+# bundle exec rake doc:rails generates the API under doc/api.8cw#
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'aws-sdk', '~> 1'
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk-resources'
+gem 's3_direct_upload'
 
 gem 'kaminari'
 
@@ -43,8 +44,6 @@ gem 'rails_12factor', group: :production
 
 gem 'simplecov', :require => false, :group => :test
 
-# gem 'aws-s3', '~> 0.6.3'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -58,6 +57,6 @@ group :development do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  # gem 'spring'
 end
 

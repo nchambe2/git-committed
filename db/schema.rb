@@ -10,7 +10,6 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
 ActiveRecord::Schema.define(version: 20160221235216) do
 
   # These are extensions that must be enabled in order to support this database
@@ -23,6 +22,21 @@ ActiveRecord::Schema.define(version: 20160221235216) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "documents", force: :cascade do |t|
+    t.integer  "profile_id",                          null: false
+    t.string   "direct_upload_url",                   null: false
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
+    t.boolean  "processed",           default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "documents", ["processed"], name: "index_documents_on_processed", using: :btree
+  add_index "documents", ["profile_id"], name: "index_documents_on_profile_id", using: :btree
 
   create_table "filters", force: :cascade do |t|
     t.integer  "filterable_id"
@@ -54,11 +68,14 @@ ActiveRecord::Schema.define(version: 20160221235216) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.string   "picture"
     t.text     "about_me"
-    t.integer  "user_id",     null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "user_id",              null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
     t.string   "github_link"
   end
 
