@@ -14,14 +14,16 @@ Rails.application.routes.draw do
 
   get  '/filters', to: 'filters#edit', as: 'filters'
   post '/filters', to: 'filters#update'
-  
-  
-  
+
+
+
   get '/account/new', to: 'users#new', as: 'new_account'
   post '/account', to: 'users#create', as: 'account'
   patch '/account', to: 'users#update'
   delete '/account', to: 'users#destroy'
   get '/account/settings', to: 'users#edit', as: 'account_settings'
+
+  resources :documents, only: [:create, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

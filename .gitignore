@@ -2,6 +2,7 @@ coverage
 tmp/*
 log/development.log
 .env
+config/aws.yml
 
 
 
