@@ -9,7 +9,7 @@ class FiltersController < ApplicationController
     # @sexual_preferences = Filter.where(filterable_type:"SexualPreference")
     @sexual_preferences = SexualPreference.pluck("name")
 
-    @user_filters = current_user.user_filters.where(active: true).pluck('id')
+    @user_filters = current_user.user_filters.where(active: true).pluck('filter_id')
   end
 
   def update
