@@ -43,8 +43,6 @@ gem 'rails_12factor', group: :production
 
 gem 'simplecov', :require => false, :group => :test
 
-
-
 # gem 'aws-s3', '~> 0.6.3'
 
 group :development, :test do
