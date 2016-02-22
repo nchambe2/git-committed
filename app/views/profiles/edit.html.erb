@@ -1,99 +1,108 @@
-<%= form_for @user, url: update_profile_path, method: :patch do |f| %>
-  <p>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
- </p>
-
- <p>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
- </p>
-
- <p>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
- </p>
-
-  <p>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
- </p>
-
-  <p>
-    <%= f.label "Gender:" %><br>
-    <%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] } %>
-  </p>
-
- <%= fields_for :profile, @profile do |p| %>
-   <p>
-      <%= p.label :about_me %><br>
-      <%= p.text_area :about_me %>
-   </p>
- <% end %>
-
- <%= fields_for :languages, @programming_languages do |l| %>
+<section>
+  <%= form_for @user, :html => { :multipart => true }, url: update_profile_path, method: :patch do |f| %>
     <p>
-      <%= l.label "Programming Languages:" %>
-      <% @programming_languages.each do |programming_language| %>
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+   </p>
+
+   <p>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+   </p>
+
+   <p>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+   </p>
+
+    <p>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+   </p>
+
+  <%= fields_for :profile, @profile do |p| %>
+    <p>
+      <%= p.label :picture %>
+      <%= p.file_field :picture %>
+    </p>
+  <% end %>
+
+    <p>
+      <%= f.label "Gender:" %><br>
+      <%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] } %>
+    </p>
+
+   <%= fields_for :profile, @profile do |p| %>
+     <p>
+        <%= p.label :about_me %><br>
+        <%= p.text_area :about_me %>
+     </p>
+   <% end %>
+
+   <%= fields_for :languages, @programming_languages do |l| %>
+      <p>
+        <%= l.label "Programming Languages:" %>
+        <% @programming_languages.each do |programming_language| %>
+           <p>
+            <%= l.check_box :name %>
+            <%= programming_language.name %>
+          </p>
+        <% end %>
+      </p>
+   <% end %>
+
+  <%= fields_for :editors, @text_editors do |t| %>
+    <p>
+      <%= t.label "Text Editors:" %>
+      <% @text_editors.each do |text_editor| %>
          <p>
-          <%= l.check_box :name %>
-          <%= programming_language.name %>
+          <%= t.check_box :name %>
+          <%= text_editor.name %>
         </p>
       <% end %>
     </p>
- <% end %>
+  <% end %>
 
-<%= fields_for :editors, @text_editors do |t| %>
-  <p>
-    <%= t.label "Text Editors:" %>
-    <% @text_editors.each do |text_editor| %>
-       <p>
-        <%= t.check_box :name %>
-        <%= text_editor.name %>
-      </p>
-    <% end %>
-  </p>
-<% end %>
+  <%= fields_for :operating_systems, @operating_systems do |o| %>
+    <p>
+      <%= o.label "Operating Systems:" %>
+      <% @operating_systems.each do |operating_system| %>
+         <p>
+          <%= o.check_box :name %>
+          <%= operating_system.name %>
+        </p>
+      <% end %>
+    </p>
+  <% end %>
 
-<%= fields_for :operating_systems, @operating_systems do |o| %>
-  <p>
-    <%= o.label "Operating Systems:" %>
-    <% @operating_systems.each do |operating_system| %>
-       <p>
-        <%= o.check_box :name %>
-        <%= operating_system.name %>
-      </p>
-    <% end %>
-  </p>
-<% end %>
+  <%= fields_for :skills, @skills do |s| %>
+    <p>
+      <%= s.label "Skills:" %>
+      <% @skills.each do |skill| %>
+         <p>
+          <%= s.check_box :name %>
+          <%= skill.name %>
+        </p>
+      <% end %>
+    </p>
+  <% end %>
 
-<%= fields_for :skills, @skills do |s| %>
-  <p>
-    <%= s.label "Skills:" %>
-    <% @skills.each do |skill| %>
-       <p>
-        <%= s.check_box :name %>
-        <%= skill.name %>
-      </p>
-    <% end %>
-  </p>
-<% end %>
+  <%= fields_for :relationship_types, @relationship_types do |rt| %>
+    <p>
+      <%= rt.label "Seeking:" %><br>
+      <%= rt.select :name, @relationship_types.collect {|r| [r.name, r.id] } %>
+    </p>
+  <% end %>
 
-<%= fields_for :relationship_types, @relationship_types do |rt| %>
-  <p>
-    <%= rt.label "Seeking:" %><br>
-    <%= rt.select :name, @relationship_types.collect {|r| [r.name, r.id] } %>
-  </p>
-<% end %>
+    <p>
+      <%= f.label "Sexual Preference:" %><br>
+      <%= f.select :sexual_preference_id, @sexual_preferences.collect {|sp| [sp.name, sp.id]} %>
+    </p>
 
-  <p>
-    <%= f.label "Sexual Preference:" %><br>
-    <%= f.select :sexual_preference_id, @sexual_preferences.collect {|sp| [sp.name, sp.id]} %>
-  </p>
-
-  <p>
-    <%= f.label "Sexual Orientation:" %><br>
-    <%= f.select :sexual_orientation_id, @sexual_orientations.collect { |so| [so.name, so.id]  } %>
-  </p>
-  <%= f.submit %>
-<% end %>
+    <p>
+      <%= f.label "Sexual Orientation:" %><br>
+      <%= f.select :sexual_orientation_id, @sexual_orientations.collect { |so| [so.name, so.id]  } %>
+    </p>
+    <%= f.submit %>
+  <% end %>
+</section>

@@ -27,7 +27,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk', '~> 1'
+gem 'aws-sdk-resources'
+gem 's3_direct_upload'
 
 gem 'kaminari'
 
@@ -42,10 +44,6 @@ gem 'rails_12factor', group: :production
 # gem 'capistrano-rails', group: :development
 
 gem 'simplecov', :require => false, :group => :test
-
-
-
-# gem 'aws-s3', '~> 0.6.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
