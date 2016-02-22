@@ -41,6 +41,7 @@ class ProfilesController < ApplicationController
     @user = User.find(current_user.id)
     @profile.update_attributes(update_profile)
     @user.update_attributes(update_user)
+    p params
     redirect_to profile_path(@profile)
   end
 

@@ -39,10 +39,12 @@
      </p>
    <% end %>
 
- <p>
-    <%= f.label :github_link %><br>
-    <%= f.text_field :github_link %>
- </p>
+ <%= fields_for :profile, @profile do |p| %>
+     <p>
+        <%= p.label :github_link %><br>
+        <%= p.text_field :github_link %>
+     </p>
+  <% end %>
 
    <%= fields_for :languages, @programming_languages do |l| %>
       <p>
