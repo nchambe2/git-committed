@@ -1,32 +1,45 @@
-<h1>Filters:</h1>
+<h1 class="center">Filters</h1>
 
-<%= form_for :user_filter, url: filters_path do |f| %>
-	<p>
-		<strong><%= f.label "Programming Languages:" %></strong>
+<%= form_for :user_filter, url: filters_path, html: {class: "filters_form"} do |f| %>
+	<fieldset>
+		<legend>Programming Languages</legend>
 		<% @languages.each do |language| %>
-			<p><%= f.check_box(language.id) %> <%= f.label language.filterable.name, for: "user_filter_#{language.id}" %></p>
+			<div class="inlineblock checkbox_cols"><%= f.check_box(language.id) %> <%= f.label language.filterable.name, for: "user_filter_#{language.id}" %></div>
 		<% end %>
-	</p>
+	</fieldset>
 
-	<p>
-		<strong><%= f.label "Skills:" %></strong>
+	<fieldset>
+		<legend>Skills</legend>
 		<% @skills.each do |skill| %>
-			<p><%= f.check_box(skill.id) %> <%= f.label skill.filterable.name, for: "user_filter_#{skill.id}" %></p>
+			<div class="inlineblock checkbox_cols"><%= f.check_box(skill.id) %> <%= f.label skill.filterable.name, for: "user_filter_#{skill.id}" %></div>
 		<% end %>
-	</p>
+	</fieldset>
 
-	<p>
-		<strong><%= f.label "Sexual Preferences:" %></strong>
-		<%= f.select :sexual_preference_id, options_for_select(@sexual_preferences), selected: current_user.sexual_preference_id %>
-	</p>
+	<fieldset>
+		<legend>Text Editors</legend>
+		<% @text_editors.each do |te| %>
+			<div class="inlineblock checkbox_cols"><%= f.check_box(te.id) %> <%= f.label te.filterable.name, for: "user_filter_#{te.id}" %></div>
+		<% end %>
+	</fieldset>
 
-	<p>
-		<strong><%= f.label "Minimum Age:" %></strong>
-		<p><%= f.select :age, options_for_select((18..99).step(1))%></p>
-		<strong><%= f.label "Maximum Age:" %></strong>
-		<p><%= f.select :age, options_for_select((18..99).step(1)) %></p>
-	</p>
-	
-	<%= f.submit 'save', class: "submit btn btn-default" %>
+	<fieldset>
+		<legend>Operating Systems</legend>
+		<% @operating_systems.each do |sys| %>
+			<div class="inlineblock checkbox_cols"><%= f.check_box(sys.id) %> <%= f.label sys.filterable.name, for: "user_filter_#{sys.id}" %></div>
+		<% end %>
+	</fieldset>
+
+	<fieldset>
+		<legend>Sexual Preferences</legend>
+		<%= f.select :sexual_preference, options_for_select(@sexual_preferences), selected: current_user.sexual_preference %>
+	</fieldset>
+
+	<fieldset>
+		<legend>Age</legend>
+		<p><%= f.label "Minimum Age:" %> <%= f.select :age, options_for_select((18..99).step(1))%></p>
+		<p><%= f.label "Maximum Age:" %> <%= f.select :age, options_for_select((18..99).step(1)) %></p>
+	</fieldset>
+
+	<div class="center"><%= f.submit 'save', class: "submit btn btn-default" %></div>
 
 <% end %>
