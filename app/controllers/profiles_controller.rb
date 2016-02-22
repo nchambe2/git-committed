@@ -48,7 +48,7 @@ class ProfilesController < ApplicationController
 
   private
   def update_profile
-    params.require(:profile).permit(:about_me, :github_link)
+    params.require(:profile).permit(:about_me, :github_link, :picture)
   end
 
   def update_user
