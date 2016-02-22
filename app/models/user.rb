@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   belongs_to :sexual_orientation
   belongs_to :sexual_preference
 
+  has_many :user_filters
+  has_many :filters, through: :user_filters
+  
   has_many :user_text_editors
   has_many :text_editors, through: :user_text_editors
   has_many :user_skills

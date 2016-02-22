@@ -1,6 +1,8 @@
 class TextEditor < ActiveRecord::Base
   has_many :user_text_editors
   has_many :users, through: :user_text_editors
+  has_many :filters,  as: :filterable
+  
   validates :name, presence: true
 
   def self.editor_names
