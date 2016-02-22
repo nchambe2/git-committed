@@ -89,8 +89,9 @@ ActiveRecord::Schema.define(version: 20160221235216) do
   create_table "user_filters", force: :cascade do |t|
     t.integer  "filter_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "active",     default: true, null: false
   end
 
   create_table "user_languages", force: :cascade do |t|

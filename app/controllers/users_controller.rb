@@ -20,6 +20,9 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       Profile.create(user: @user)
+      Filter.all.each do |filter|
+        @user.user_filters.create(filter: filter)
+      end
       redirect_to profile_path(@user.profile)
     else
       @errors = @user.errors.full_messages

@@ -1,6 +1,7 @@
 class Skill < ActiveRecord::Base
   has_many :user_skills
-  belongs_to :filterable, polymorphic: true
+  has_many :filters,  as: :filterable
+  
   validates :name, presence: true
 
   def self.skill_names
