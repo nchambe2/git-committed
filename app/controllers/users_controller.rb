@@ -42,7 +42,7 @@ class UsersController < ApplicationController
       redirect_to login_path
     end
   end
-  
+
   def edit
     current_user ? (@user = current_user) : (redirect_to login_path)
   end
