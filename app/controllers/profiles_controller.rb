@@ -20,6 +20,7 @@ class ProfilesController < ApplicationController
   def edit
     @profile = Profile.find_by(id: params[:id])
     @user = current_user
+
     @genders = Gender.all
     @programming_languages = Language.all
     @text_editors = TextEditor.all
@@ -45,7 +46,7 @@ class ProfilesController < ApplicationController
 
   private
   def update_profile
-    params.require(:profile).permit(:about_me)
+    params.require(:profile).permit(:about_me, :github_link)
   end
 
   def update_user

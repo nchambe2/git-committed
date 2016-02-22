@@ -1,30 +1,32 @@
 <h1>Filters:</h1>
 
- <%= form_for :filter, url: filters_path do |f| %>
-    <p>
-      <%= f.label "Programming Languages:" %>
-      <% @programming_languages.each do |programming_language| %>
-         <p><%= f.check_box(programming_language) %><%= programming_language %></p>
-      <% end %>
-    </p>
+<%= form_for :user_filter, url: filters_path do |f| %>
+	<p>
+		<strong><%= f.label "Programming Languages:" %></strong>
+		<% @languages.each do |language| %>
+			<p><%= f.check_box(language.id) %> <%= f.label language.filterable.name, for: "user_filter_#{language.id}" %></p>
+		<% end %>
+	</p>
 
-    <p>
-      <%= f.label "Skills:" %>
-      <% @skills.each do |skill| %>
-         <p><%= f.check_box(skill) %><%= skill %></p>
-      <% end %>
-    </p>
+	<p>
+		<strong><%= f.label "Skills:" %></strong>
+		<% @skills.each do |skill| %>
+			<p><%= f.check_box(skill.id) %> <%= f.label skill.filterable.name, for: "user_filter_#{skill.id}" %></p>
+		<% end %>
+	</p>
 
-    <p>
-      <%= f.label "Sexual Preferences:" %>
-      <%= f.select :sexual_preference_id, options_for_select(@sexual_preferences), selected: current_user.sexual_preference_id %>
-    </p>
+	<p>
+		<strong><%= f.label "Sexual Preferences:" %></strong>
+		<%= f.select :sexual_preference_id, options_for_select(@sexual_preferences), selected: current_user.sexual_preference_id %>
+	</p>
 
-    <p>
-      <%= f.label "Minimum Age:" %>
-      <p><%= f.select :age, options_for_select((18..99).step(1))%></p>
-      <%= f.label "Maximum Age:" %>
-      <p><%= f.select :age, options_for_select((18..99).step(1)) %><p>
-    </p>
-    <%= f.submit %>
-  <% end %>
+	<p>
+		<strong><%= f.label "Minimum Age:" %></strong>
+		<p><%= f.select :age, options_for_select((18..99).step(1))%></p>
+		<strong><%= f.label "Maximum Age:" %></strong>
+		<p><%= f.select :age, options_for_select((18..99).step(1)) %></p>
+	</p>
+	
+	<%= f.submit 'save', class: "submit btn btn-default" %>
+
+<% end %>

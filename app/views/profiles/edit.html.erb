@@ -27,10 +27,10 @@
     </p>
   <% end %>
 
-    <p>
-      <%= f.label "Gender:" %><br>
-      <%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] } %>
-    </p>
+  <p>
+    <%= f.label "Gender:" %><br>
+    <%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] } %>
+  </p>
 
    <%= fields_for :profile, @profile do |p| %>
      <p>
@@ -38,6 +38,11 @@
         <%= p.text_area :about_me %>
      </p>
    <% end %>
+
+ <p>
+    <%= f.label :github_link %><br>
+    <%= f.text_field :github_link %>
+ </p>
 
    <%= fields_for :languages, @programming_languages do |l| %>
       <p>

@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
 
   has_many :user_seekings
   has_many :relationship_types, through: :user_seekings
+
+  has_many :user_filters
+  has_many :filters, through: :user_filters
+
+
   has_many :user_text_editors
   has_many :text_editors, through: :user_text_editors
   has_many :user_skills
