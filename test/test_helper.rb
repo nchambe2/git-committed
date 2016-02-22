@@ -8,8 +8,14 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require "rack/test"
 require "minitest/reporters"
+require "minitest/rails"
+require "minitest/rails/capybara"
 
-Minitest::Reporters.use!
+Minitest::Reporters.use!(
+  Minitest::Reporters::SpecReporter.new,
+  ENV,
+  Minitest.backtrace_filter
+)
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
