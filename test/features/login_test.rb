@@ -8,4 +8,4 @@ require 'test_helper'
 #     click_button('submit')
 #     page.must_have_css('#profile-browse')
 #   end
-end
+# end
