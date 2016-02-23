@@ -44,6 +44,7 @@ class ProfilesController < ApplicationController
     @user = User.find(current_user.id)
     @profile.update_attributes(update_profile)
     @user.update_attributes(update_user)
+
     update_user_languages = params[:languages]
     update_user_languages.each do |language|
       selection_value = language.last
@@ -52,8 +53,18 @@ class ProfilesController < ApplicationController
        @user.languages.push(lang) unless @user.languages.include?(lang)
       end
     end
+
+    update_user_editors = params[:editors]
+    update_user_editors.each do |editor|
+      selection_value = editor.last
+      if selection_value == "1"
+        text_editor = TextEditor.find_by(id: editor.first.to_i)
+        @user.text_editors.push(text_editor) unless @user.text_editors.include?(text_editor)
+      end
+    end
+
     redirect_to profile_path(@profile)
-  end
+ end
 
   private
   def update_profile
