@@ -63,6 +63,15 @@ class ProfilesController < ApplicationController
       end
     end
 
+    update_operating_systems = params[:operating_systems]
+    update_operating_systems.each do |op_system|
+      selection_value = op_system.last
+      if selection_value == "1"
+        o_s = OperatingSystem.find_by(id: op_system.first.to_i)
+        @user.operating_systems.push(o_s) unless @user.operating_systems.include?(o_s)
+      end
+    end
+
     redirect_to profile_path(@profile)
  end
 
