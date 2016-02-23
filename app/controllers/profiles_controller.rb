@@ -1,6 +1,6 @@
 require 'will_paginate/array'
 class ProfilesController < ApplicationController
-  
+
   def index
     if current_user
       filtered = Profile.order(updated_at: :desc).where.not(id: current_user.profile.id).select {|profile| fits_filter(profile)}
@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    p @profile = Profile.find_by(id: params[:id])
+    @profile = Profile.find_by(id: params[:id])
     @user = current_user
     @genders = Gender.all
     @programming_languages = Language.all
@@ -44,10 +44,27 @@ class ProfilesController < ApplicationController
     @user = User.find(current_user.id)
     @profile.update_attributes(update_profile)
     @user.update_attributes(update_user)
-    p params[:languages]
-    @user.languages << params[:languages]
+
+    update_user_languages = params[:languages]
+    update_user_languages.each do |language|
+      selection_value = language.last
+      if selection_value == "1"
+       lang = Language.find_by(id: language.first.to_i)
+       @user.languages.push(lang) unless @user.languages.include?(lang)
+      end
+    end
+
+    update_user_editors = params[:editors]
+    update_user_editors.each do |editor|
+      selection_value = editor.last
+      if selection_value == "1"
+        text_editor = TextEditor.find_by(id: editor.first.to_i)
+        @user.text_editors.push(text_editor) unless @user.text_editors.include?(text_editor)
+      end
+    end
+
     redirect_to profile_path(@profile)
-  end
+ end
 
   private
   def update_profile
@@ -68,7 +85,7 @@ class ProfilesController < ApplicationController
                                  :sexual_preference_id,
                                  :sexual_orientation_id)
   end
-  
+
   def fits_filter(profile)
     return profile if get_user_filters.any? {|det| profile.get_traits.include?(det)}
   end
