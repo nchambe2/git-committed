@@ -15,3 +15,12 @@
 //= require turbolinks
 //= require s3_direct_upload
 //= require_tree .
+
+$( document ).ready(function() {
+  if ($()) {
+
+  }
+
+
+
+});
