@@ -5,8 +5,7 @@
 <div>
 <<<<<<< Updated upstream
   <p>
-     <!-- image_tag @profile.document  -->
-     <%= image_tag @profile.document %>
+  <%= image_tag @profile.picture.url(:square) %>
   </p>
 =======
 	<% if @profile.picture_file_name %>
