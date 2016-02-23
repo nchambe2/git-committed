@@ -70,8 +70,7 @@ class ProfilesController < ApplicationController
   def filter_profiles(profiles, filters)
     filtered = []
     profiles.each do |profile|
-      user_traits = [profile.user.languages, profile.user.text_editors, profile.user.skills, profile.user.operating_systems].flatten
-      if filters.any? {|det| user_traits.include?(det)}
+      if filters.any? {|det| profile.get_traits.include?(det)}
         filtered << profile
       end
     end

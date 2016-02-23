@@ -1,8 +1,20 @@
+<% if @profile.user == current_user %>
+	<%= link_to("edit profile", edit_profile_path(@profile)) %>
+<% end %>
+
 <div>
+<<<<<<< Updated upstream
   <p>
      <!-- image_tag @profile.document  -->
      <%= image_tag @profile.document %>
   </p>
+=======
+	<% if @profile.picture_file_name %>
+		<%= image_tag(@profile.picture, class: "left profile_pic") %>
+	<% else %>
+		<%= image_tag("ninja.png", class: "left") %>
+	<% end %>
+>>>>>>> Stashed changes
 </div>
 <div>
   <p>
