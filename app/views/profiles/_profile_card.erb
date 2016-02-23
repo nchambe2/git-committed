@@ -48,6 +48,7 @@
 			</p>
 			
 			<%= link_to "new git log", conversations_path(sender_id: current_user.id, recipient_id: profile.user.id), method: :post, class: "btn btn-default" %>
+			<%= link_to "open pull request", create_pull_request_path(liked: profile.user), method: :post, class: "btn btn-default" %>
     </div>
 	</div>
 </div>

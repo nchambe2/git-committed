@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   # get list of all likes where user is the liker
   get '/pull-requests/puller', to: 'likes#liker_index', as: 'puller_index'
   # get list of all likes where user is the liked person
-  get '/pull-requests/pullee', to: 'likes#liked_index', as: 'pullee_index'
+  get '/pull-requests/pullee', to: 'likes#likee_index', as: 'pullee_index'
   post '/pull-requests', to: 'likes#create', as: 'create_pull_request'
 
   # The priority is based upon order of creation: first created -> highest priority.
