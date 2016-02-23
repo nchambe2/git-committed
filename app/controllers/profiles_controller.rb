@@ -1,12 +1,10 @@
 require 'will_paginate/array'
 class ProfilesController < ApplicationController
-
+  
   def index
     if current_user
-      filters = current_user.user_filters.where(active:true).map(&:filter).map(&:filterable)
-      all_profiles = Profile.all.order(updated_at: :desc).where.not(id: current_user.profile.id)
-      filtered = filter_profiles(all_profiles, filters).map(&:id)
-      @profiles = Profile.find(filtered).paginate(:per_page => 10)
+      filtered = Profile.order(updated_at: :desc).where.not(id: current_user.profile.id).select {|profile| fits_filter(profile)}
+      @profiles = filtered.shuffle.paginate(:per_page => 10)
     else
       redirect_to login_path
     end
@@ -70,15 +68,8 @@ class ProfilesController < ApplicationController
                                  :sexual_preference_id,
                                  :sexual_orientation_id)
   end
-
-  def filter_profiles(profiles, filters)
-    filtered = []
-    profiles.each do |profile|
-      user_traits = [profile.user.languages, profile.user.text_editors, profile.user.skills, profile.user.operating_systems].flatten
-      if filters.any? {|det| user_traits.include?(det)}
-        filtered << profile
-      end
-    end
-    filtered
+  
+  def fits_filter(profile)
+    return profile if get_user_filters.any? {|det| profile.get_traits.include?(det)}
   end
 end
