@@ -1,6 +1,6 @@
 <div class="row" id="profile-browse">
   <div class="thumbnail profile_card center align-left">
-		<% if profile.picture %>
+		<% if profile.picture_file_name %>
 			<%= image_tag(profile.picture, class: "left profile_pic") %>
 		<% else %>
 			<%= image_tag("ninja.png", class: "left profile_pic") %>
