@@ -1,6 +1,6 @@
 <div class="row" id="profile-browse">
   <div class="thumbnail profile_card center align-left">
-		<% if profile.picture %>
+		<% if profile.picture_file_name %>
 			<%= image_tag(profile.picture, class: "left profile_pic") %>
 		<% else %>
 			<%= image_tag("ninja.png", class: "left profile_pic") %>
@@ -32,6 +32,22 @@
 				<%= separate_with_commas(profile.user.operating_systems) %>
 			<% end %>
 			</p>
+			<p><strong>Skills:</strong>
+			<% if profile.user.skills.empty? %>
+				N/A
+			<% else %>
+				<%= separate_with_commas(profile.user.skills) %>
+			<% end %>
+			</p>
+			<p><strong>Looking for:</strong>
+			<% if profile.user.relationship_types.empty? %>
+				¯\_(ツ)_/¯
+			<% else %>
+				<%= separate_with_commas(profile.user.relationship_types) %>
+			<% end %>
+			</p>
+			
+			<%= link_to "new git log", conversations_path(sender_id: current_user.id, recipient_id: profile.user.id), method: :post, class: "btn btn-default" %>
     </div>
 	</div>
 </div>
