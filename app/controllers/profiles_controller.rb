@@ -46,7 +46,8 @@ class ProfilesController < ApplicationController
     @user = User.find(current_user.id)
     @profile.update_attributes(update_profile)
     @user.update_attributes(update_user)
-    @user.languages << update_user.languages
+    p params[:languages]
+    @user.languages << params[:languages]
     redirect_to profile_path(@profile)
   end
 
@@ -60,14 +61,14 @@ class ProfilesController < ApplicationController
                                  :first_name,
                                  :last_name,
                                  :email,
-                                 :gender,
-                                 :languages,
-                                 :text_editors,
-                                 :operating_systems,
-                                 :skills,
-                                 :seeking,
-                                 :sexual_preferences,
-                                 :sexual_orientations)
+                                 :gender_id,
+                                 :language_id,
+                                 :text_editor_id,
+                                 :operating_system_id,
+                                 :skill_id,
+                                 :seeking_id,
+                                 :sexual_preference_id,
+                                 :sexual_orientation_id)
   end
 
   def filter_profiles(profiles, filters)
