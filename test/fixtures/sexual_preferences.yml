@@ -1,0 +1,8 @@
+male:
+  name: male
+
+female:
+  name: female
+
+male & female:
+  name: make & female

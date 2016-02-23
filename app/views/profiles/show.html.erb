@@ -1,4 +1,4 @@
-<div>
+<div id="profile-show">
   <p>
   <%= image_tag @profile.picture.url(:square) %>
   </p>
@@ -11,7 +11,9 @@
 
 <div>
   <p>
-    <%= @user.sexual_orientation.name %> <%= @user.gender.name %> looking for  <%= @user.sexual_preference.name %>
+    <%= @user.sexual_orientation.name %>
+    <%= @user.gender.name %> looking for
+    <%= @user.sexual_preference.name %>
   </p>
 </div>
 
