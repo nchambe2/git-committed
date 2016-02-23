@@ -46,7 +46,7 @@ orientations.each do |orientation|
  SexualOrientation.create!(name: orientation)
 end
 
-preferences = ['male-seeking-male', 'female-seeking-female', 'male-seeking-female', 'female-seeking-male']
+preferences = ['men', 'women', 'men and women']
 preferences.each do |preference|
  SexualPreference.create!(name: preference)
 end
@@ -73,7 +73,7 @@ matt = User.create!(first_name: "Matt",
                    birthday: " 08/08/1987",
                    gender_id: Gender.find_by(name: "male").id,
                    sexual_orientation_id: SexualOrientation.find_by(name: "straight").id,
-                   sexual_preference_id: SexualPreference.find_by(name: "male-seeking-female").id)
+                   sexual_preference_id: SexualPreference.find_by(name: "women").id)
 
 
 casey = User.create!(first_name: "Casey",
@@ -85,7 +85,7 @@ casey = User.create!(first_name: "Casey",
                     birthday: " 06/06/1988",
                     gender_id: Gender.find_by(name: "female").id,
                     sexual_orientation_id: SexualOrientation.find_by(name: "straight").id,
-                    sexual_preference_id: SexualPreference.find_by(name: "female-seeking-male").id)
+                    sexual_preference_id: SexualPreference.find_by(name: "men").id)
 
 
 Profile.create(user: matt)

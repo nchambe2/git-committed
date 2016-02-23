@@ -32,6 +32,20 @@
 				<%= separate_with_commas(profile.user.operating_systems) %>
 			<% end %>
 			</p>
+			<p><strong>Skills:</strong>
+			<% if profile.user.skills.empty? %>
+				N/A
+			<% else %>
+				<%= separate_with_commas(profile.user.skills) %>
+			<% end %>
+			</p>
+			<p><strong>Looking for:</strong>
+			<% if profile.user.relationship_types.empty? %>
+				¯\_(ツ)_/¯
+			<% else %>
+				<%= separate_with_commas(profile.user.relationship_types) %>
+			<% end %>
+			</p>
     </div>
 	</div>
 </div>
