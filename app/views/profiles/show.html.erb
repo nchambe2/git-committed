@@ -1,18 +1,35 @@
-<div>
-  <p>
-  <%= image_tag @profile.picture.url(:square) %>
-  </p>
-</div>
-<div>
-  <p>
-    <%= @user.username %> <%= @user.age %> years old
-  </p>
-</div>
+<% if @profile.user == current_user %>
+	<%= link_to("edit profile", edit_profile_path(@profile)) %>
+<% end %>
+<div id="profile-show">
+  <div>
+  	<% if @profile.picture_file_name %>
+  		<%= image_tag @profile.picture.url(:square), class: "left" %>
+  	<% else %>
+  		<%= image_tag("ninja.png", class: "left") %>
+  	<% end %>
+  </div>
+  <div>
+    <p>
+      <%= @user.username %> <%= @user.age %> years old
+    </p>
+    <p>
+      <%= @user.first_name %> <%= @user.last_name %>
+    </p>
+    <p>
+      <% @user.languages.each do |language| %>
+        <p><%= language.name %><p>
+      <% end %>
+    </p>
+  </div>
 
-<div>
-  <p>
-    <%= @user.sexual_orientation.name %> <%= @user.gender.name %> looking for  <%= @user.sexual_preference.name %>
-  </p>
+  <div>
+    <p>
+      <%= @user.sexual_orientation.name %>
+      <%= @user.gender.name %> looking for
+      <%= @user.sexual_preference.name %>
+    </p>
+  </div>
 </div>
 
 
