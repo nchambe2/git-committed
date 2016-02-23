@@ -21,7 +21,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @profile = Profile.find_by(id: params[:id])
+    p @profile = Profile.find_by(id: params[:id])
     @user = current_user
     @genders = Gender.all
     @programming_languages = Language.all
@@ -31,7 +31,8 @@ class ProfilesController < ApplicationController
     @relationship_types = RelationshipType.all
     @sexual_preferences = SexualPreference.all
     @sexual_orientations = SexualOrientation.all
-    p @user_languages = @user.languages
+    @user_languages = @user.languages
+    @user_skills = @user.skills
 
     if @profile != current_user.profile
       redirect_to edit_profile_path(current_user.profile)

@@ -9,7 +9,7 @@
 	</p>
 	<p>
 		<%= f.label "Gender:" %><br>
-		<%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] } %>
+		<%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] }, {:selected => @genders.include?(@user.gender_id)} %>
 	</p>
 
   <%= fields_for(@profile, multipart: true) do |p| %>
@@ -32,10 +32,8 @@
         <%= l.label "Programming Languages:" %>
         <% @programming_languages.each do |programming_language| %>
            <p>
-            <% @user_languages.each do |lang| %>
-              <%= l.check_box :name, { checked: lang.id = programming_language.id } %>
+              <%= l.check_box :name, { checked: @user_languages.include?(programming_language) } %>
               <%= programming_language.name %>
-            <% end %>
           </p>
         <% end %>
       </p>
@@ -46,7 +44,7 @@
 			<%= t.label "Text Editors:" %>
 			<% @text_editors.each do |text_editor| %>
 				<p>
-					<%= t.check_box :name, {checked: @user.text_editor_id == text_editor.id } %>
+					<%= t.check_box :name, {checked: @user.text_editors.include?(text_editor) } %>
 					<%= text_editor.name %>
 				</p>
 			<% end %>
@@ -58,7 +56,7 @@
 			<%= o.label "Operating Systems:" %>
 			<% @operating_systems.each do |operating_system| %>
 				<p>
-					<%= o.check_box :name, {checked: @user.operating_system_id == operating_system.id } %>
+					<%= o.check_box :name, {checked: @user.operating_systems.include?(operating_system) } %>
 					<%= operating_system.name %>
 				</p>
 			<% end %>
@@ -70,7 +68,7 @@
 			<%= s.label "Skills:" %>
 			<% @skills.each do |skill| %>
 				<p>
-					<%= s.check_box :name %>
+					<%= s.check_box :name, { checked: @user_skills.include?(skill) } %>
 					<%= skill.name %>
 				</p>
 			<% end %>
