@@ -36,7 +36,7 @@ class ProfileUpdater
        user.languages.push(lang) unless user.languages.include?(lang)
       elsif selection_value == "0"
         lang = Language.find_by(id: language.first)
-        user.languages - user.languages.delete(lang)
+        user.languages.delete(lang)
       end
     end
   end
@@ -49,7 +49,7 @@ class ProfileUpdater
         user.text_editors.push(text_editor) unless user.text_editors.include?(text_editor)
       elsif selection_value == "0"
         text_editor = TextEditor.find_by(id: editor.first.to_i)
-        user.text_editors -  user.text_editors.delete(text_editor)
+        user.text_editors.delete(text_editor)
       end
     end
   end
@@ -62,7 +62,7 @@ class ProfileUpdater
         user.operating_systems.push(o_s) unless user.operating_systems.include?(o_s)
       elsif selection_value == "0"
         o_s = OperatingSystem.find_by(id: op_system.first.to_i)
-        user.operating_systems - user.operating_systems.delete(o_s)
+        user.operating_systems.delete(o_s)
       end
     end
   end
@@ -75,7 +75,7 @@ class ProfileUpdater
         user.skills.push(s) unless user.skills.include?(s)
       elsif selection_value == "0"
         s = Skill.find_by(id: skill.first.to_i)
-        user.skills - user.skills.delete(s)
+        user.skills.delete(s)
       end
     end
  end
