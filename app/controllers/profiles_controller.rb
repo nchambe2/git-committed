@@ -1,3 +1,4 @@
+require 'will_paginate/array'
 class ProfilesController < ApplicationController
 
   def index
