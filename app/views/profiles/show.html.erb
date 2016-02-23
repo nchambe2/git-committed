@@ -1,7 +1,13 @@
+<% if @profile.user == current_user %>
+	<%= link_to("edit profile", edit_profile_path(@profile)) %>
+<% end %>
+
 <div>
-  <p>
-  <%= image_tag @profile.picture.url(:square) %>
-  </p>
+	<% if @profile.picture_file_name %>
+		<%= image_tag @profile.picture.url(:square), class: "left" %>
+	<% else %>
+		<%= image_tag("ninja.png", class: "left") %>
+	<% end %>
 </div>
 <div>
   <p>
