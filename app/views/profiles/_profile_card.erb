@@ -48,7 +48,11 @@
 			</p>
 			
 			<%= link_to "new git log", conversations_path(sender_id: current_user.id, recipient_id: profile.user.id), method: :post, class: "btn btn-default" %>
-			<%= link_to "open pull request", create_pull_request_path(liked: profile.user), method: :post, class: "btn btn-default" %>
+			<% if current_user.pull_request_exists?(profile.user) %>
+				<%= link_to "close pull request", close_pull_request_path(liked: profile.user), method: :delete, class: "btn btn-default" %>
+			<% else %>
+				<%= link_to "open pull request", create_pull_request_path(liked: profile.user), method: :post, class: "btn btn-default" %>
+			<% end %>
     </div>
 	</div>
 </div>
