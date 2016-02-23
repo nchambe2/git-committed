@@ -1,17 +1,27 @@
-<div>
+<div id="profile-show">
   <p>
-  <%= image_tag @profile.picture.url(:square) %>
+    <%= image_tag @profile.picture.url(:square) %>
   </p>
 </div>
 <div>
   <p>
     <%= @user.username %> <%= @user.age %> years old
   </p>
+  <p>
+    <%= @user.first_name %> <%= @user.last_name %>
+  </p>
+  <p>
+    <% @user.languages.each do |language| %>
+      <p><%= language.name %><p>
+    <% end %>
+  </p>
 </div>
 
 <div>
   <p>
-    <%= @user.sexual_orientation.name %> <%= @user.gender.name %> looking for  <%= @user.sexual_preference.name %>
+    <%= @user.sexual_orientation.name %>
+    <%= @user.gender.name %> looking for
+    <%= @user.sexual_preference.name %>
   </p>
 </div>
 

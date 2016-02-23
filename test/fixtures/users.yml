@@ -1,24 +1,24 @@
-# cheeky:
-#     first_name: "Cheeky"
-#     last_name: "Miller"
-#     password: "password"
-#     username: "cheeky"
-#     email: "cheeky@gmail.com"
-#     zip_code: "60314"
-#     birthday: "10/10/1998"
+tommy:
+    first_name: "Tommy"
+    last_name: "Miller"
+    password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+    username: "tmoore"
+    email: "tmoore@gmail.com"
+    zip_code: "34567"
+    birthday: "10/10/1997"
+    gender_id: "2"
+    sexual_orientation_id: "1"
+    sexual_preference_id: "2"
 
-# walker:
-#   last_name: "Walker"
-#   password: "password"
-#   username: "walke"
-#   email: "walker@gmail.com"
-#   zip_code: "60314"
-#   birthday: "10/10/2000"
+gigi:
+    first_name: "Gigi"
+    last_name: "Fancy"
+    password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+    username: "gfancy"
+    email: "gfancy@gmail.com"
+    zip_code: "98765"
+    birthday: "1/8/1996"
+    gender_id: "2"
+    sexual_orientation_id: "1"
+    sexual_preference_id: "2"
 
-# walsh:
-#   first_name: "Walsh"
-#   password: "password"
-#   username: "walsh"
-#   email: "walsh@gmail.com"
-#   zip_code: "60314"
-#   birthday: "10/10/1999"

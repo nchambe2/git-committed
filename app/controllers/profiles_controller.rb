@@ -22,7 +22,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @profile = Profile.find_by(id: params[:id])
+    p @profile = Profile.find_by(id: params[:id])
     @user = current_user
     @genders = Gender.all
     @programming_languages = Language.all
@@ -32,6 +32,8 @@ class ProfilesController < ApplicationController
     @relationship_types = RelationshipType.all
     @sexual_preferences = SexualPreference.all
     @sexual_orientations = SexualOrientation.all
+    @user_languages = @user.languages
+    @user_skills = @user.skills
 
     if @profile != current_user.profile
       redirect_to edit_profile_path(current_user.profile)
@@ -44,6 +46,8 @@ class ProfilesController < ApplicationController
     @user = User.find(current_user.id)
     @profile.update_attributes(update_profile)
     @user.update_attributes(update_user)
+    p params[:languages]
+    @user.languages << params[:languages]
     redirect_to profile_path(@profile)
   end
 
@@ -57,14 +61,14 @@ class ProfilesController < ApplicationController
                                  :first_name,
                                  :last_name,
                                  :email,
-                                 :gender,
-                                 :languages,
-                                 :text_editors,
-                                 :operating_systems,
-                                 :skills,
-                                 :seeking,
-                                 :sexual_preferences,
-                                 :sexual_orientations)
+                                 :gender_id,
+                                 :language_id,
+                                 :text_editor_id,
+                                 :operating_system_id,
+                                 :skill_id,
+                                 :seeking_id,
+                                 :sexual_preference_id,
+                                 :sexual_orientation_id)
   end
 
   def filter_profiles(profiles, filters)
