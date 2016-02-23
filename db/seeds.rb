@@ -75,6 +75,15 @@ matt = User.create!(first_name: "Matt",
                    sexual_orientation_id: SexualOrientation.find_by(name: "straight").id,
                    sexual_preference_id: SexualPreference.find_by(name: "male-seeking-female").id)
 
+matt.languages << Language.first
+matt.skills << Skill.first
+matt.skills << Skill.last
+matt.operating_systems << OperatingSystem.find_by(id: 2)
+matt.operating_systems << OperatingSystem.find_by(id: 4)
+matt.text_editors << TextEditor.find_by(id: 3)
+matt.text_editors << TextEditor.find_by(id: 2)
+
+
 
 casey = User.create!(first_name: "Casey",
                     last_name: "Cumbow",
