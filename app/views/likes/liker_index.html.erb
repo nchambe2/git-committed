@@ -1,0 +1,3 @@
+<% @pull_requests.each do |pull_request| %>
+	<%= render partial: 'profiles/profile_card', locals: {profile: pull_request.liked.profile} %>
+<% end %>
