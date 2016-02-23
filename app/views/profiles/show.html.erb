@@ -3,17 +3,11 @@
 <% end %>
 
 <div>
-<<<<<<< Updated upstream
-  <p>
-  <%= image_tag @profile.picture.url(:square) %>
-  </p>
-=======
 	<% if @profile.picture_file_name %>
-		<%= image_tag(@profile.picture, class: "left profile_pic") %>
+		<%= image_tag @profile.picture.url(:square), class: "left" %>
 	<% else %>
 		<%= image_tag("ninja.png", class: "left") %>
 	<% end %>
->>>>>>> Stashed changes
 </div>
 <div>
   <p>
