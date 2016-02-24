@@ -37,11 +37,6 @@
 	</fieldset>
 
 	<fieldset>
-		<legend>Sexual Preferences</legend>
-		<%= f.select :sexual_preference, options_for_select(@sexual_preferences), selected: current_user.sexual_preference %>
-	</fieldset>
-
-	<fieldset>
 		<legend>Age</legend>
 		<p><%= f.label "Minimum Age:" %> <%= f.select :age, options_for_select((18..99).step(1))%></p>
 		<p><%= f.label "Maximum Age:" %> <%= f.select :age, options_for_select((18..99).step(1)) %></p>
