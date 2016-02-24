@@ -12,6 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+
 //= require s3_direct_upload
 //= require_tree .
+
+
+$(document).ready(function(){
+  function updateCount(textArea) {
+    var cs = 140- $(textArea).val().length;
+    $('.character-count').text(cs);
+  }
+  $('#profile_about_me').on('keyup', function(event){
+    updateCount(this);
+  });
+  console.log("POOP!");
+// console.log(cs);
+});

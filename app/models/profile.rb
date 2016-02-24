@@ -1,5 +1,5 @@
 class Profile < ActiveRecord::Base
-  
+
   belongs_to :user
   has_many :answers
   has_many :questions, through: :answers
@@ -9,12 +9,15 @@ class Profile < ActiveRecord::Base
     medium: '300x300>'
   }
 
+  # validates :about_me,  length:  { maximum: 140,
+  #                                  too_long: "140 characters is the maximum allowed" },
+  #                                  on: :save
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
-
+  # validates_format_of :github_link, with: /\A(https:\/\/github.com\/)/ , on: :save
   paginates_per 15
 
   def get_traits
     [user.languages, user.text_editors, user.skills, user.operating_systems].flatten
   end
-  
+
 end
