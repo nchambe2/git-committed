@@ -3,7 +3,8 @@
 }
 
 .content {
-	margin: 5em 2em 2em 2em;
+/*	margin: 3em 0;*/
+/*	margin: 4em 2em 2em 2em;*/
 }
 
 .heading {
@@ -31,10 +32,19 @@
 	text-align: right;
 }
 
+.align-bottom {
+	vertical-align: bottom;
+}
+
 .no-margin {
 	margin: 0;
 }
 
 label {
 	padding: 0;
+}
+
+.content {
+	margin: 2em;
+	margin-top: 4em;
 }

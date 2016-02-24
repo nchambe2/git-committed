@@ -2,20 +2,9 @@ h2 {
   font-weight: bold;
 }
 
-.content {
-  margin: 0;
-}
-
 #main {
-  width: 100%;
-  height: 700px;
   background-image: url("dock_couple.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-
-#main p:nth-child(1) {
-  padding-top: 200px;
+/*	background-size: cover;*/
 }
 
 #main p {
@@ -24,17 +13,10 @@ h2 {
   color: #fff;
 }
 
-
-#how-it-works {
-  width: 100%;
-  height: 700px;
-}
-
 #how-it-works-header {
   font-size: 50px;
   text-align: center;
-  margin-top: 80px;
-  margin-bottom: 60px;
+  margin-bottom: 1em;
 }
 
 .numberCircle {
@@ -51,14 +33,12 @@ h2 {
 
 #register {
   width: 100%;
-  height: 700px;
+/*  height: 700px;*/
   background-image: url("love_hands.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
 }
 
 #register h2 {
-  padding-top: 180px;
+/*  padding-top: 180px;*/
 }
 
 .register-info {
@@ -66,8 +46,8 @@ h2 {
   text-align: center;
 }
 
-#regiser-link {
-  margin: 0 auto;
+#register-link {
+/*  margin: 0 auto;*/
 }
 
 #footer {
@@ -76,3 +56,47 @@ h2 {
   text-align: center;
   padding: 20px;
 }
+
+section {
+/*	height: 800px;*/
+  height: 90vh;
+	width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+	display: flex; 
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+	-webkit-background-size: cover;
+  background-size: cover;
+}
+
+@media only screen and (max-width: 874px) {
+	section {
+		width: 100%;
+		height: 60vh;
+		-webkit-background-size: cover;
+	  background-size: cover;
+	}
+	
+	#register {
+    background-repeat: no-repeat;
+    background-position: 15%;
+	}
+}
+
+/*@media only screen and min-width(874px) {
+	section {
+		height: 50vh;
+		-webkit-background-size: contain;
+	  background-size: contain;
+	}
+}*/

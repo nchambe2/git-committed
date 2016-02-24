@@ -3,13 +3,13 @@ class ProfilesController < ApplicationController
   before_action :load_preference_data, only: [:edit]
   def index
     if current_user
-      filtered = Profile.order(updated_at: :desc).where.not(id: current_user.profile.id).select {|profile| fits_filter(profile)}
+      filtered = Profile.where.not(id: current_user.profile.id).select {|profile| fits_filter(profile)}
       @profiles = filtered.shuffle.paginate(:per_page => 10)
     else
       redirect_to login_path
     end
   end
-
+# .order(updated_at: :desc)
   def show
     @profile = Profile.find_by(id: params[:id])
     if @profile
