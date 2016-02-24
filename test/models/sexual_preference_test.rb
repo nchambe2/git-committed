@@ -3,7 +3,7 @@ require 'test_helper'
 class SexualPreferenceTest < ActiveSupport::TestCase
 
   test "should save with name" do
-    sexual_preference = SexualPreference.new(name:"Man seeking Man")
+    sexual_preference = SexualPreference.new(name:"men")
     assert(sexual_preference.valid?)
   end
 
