@@ -2,6 +2,18 @@ h2 {
   font-weight: bold;
 }
 
+.opaque-bg {
+  background-color: #555;
+  opacity: .7;
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+}
+.text-overlay {
+  z-index: 100;
+  opacity: 1;
+}
+
 #main {
   background-image: url("dock_couple.jpg");
 }
@@ -37,10 +49,6 @@ h2 {
   background-image: url("love_hands.jpg");
 }
 
-#register-link {
-/*  margin: 0 auto;*/
-}
-
 #footer {
   background-color: #000;
   padding: 20px;
@@ -69,6 +77,10 @@ section {
 }
 
 @media only screen and (min-width: 600px) {
+  .opaque-bg {
+    height: 11em;
+  }
+
   .steps {
     width: 32%;
   }
@@ -92,8 +104,16 @@ section {
 }
 
 @media only screen and (max-width: 599px) {
+  .opaque-bg {
+    height: 10em;
+  }
+
   .steps {
     width: 100%;
+  }
+
+  #main p {
+    font-size: 2.5em;
   }
 
   #register {
