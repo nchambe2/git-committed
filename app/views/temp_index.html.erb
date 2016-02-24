@@ -1,37 +1,39 @@
 <!-- <article> -->
-  <section id="main">
-      <p class="lead">Meet new people</p>
-      <p class="lead">Find your soul mate</p>
+  <section id="main" class="white-text align-center">
+      <p class="">Meet new people.</p>
+      <p class="">Find your soul mate.</p>
   </section>
 
-  <section id="how-it-works" class="container">
-    <h2 id="how-it-works-header">How it works?</h2>
-    <div class="col-md-4">
-      <div class="numberCircle">1</div>
-      <h2 class="inlineblock no-margin align-bottom">Register</h2>
-      <p class="lead">Sign up for an account so you can recieve access to thousands of users.</p>
-    </div>
+  <section id="how-it-works" class="full-width inlineblock">
+    <h2 id="how-it-works-header" class="align-center no-margin">How it works?</h2>
+    <div id="all-steps">
+      <div class="steps inlineblock align-top">
+        <div class="numberCircle align-center inlineblock">1</div>
+        <h2 class="inlineblock no-margin align-bottom">Register</h2>
+        <p class="lead">Sign up for an account so you can recieve access to thousands of users.</p>
+      </div>
 
-    <div class="col-md-4">
-      <div class="numberCircle">2</div>
-      <h2 class="inlineblock no-margin align-bottom">Browse</h2>
-      <p class="lead">Search for people by programming language, skill set, text editors and more.</p>
-    </div>
+      <div class="steps inlineblock align-top">
+        <div class="numberCircle align-center inlineblock">2</div>
+        <h2 class="inlineblock no-margin align-bottom">Browse</h2>
+        <p class="lead">Search for people by programming language, skill set, text editors and more.</p>
+      </div>
 
-    <div class="col-md-4">
-      <div class="numberCircle">3</div>
-      <h2 class="inlineblock no-margin align-bottom">Like</h2>
-      <p class="lead">Bookmark your potential suitors</p>
+      <div class="steps inlineblock align-top">
+        <div class="numberCircle align-center inlineblock">3</div>
+        <h2 class="inlineblock no-margin align-bottom">Like</h2>
+        <p class="lead">Bookmark your potential suitors</p>
+      </div>
     </div>
   </section>
 
-  <section id="register">
-      <h2 class="register-info">Ready to Find Your Match?</h2>
-      <p class="lead register-info">Click below to create your profile.</p>
+  <section id="register" class="align-center white-text">
+      <h2>Ready to Find Your Match?</h2>
+      <p>Click below to create your profile.</p>
       <%= link_to "Register", new_account_path, class: "register-link"%>
   </section>
 
 <!-- </article> -->
-<footer class="navbar-default navbar-fixed-bottom" id="footer">
+<footer class="navbar-default navbar-fixed-bottom align-center white-text" id="footer">
   <p> &copy;Git Commited </p>
 </footer>

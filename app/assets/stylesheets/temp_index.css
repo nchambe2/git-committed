@@ -4,18 +4,14 @@ h2 {
 
 #main {
   background-image: url("dock_couple.jpg");
-/*	background-size: cover;*/
 }
 
 #main p {
-  text-align: center;
   font-size: 50px;
-  color: #fff;
 }
 
 #how-it-works-header {
-  font-size: 50px;
-  text-align: center;
+  font-size: 4em;
   margin-bottom: 1em;
 }
 
@@ -27,23 +23,10 @@ h2 {
   background: #fff;
   border: 2px solid #000;
   color: #000;
-  text-align: center;
-  display: inline-block;
 }
 
 #register {
-  width: 100%;
-/*  height: 700px;*/
   background-image: url("love_hands.jpg");
-}
-
-#register h2 {
-/*  padding-top: 180px;*/
-}
-
-.register-info {
-  color: #fff;
-  text-align: center;
 }
 
 #register-link {
@@ -52,19 +35,16 @@ h2 {
 
 #footer {
   background-color: #000;
-  color: #fff;
-  text-align: center;
   padding: 20px;
 }
 
 section {
-/*	height: 800px;*/
   height: 90vh;
 	width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-	display: flex; 
+	display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -77,26 +57,37 @@ section {
   background-repeat: no-repeat;
 	-webkit-background-size: cover;
   background-size: cover;
+  background-position-y: 50%;
+}
+
+#how-it-works {
+  height: auto;
+  padding: 3em;
+}
+
+@media only screen and (min-width: 600px) {
+  .steps {
+    width: 32%;
+  }
+
+  .steps:not(:last-child) {
+    margin-right: 1%;
+  }
 }
 
 @media only screen and (max-width: 874px) {
 	section {
 		width: 100%;
-		height: 60vh;
+		height: 50vh;
 		-webkit-background-size: cover;
 	  background-size: cover;
 	}
-	
+
+  #how-it-works {
+    height:auto;
+  }
+
 	#register {
-    background-repeat: no-repeat;
     background-position: 15%;
 	}
 }
-
-/*@media only screen and min-width(874px) {
-	section {
-		height: 50vh;
-		-webkit-background-size: contain;
-	  background-size: contain;
-	}
-}*/

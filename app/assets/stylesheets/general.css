@@ -1,10 +1,13 @@
+.white-text {
+	color: #fff;
+}
+
 .inlineblock {
 	display: inline-block;
 }
 
 .content {
-/*	margin: 3em 0;*/
-/*	margin: 4em 2em 2em 2em;*/
+	margin: 3em 0;
 }
 
 .heading {
@@ -32,8 +35,16 @@
 	text-align: right;
 }
 
+.align-center {
+	text-align: center;
+}
+
 .align-bottom {
 	vertical-align: bottom;
+}
+
+.align-top {
+	vertical-align: top;
 }
 
 .no-margin {
@@ -44,7 +55,6 @@ label {
 	padding: 0;
 }
 
-.content {
-	margin: 2em;
-	margin-top: 4em;
+.full-width {
+	width: 100%;
 }
