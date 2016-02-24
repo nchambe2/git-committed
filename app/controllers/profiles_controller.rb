@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
   
   def index
     if current_user
-      filtered = Profile.order(updated_at: :desc).where.not(id: current_user.profile.id).select {|profile| fits_filter(profile)}
+      filtered = Profile.where.not(id: current_user.profile.id).select {|profile| fits_filter(profile) && get_gender.include?(profile.user.gender)}
       @profiles = filtered.shuffle.paginate(:per_page => 10)
     else
       redirect_to login_path
@@ -67,5 +67,17 @@ class ProfilesController < ApplicationController
   
   def fits_filter(profile)
     return profile if get_user_filters.any? {|det| profile.get_traits.include?(det)}
+  end
+  
+  
+  def get_gender
+    pref = current_user.sexual_preference
+    if pref.name == 'men'
+      Gender.where(name: 'male')
+    elsif pref.name == 'women'
+      Gender.where(name: 'female')
+    else
+      Gender.all
+    end
   end
 end
