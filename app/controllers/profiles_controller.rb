@@ -67,4 +67,5 @@ class ProfilesController < ApplicationController
       Gender.all
     end
   end
+
 end
