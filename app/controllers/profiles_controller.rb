@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
   before_action :load_preference_data, only: [:edit]
   def index
     if current_user
-      filtered = Profile.where.not(id: current_user.profile.id).select {|profile| fits_filter(profile) && get_gender.include?(profile.user.gender)}
+      filtered = Profile.where.not(id: current_user.profile.id).select {|profile| get_gender.include?(profile.user.gender) && fits_filter(profile)}
       @profiles = filtered.shuffle.paginate(:per_page => 10)
     else
       redirect_to login_path
@@ -53,10 +53,10 @@ class ProfilesController < ApplicationController
   end
 
   def fits_filter(profile)
-    return profile if get_user_filters.any? {|det| profile.get_traits.include?(det)}
+    return profile if !(get_user_filters & profile.get_traits).empty?
   end
-  
-  
+
+
   def get_gender
     pref = current_user.sexual_preference
     if pref.name == 'men'
