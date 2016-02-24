@@ -80,6 +80,10 @@ class ProfileUpdater
     end
  end
 
+ def update_user_relationship_type(user, relationship_type)
+
+ end
+
 end
 
 

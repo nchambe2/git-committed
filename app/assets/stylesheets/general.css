@@ -51,10 +51,33 @@
 	margin: 0;
 }
 
+.push-down {
+	margin-top: 7em;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.border-radius {
+	border-radius: 5em;
+}
+
+tr td:first-child, th {
+	padding-left: 3em;
+}
+
+tr:last-child td {
+	padding-bottom: 3em;
+}
+
 label {
 	padding: 0;
 }
-
 .full-width {
 	width: 100%;
 }

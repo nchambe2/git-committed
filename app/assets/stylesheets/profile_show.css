@@ -1,0 +1,55 @@
+#profile-show {
+  float: left;
+  margin-left: 5em;
+}
+
+#profile-aside {
+  border-top: 5px solid #bf3de2;
+}
+
+th {
+  font-size: 2em;
+}
+
+#user-info {
+  float: right;
+  margin-right: 5em;
+  width: 60%;
+}
+
+.profile-pic-padding-bottom {
+  padding-bottom: 2em;
+}
+
+.white-smoke-background-color {
+  background-color: #fff;
+}
+
+.padding-all-around {
+  padding: 3em;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#age {
+  font-weight: bold;
+}
+
+#about-me {
+  display: inline;
+}
+
+#table-div {
+  border-top: 5px solid purple;
+}
+
+.user-skills-margin-top {
+  margin-top: 5em;
+}
+
+#user-skills {
+  border-top: 5px solid #8f38c1;
+}

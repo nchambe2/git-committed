@@ -1,35 +1,115 @@
-<% if @profile.user == current_user %>
-	<%= link_to("edit profile", edit_profile_path(@profile)) %>
-<% end %>
-<div id="profile-show">
-  <div>
-  	<% if @profile.picture_file_name %>
-  		<%= image_tag @profile.picture.url(:square), class: "left" %>
-  	<% else %>
-  		<%= image_tag("ninja.png", class: "left") %>
-  	<% end %>
-  </div>
-  <div>
-    <p>
-      <%= @user.username %> <%= @user.age %> years old
+<article class="push-down">
+  <section id="profile-show" class="profile-show-margin-top">
+    <aside id="profile-aside" class="white-smoke-background-color padding-all-around">
+    	<% if @profile.picture_file_name %>
+    		<%= image_tag @profile.picture.url(:square), class: "left" %>
+    	<% else %>
+    		<%= image_tag("ninja.png", class: "left profile-pic-padding-bottom") %>
+    	<% end %>
+
+     <p class="lead">
+       <%= @user.username %>
+     </p>
+
+     <p class="lead">
+      <span id="age">Age:</span>
+      <%= @user.age %> years old
     </p>
-    <p>
-      <%= @user.first_name %> <%= @user.last_name %>
-    </p>
+
+     <p class="lead">
+        <% if @profile.user == current_user %>
+          <%= link_to("Edit Profile", edit_profile_path(@profile), class: "btn btn-default") %>
+        <% end %>
+     </p>
+
+    </aside>
+  </section>
+
+ <section id="user-info">
+  <section id="about-me">
+   <div id="table-div">
+     <table class="white-smoke-background-color padding-all-around">
+      <tr>
+        <th class="lead align-left"><h2>User Information</h2></th>
+      </tr>
+      <tr>
+        <td class="bold padding-left lead">First Name:</td>
+        <td class="lead"><%= @user.first_name %></td>
+      </tr>
+      <tr>
+        <td class="bold padding-left lead">Last Name:</td>
+         <td class="lead"><%= @user.last_name %></td>
+      </tr>
+      <tr>
+        <td class="bold padding-left lead">Birthday:</td>
+        <td class="lead"><%= @user.birthday %></td>
+      </tr>
+      <tr>
+        <td class="bold padding-left lead">Email:</td>
+        <td class="lead"><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td class="bold padding-left lead">Zip Code:</td>
+        <td class="lead"><%= @user.zip_code %></td>
+      </tr>
+      <tr>
+        <td class="bold padding-left lead">Gender:</td>
+        <td class="lead"><%= @user.gender.name %></td>
+      </tr>
+      <tr>
+        <td class="bold padding-left lead">Sexual Orientation:</td>
+        <td class="lead"><%= @user.sexual_orientation.name %></td>
+      </tr>
+      <tr>
+        <td class="bold padding-left lead">Sexual Preference:</td>
+        <td class="lead"><%= @user.sexual_preference.name %></td>
+      </tr>
+      <tr>
+       <td class="bold padding-left padding-bottom lead">Github Link:</td>
+        <% if @user.profile.github_link.length == 0 %>
+          <td class="lead">N/A</td>
+        <% else %>
+          <td class="lead"><%= @user.profile.github_link %></td>
+        <% end %>
+      </tr>
+     </table>
+    </div>
+  </section>
+
+   <section id="user-skills" class="user-skills-margin-top white-smoke-background-color padding-all-around">
+    <% unless @user.profile.about_me.length == 0 %>
+     <h2><%= image_tag "user.jpg" %>About Me</h2>
+      <p class="lead"><%= @user.profile.about_me %></p>
+    <% end %>
+
+    <h2><%= image_tag "code.jpg" %>Programming Languages</h2>
     <p>
       <% @user.languages.each do |language| %>
-        <p><%= language.name %><p>
+        <p class="lead"><%= language.name %><p>
       <% end %>
     </p>
-  </div>
 
-  <div>
+    <h2><%= image_tag "text_editor.jpg" %>Text Editors</h2>
     <p>
-      <%= @user.sexual_orientation.name %>
-      <%= @user.gender.name %> looking for
-      <%= @user.sexual_preference.name %>
+      <% @user.text_editors.each do |editor| %>
+        <p class="lead"><%= editor.name %><p>
+      <% end %>
     </p>
-  </div>
-</div>
 
+    <h2><%= image_tag "system_information.jpg" %>Operating Systems</h2>
+    <p>
+      <% @user.operating_systems.each do |operating_system| %>
+        <p class="lead"><%= operating_system.name %><p>
+      <% end %>
+    </p>
+
+    <h2><%= image_tag "skill.jpg" %>Skills</h2>
+    <p>
+      <% @user.skills.each do |skill| %>
+        <p class="lead"><%= skill.name %><p>
+      <% end %>
+    </p>
+   </section>
+  </section>
+</article>
 
