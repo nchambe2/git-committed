@@ -56,7 +56,6 @@ class ProfilesController < ApplicationController
     return profile if !(get_user_filters & profile.get_traits).empty?
   end
 
-
   def get_gender
     pref = current_user.sexual_preference
     if pref.name == 'men'
