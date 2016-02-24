@@ -11,8 +11,8 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
 	<%= javascript_include_tag 'rails.validations' %>
   <%= csrf_meta_tags %>
 </head>
@@ -32,6 +32,7 @@
 	        <li><%= link_to("home", root_path) %></li>
 					<% if current_user %>
 						<li><%= link_to("browse", browse_path) %></li>
+						<li><%= link_to("git logs", conversations_path) %></li>
 					<% end %>
 	        <li class="dropdown">
 						<% if current_user %>
