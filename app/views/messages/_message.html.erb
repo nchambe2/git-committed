@@ -1,0 +1,12 @@
+<%= div_for message, data: {id: message.id} do %>
+  <% user = User.find(message.user_id) %>
+    <div class="header">
+      <strong><%= user.first_name %></strong>     <%= message.message_time %>
+    </div>
+    <div class="list">
+      <div class="item">
+        <em class="right triangle icon"></em>
+        <%= message.body %>
+      </div>
+    </div>
+<% end %>

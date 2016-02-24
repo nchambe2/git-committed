@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   end
 
   def index
-    @messages = @conversation.messages
+    @messages = @conversation.messages.where("id > ?", params[:data].to_i )
     # if @messages.length > 10
     #   @over_ten = true
     #   @messages = @messages[-10..-1]
@@ -17,6 +17,16 @@ class MessagesController < ApplicationController
       @messages.last.read = true;
     end
     @message = @conversation.messages.new
+
+    respond_to do |format|
+      format.html do
+       render 'index.html.erb'
+     end
+      format.js do
+        render 'index.js.erb'
+      end
+    end
+
   end
 
   def new
