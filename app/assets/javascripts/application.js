@@ -17,14 +17,14 @@
 //= require_tree .
 
 
-$(document).ready(function(){
-  function updateCount(textArea) {
-    var cs = 140- $(textArea).val().length;
-    $('.character-count').text(cs);
-  }
-  $('#profile_about_me').on('keyup', function(event){
-    updateCount(this);
-  });
-  console.log("POOP!");
-// console.log(cs);
-});
+$(document).ready(function() {
+      var review_text = $("#about_me");
+      var counter     = $("#counter");
+      var max_length  = counter.data("maximum-length");
+
+      review_text.keyup(function() {
+          counter.text(max_length - $(this).val().length);
+      });
+
+    });
+

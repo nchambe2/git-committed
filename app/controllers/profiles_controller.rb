@@ -25,6 +25,9 @@ class ProfilesController < ApplicationController
     @user_languages = @user.languages
     @user_skills = @user.skills
 
+    @maximum_length = Profile.validators_on(:about_me).first.options[:maximum]
+    @current_length = @maximum_length - @user.profile.about_me.length
+
     if @profile != current_user.profile
       redirect_to edit_profile_path(current_user.profile)
     end

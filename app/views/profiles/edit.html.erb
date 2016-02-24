@@ -19,9 +19,8 @@
     </p>
     <p>
       <%= p.label :about_me %><br>
-      <%= p.text_area :about_me, maxlength=140 %> <br>
-      <span class="character-count" style="color:#999;">140</span> <span style="color:#999;">characters
-      </span>
+      <%= p.text_area :about_me, maxlength: @maximum_length, id: 'about_me'  %> <br>
+      Characters left: <span id="counter" data-maximum-length="<%= @maximum_length %>"><%= @current_length %></span>
    </p>
     <p>
       <%= p.label :github_link %><br>
