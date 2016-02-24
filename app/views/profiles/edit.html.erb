@@ -1,4 +1,5 @@
 <%= form_for @user, :html => { :multipart => true }, url: update_profile_path, method: :patch do |f| %>
+
 	<p>
 	  <%= f.label :first_name %>
 	  <%= f.text_field :first_name %>
@@ -9,18 +10,18 @@
 	</p>
 	<p>
 		<%= f.label "Gender:" %><br>
-		<%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] }, {:selected => @genders.include?(@user.gender_id)} %>
+		<%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] }, {:selected => @user.gender_id} %>
 	</p>
 
-  <%= fields_for(@profile, multipart: true) do |p| %>
+  <%= fields_for :profile, @profile do |p| %>
     <p>
       <%= p.label :picture %>
       <%= p.file_field :picture %>
     </p>
     <p>
       <%= p.label :about_me %><br>
-      <%= p.text_area :about_me, maxlength: @maximum_length, id: 'about_me'  %> <br>
-      Characters left: <span id="counter" data-maximum-length="<%= @maximum_length %>"><%= @current_length %></span>
+      <%= p.text_area :about_me, maxlength: @maximum_length, id: 'profile_about_me' %> <br>
+
    </p>
     <p>
       <%= p.label :github_link %><br>
