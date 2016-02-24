@@ -39,7 +39,7 @@ h2 {
 }
 
 section {
-  height: 90vh;
+  /*height: 90vh;*/
 	width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -60,11 +60,6 @@ section {
   background-position-y: 50%;
 }
 
-#how-it-works {
-  height: auto;
-  padding: 3em;
-}
-
 @media only screen and (min-width: 600px) {
   .steps {
     width: 32%;
@@ -73,21 +68,32 @@ section {
   .steps:not(:last-child) {
     margin-right: 1%;
   }
-}
 
-@media only screen and (max-width: 874px) {
-	section {
-		width: 100%;
-		height: 50vh;
-		-webkit-background-size: cover;
-	  background-size: cover;
-	}
-
-  #how-it-works {
-    height:auto;
+  #register {
+    background-position: 36%
   }
 
-	#register {
-    background-position: 15%;
+  #how-it-works {
+    height: 39em;
+    padding: 10em 3em 5em 3em;
+  }
+
+  section {
+		height: 87vh;
+	}
+}
+
+@media only screen and (max-width: 599px) {
+  #register {
+    background-position: 36%
+  }
+
+  #how-it-works {
+    height: auto;
+    padding: 3em;
+  }
+
+  section {
+		height: 50vh;
 	}
 }
