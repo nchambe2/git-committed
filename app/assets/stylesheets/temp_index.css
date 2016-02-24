@@ -25,6 +25,14 @@ h2 {
   color: #000;
 }
 
+.step-info {
+  width: 80%
+}
+
+.step-num {
+  width: 20%;
+}
+
 #register {
   background-image: url("love_hands.jpg");
 }
@@ -84,6 +92,10 @@ section {
 }
 
 @media only screen and (max-width: 599px) {
+  .steps {
+    width: 100%;
+  }
+
   #register {
     background-position: 36%
   }
