@@ -34,11 +34,15 @@ class User < ActiveRecord::Base
   end
   
   def get_likees
-    Like.where(liker_id: id)
+    Like.where(liker_id: id).map(&:liked)
   end
   
   def get_likers
-    Like.where(liked_id: id)
+    Like.where(liked_id: id).map(&:liked)
+  end
+  
+  def pull_request_exists?(user)
+    get_likees.include?(user)
   end
   
 end
