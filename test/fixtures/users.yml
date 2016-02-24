@@ -8,7 +8,7 @@ tommy:
     birthday: "10/10/1997"
     gender_id: "2"
     sexual_orientation_id: "1"
-    sexual_preference_id: "2"
+    sexual_preference: "women"
 
 gigi:
     first_name: "Gigi"
@@ -20,5 +20,4 @@ gigi:
     birthday: "1/8/1996"
     gender_id: "2"
     sexual_orientation_id: "1"
-    sexual_preference_id: "2"
-
+    sexual_preference: "women"

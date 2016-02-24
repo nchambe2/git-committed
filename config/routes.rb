@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   # get list of all likes where user is the liked person
   get '/pull-requests/pullee', to: 'likes#likee_index', as: 'pullee_index'
   post '/pull-requests', to: 'likes#create', as: 'create_pull_request'
+  delete '/pull-requests', to: 'likes#destroy', as: 'close_pull_request'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

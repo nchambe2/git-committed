@@ -14,7 +14,7 @@ feature "Registration" do
     select('2',                                 :from => 'user_birthday_3i')
     select('male',                              :from => 'Gender')
     select('straight',                          :from => 'Sexual orientation')
-    select('female',                            :from => 'Sexual preference')
+    select('women',                             :from => 'Sexual preference')
     fill_in('Zip code',                         :with => '12345')
     click_button('submit')
     page.must_have_css('#profile-show')
