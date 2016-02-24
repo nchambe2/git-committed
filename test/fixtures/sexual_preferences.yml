@@ -1,8 +1,8 @@
-male:
-  name: male
+men:
+  name: men
 
-female:
-  name: female
+women:
+  name: women
 
-male & female:
-  name: make & female
+men and women:
+  name: men and women

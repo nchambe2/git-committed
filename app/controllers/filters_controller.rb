@@ -6,9 +6,6 @@ class FiltersController < ApplicationController
     @operating_systems = Filter.where(filterable_type:"OperatingSystem")
     @rel_types = Filter.where(filterable_type:"RelationshipType")
 
-    # @sexual_preferences = Filter.where(filterable_type:"SexualPreference")
-    @sexual_preferences = SexualPreference.pluck("name")
-
     @user_filters = current_user.user_filters.where(active: true).pluck('filter_id')
   end
 
@@ -29,4 +26,5 @@ class FiltersController < ApplicationController
   def get_value(item)
     item == '1'
   end
+
 end
