@@ -4,3 +4,1672 @@
 UserTest: test_the_username
 ---------------------------
   [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36m (118.3ms)[0m  [1mDROP DATABASE IF EXISTS "git-commited_test"[0m
+  [1m[35m (381.8ms)[0m  CREATE DATABASE "git-commited_test" ENCODING = 'unicode'
+  [1m[36mSQL (2.0ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (10.0ms)[0m  CREATE TABLE "answers" ("id" serial primary key, "rating" integer, "profile_id" integer, "question_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "conversations" ("id" serial primary key, "sender_id" integer NOT NULL, "recipient_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (3.0ms)[0m  CREATE TABLE "filters" ("id" serial primary key, "filterable_id" integer, "filterable_type" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (1.6ms)[0m  [1mCREATE  INDEX  "index_filters_on_filterable_type_and_filterable_id" ON "filters" USING btree ("filterable_type", "filterable_id")[0m
+  [1m[35m (2.7ms)[0m  CREATE TABLE "genders" ("id" serial primary key, "name" character varying NOT NULL) 
+  [1m[36m (3.8ms)[0m  [1mCREATE TABLE "languages" ("id" serial primary key, "name" character varying NOT NULL) [0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "likes" ("id" serial primary key, "liker_id" integer, "liked_id" integer, "pulled" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (4.1ms)[0m  [1mCREATE TABLE "messages" ("id" serial primary key, "body" text NOT NULL, "conversation_id" integer NOT NULL, "user_id" integer NOT NULL, "read" boolean DEFAULT 'f', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE  INDEX  "index_messages_on_conversation_id" ON "messages" USING btree ("conversation_id")
+  [1m[36m (0.9ms)[0m  [1mCREATE  INDEX  "index_messages_on_user_id" ON "messages" USING btree ("user_id")[0m
+  [1m[35m (2.8ms)[0m  CREATE TABLE "operating_systems" ("id" serial primary key, "name" character varying NOT NULL) 
+  [1m[36m (3.8ms)[0m  [1mCREATE TABLE "profiles" ("id" serial primary key, "about_me" text, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "picture_file_name" character varying, "picture_content_type" character varying, "picture_file_size" integer, "picture_updated_at" timestamp, "github_link" character varying) [0m
+  [1m[35m (2.8ms)[0m  CREATE TABLE "questions" ("id" serial primary key, "title" character varying NOT NULL) 
+  [1m[36m (3.3ms)[0m  [1mCREATE TABLE "relationship_types" ("id" serial primary key, "name" character varying NOT NULL) [0m
+  [1m[35m (2.8ms)[0m  CREATE TABLE "sexual_orientations" ("id" serial primary key, "name" character varying NOT NULL) 
+  [1m[36m (3.6ms)[0m  [1mCREATE TABLE "sexual_preferences" ("id" serial primary key, "name" character varying NOT NULL) [0m
+  [1m[35m (3.3ms)[0m  CREATE TABLE "skills" ("id" serial primary key, "name" character varying NOT NULL) 
+  [1m[36m (2.9ms)[0m  [1mCREATE TABLE "text_editors" ("id" serial primary key, "name" character varying NOT NULL) [0m
+  [1m[35m (2.7ms)[0m  CREATE TABLE "user_filters" ("id" serial primary key, "filter_id" integer, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "active" boolean DEFAULT 't' NOT NULL) 
+  [1m[36m (2.0ms)[0m  [1mCREATE TABLE "user_languages" ("id" serial primary key, "language_id" integer, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.9ms)[0m  CREATE TABLE "user_operating_systems" ("id" serial primary key, "operating_system_id" integer, "user_id" integer) 
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "user_seekings" ("id" serial primary key, "relationship_type_id" integer, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (2.1ms)[0m  CREATE TABLE "user_skills" ("id" serial primary key, "skill_id" integer, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "user_text_editors" ("id" serial primary key, "text_editor_id" integer, "user_id" integer) [0m
+  [1m[35m (3.4ms)[0m  CREATE TABLE "users" ("id" serial primary key, "first_name" character varying NOT NULL, "last_name" character varying NOT NULL, "password_digest" character varying NOT NULL, "username" character varying NOT NULL, "email" character varying NOT NULL, "zip_code" character varying NOT NULL, "birthday" date NOT NULL, "gender_id" integer, "sexual_orientation_id" integer, "sexual_preference_id" integer, "text_editor_id" integer, "operating_system_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160222230623')
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160219012332')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160219012535')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160219012548')[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160219012601')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160219012612')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160219012636')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160219012657')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160219012715')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160219012737')[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160219012749')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160219012812')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160219012904')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160219014331')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160219014332')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160219020406')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160219020428')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160219020441')[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160219020446')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160219195436')[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160220191735')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160221025429')[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160221225645')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160221225807')[0m
+  [1m[35m (5.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160221235216')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160222004918')[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160222230411')
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (13.1ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "conversations" DISABLE TRIGGER ALL;ALTER TABLE "filters" DISABLE TRIGGER ALL;ALTER TABLE "genders" DISABLE TRIGGER ALL;ALTER TABLE "languages" DISABLE TRIGGER ALL;ALTER TABLE "likes" DISABLE TRIGGER ALL;ALTER TABLE "messages" DISABLE TRIGGER ALL;ALTER TABLE "operating_systems" DISABLE TRIGGER ALL;ALTER TABLE "profiles" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "relationship_types" DISABLE TRIGGER ALL;ALTER TABLE "sexual_orientations" DISABLE TRIGGER ALL;ALTER TABLE "sexual_preferences" DISABLE TRIGGER ALL;ALTER TABLE "skills" DISABLE TRIGGER ALL;ALTER TABLE "text_editors" DISABLE TRIGGER ALL;ALTER TABLE "user_filters" DISABLE TRIGGER ALL;ALTER TABLE "user_languages" DISABLE TRIGGER ALL;ALTER TABLE "user_operating_systems" DISABLE TRIGGER ALL;ALTER TABLE "user_seekings" DISABLE TRIGGER ALL;ALTER TABLE "user_skills" DISABLE TRIGGER ALL;ALTER TABLE "user_text_editors" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "genders"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "genders" ("name", "id") VALUES ('male', 361619626)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "genders" ("name", "id") VALUES ('female', 175409773)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "genders" ("name", "id") VALUES ('other', 425211171)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "sexual_orientations"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('straight', 211320500)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('gay', 669423564)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('lesbian', 938747015)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('bi', 578601510)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('trans', 807476926)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('queer', 921495799)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('asexual', 681200162)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "sexual_preferences"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "sexual_preferences" ("name", "id") VALUES ('men', 361619626)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_preferences" ("name", "id") VALUES ('women', 175409773)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_preferences" ("name", "id") VALUES ('men and women', 297790511)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("first_name", "last_name", "password_digest", "username", "email", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "sexual_preference_id", "created_at", "updated_at", "id") VALUES ('Tommy', 'Miller', '$2a$04$exZp4gMZKrtRSV/BpCAXK.st76dbrIZMyn8avafBhzkMznMzlGrLW', 'tmoore', 'tmoore@gmail.com', '34567', '10/10/1997', 2, 1, 2, '2016-02-24 15:59:11', '2016-02-24 15:59:11', 280023622)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("first_name", "last_name", "password_digest", "username", "email", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "sexual_preference_id", "created_at", "updated_at", "id") VALUES ('Gigi', 'Fancy', '$2a$04$9nMUtoTxOz83hzQfnBMY0Ol3SqHsPbGmAQnPGtgo5z8xk74N0YG.2', 'gfancy', 'gfancy@gmail.com', '98765', '1/8/1996', 2, 1, 2, '2016-02-24 15:59:11', '2016-02-24 15:59:11', 509723800)
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "conversations" ENABLE TRIGGER ALL;ALTER TABLE "filters" ENABLE TRIGGER ALL;ALTER TABLE "genders" ENABLE TRIGGER ALL;ALTER TABLE "languages" ENABLE TRIGGER ALL;ALTER TABLE "likes" ENABLE TRIGGER ALL;ALTER TABLE "messages" ENABLE TRIGGER ALL;ALTER TABLE "operating_systems" ENABLE TRIGGER ALL;ALTER TABLE "profiles" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "relationship_types" ENABLE TRIGGER ALL;ALTER TABLE "sexual_orientations" ENABLE TRIGGER ALL;ALTER TABLE "sexual_preferences" ENABLE TRIGGER ALL;ALTER TABLE "skills" ENABLE TRIGGER ALL;ALTER TABLE "text_editors" ENABLE TRIGGER ALL;ALTER TABLE "user_filters" ENABLE TRIGGER ALL;ALTER TABLE "user_languages" ENABLE TRIGGER ALL;ALTER TABLE "user_operating_systems" ENABLE TRIGGER ALL;ALTER TABLE "user_seekings" ENABLE TRIGGER ALL;ALTER TABLE "user_skills" ENABLE TRIGGER ALL;ALTER TABLE "user_text_editors" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+GenderTest: test_should_not_save_without_name
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------
+GenderTest: test_should_respond_to_users
+----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------
+GenderTest: test_should_save_with_name
+--------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------------------------------
+Login and Visit Profile Feature Test: test_0001_login and view your profile page
+--------------------------------------------------------------------------------
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 280023622]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723800]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["user_id", 280023622], ["created_at", "2016-02-24 15:59:11.462514"], ["updated_at", "2016-02-24 15:59:11.462514"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 509723800], ["created_at", "2016-02-24 15:59:11.464519"], ["updated_at", "2016-02-24 15:59:11.464519"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2016-02-24 09:59:11 -0600
+Processing by SessionsController#new as HTML
+  Rendered users/login.html.erb within layouts/application (11.9ms)
+Completed 200 OK in 265ms (Views: 256.8ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2016-02-24 09:59:11 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"tmoore", "password"=>"[FILTERED]"}, "commit"=>"submit"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1  [["username", "tmoore"]]
+Redirected to http://www.example.com/browse
+Completed 302 Found in 6ms (ActiveRecord: 0.2ms)
+Started GET "/browse" for 127.0.0.1 at 2016-02-24 09:59:11 -0600
+Processing by ProfilesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 280023622]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 280023622]]
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 280023622]]
+  [1m[35mProfile Load (0.3ms)[0m  SELECT "profiles".* FROM "profiles" WHERE ("profiles"."id" != $1)  ORDER BY "profiles"."updated_at" DESC  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 280023622]]
+  [1m[35mSexualPreference Load (0.2ms)[0m  SELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1  [["id", 2]]
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 1.2ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------------
+SexualOrientationTest: test_should_save_with_name
+-------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------------
+SexualOrientationTest: test_should_not_save_without_name
+--------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------
+SexualOrientationTest: test_should_respond_to_users
+---------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------------
+UserSeekingTest: test_should_respond_to_operating_system
+--------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------
+UserSeekingTest: test_should_respond_to_user
+--------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------------------
+SexualPreferenceTest: test_should_not_save_without_name
+-------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+----------------------------------------------------
+SexualPreferenceTest: test_should_respond_to_filters
+----------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+------------------------------------------------
+SexualPreferenceTest: test_should_save_with_name
+------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------------
+UserLanguageTest: test_should_respond_to_language
+-------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------
+UserLanguageTest: test_should_respond_to_user
+---------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------------
+OperatingSystemTest: test_should_respond_to_users
+-------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+------------------------------------------------------------------
+OperatingSystemTest: test_should_respond_to_user_operating_systems
+------------------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-----------------------------------------------
+OperatingSystemTest: test_should_save_with_name
+-----------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+------------------------------------------------------
+OperatingSystemTest: test_should_not_save_without_name
+------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------
+SkillTest: test_should_save_with_name
+-------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-----------------------------------------
+SkillTest: test_should_respond_to_filters
+-----------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------
+SkillTest: test_should_not_save_without_name
+--------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-----------------------------------------------
+LanguageTest: test_should_not_save_without_name
+-----------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------
+LanguageTest: test_should_respond_to_filters
+--------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+----------------------------------------
+LanguageTest: test_should_save_with_name
+----------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------
+Registration Feature Test: test_0001_create account
+---------------------------------------------------
+Started GET "/account/new" for 127.0.0.1 at 2016-02-24 09:59:11 -0600
+Processing by UsersController#new as HTML
+  [1m[36mGender Load (0.3ms)[0m  [1mSELECT "genders".* FROM "genders"[0m
+  [1m[35mSexualOrientation Load (0.3ms)[0m  SELECT "sexual_orientations".* FROM "sexual_orientations"
+  [1m[36mSexualPreference Load (0.2ms)[0m  [1mSELECT "sexual_preferences".* FROM "sexual_preferences"[0m
+  Rendered users/new.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 25ms (Views: 23.8ms | ActiveRecord: 0.8ms)
+Started POST "/account" for 127.0.0.1 at 2016-02-24 09:59:11 -0600
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"first_name"=>"Matt", "last_name"=>"Baker", "email"=>"mbaker@today.com", "username"=>"mbeez", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "birthday(1i)"=>"1997", "birthday(2i)"=>"3", "birthday(3i)"=>"2", "zip_code"=>"12345"}, "gender_id"=>"361619626", "sexual_orientation_id"=>"211320500", "sexual_preference_id"=>"175409773", "commit"=>"submit"}
+  [1m[35mGender Load (0.2ms)[0m  SELECT  "genders".* FROM "genders" WHERE "genders"."id" = $1 LIMIT 1  [["id", 361619626]]
+  [1m[36mSexualOrientation Load (0.1ms)[0m  [1mSELECT  "sexual_orientations".* FROM "sexual_orientations" WHERE "sexual_orientations"."id" = $1 LIMIT 1[0m  [["id", 211320500]]
+  [1m[35mSexualPreference Load (0.1ms)[0m  SELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1  [["id", 175409773]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'mbeez' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'mbaker@today.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("first_name", "last_name", "email", "username", "password_digest", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "sexual_preference_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Matt"], ["last_name", "Baker"], ["email", "mbaker@today.com"], ["username", "mbeez"], ["password_digest", "$2a$04$c9/uMXxCSwSKA0xnO7XdEeRpsMYYJj/uESZ.acQNLyPAvA523zn2."], ["zip_code", "12345"], ["birthday", "1997-03-02"], ["gender_id", 361619626], ["sexual_orientation_id", 211320500], ["sexual_preference_id", 175409773], ["created_at", "2016-02-24 15:59:11.954885"], ["updated_at", "2016-02-24 15:59:11.954885"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["user_id", 509723801], ["created_at", "2016-02-24 15:59:11.959405"], ["updated_at", "2016-02-24 15:59:11.959405"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mFilter Load (0.3ms)[0m  [1mSELECT "filters".* FROM "filters"[0m
+Redirected to http://www.example.com/profile/3
+Completed 302 Found in 24ms (ActiveRecord: 2.6ms)
+Started GET "/profile/3" for 127.0.0.1 at 2016-02-24 09:59:11 -0600
+Processing by ProfilesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723801]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 509723801]]
+  [1m[36mLanguage Load (0.4ms)[0m  [1mSELECT "languages".* FROM "languages" INNER JOIN "user_languages" ON "languages"."id" = "user_languages"."language_id" WHERE "user_languages"."user_id" = $1[0m  [["user_id", 509723801]]
+  [1m[35mSexualOrientation Load (0.1ms)[0m  SELECT  "sexual_orientations".* FROM "sexual_orientations" WHERE "sexual_orientations"."id" = $1 LIMIT 1  [["id", 211320500]]
+  [1m[36mGender Load (0.2ms)[0m  [1mSELECT  "genders".* FROM "genders" WHERE "genders"."id" = $1 LIMIT 1[0m  [["id", 361619626]]
+  [1m[35mSexualPreference Load (0.1ms)[0m  SELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1  [["id", 175409773]]
+  Rendered profiles/show.html.erb within layouts/application (26.6ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723801]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 509723801]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723801]]
+  [1m[35mProfile Load (0.2ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 509723801]]
+Completed 200 OK in 42ms (Views: 36.6ms | ActiveRecord: 1.8ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------------
+UserTest: test_should_respond_to_operating_system
+-------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-----------------------------------------------
+UserTest: test_should_not_save_without_username
+-----------------------------------------------
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'fldance@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------
+UserTest: test_should_respond_to_sexual_preference
+--------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------
+UserTest: test_should_save_a_valid_user
+---------------------------------------
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'cheeky' LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'cheeky@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------
+UserTest: test_should_respond_to_text_editors
+---------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------
+UserTest: test_should_respond_to_gender
+---------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------
+UserTest: test_should_respond_to_sexual_orientation
+---------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+------------------------------------------------
+UserTest: test_should_not_save_without_last_name
+------------------------------------------------
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'walsh' LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'walsh@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------
+UserTest: test_should_not_save_without_email
+--------------------------------------------
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'walsh' LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------------
+UserTest: test_should_not_save_without_first_name
+-------------------------------------------------
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'walke' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'walker@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-----------------------------------------------
+UserTest: test_should_not_save_without_birthday
+-----------------------------------------------
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'looky@gmail.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'cookie@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------
+UserFilterTest: test_should_respond_to_user
+-------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+----------------------------------------------
+UserFilterTest: test_should_respond_to_filter_
+----------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+----------------------------------------------------
+UserOperatingSystemTest: test_should_respond_to_user
+----------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+----------------------------------------------------------------
+UserOperatingSystemTest: test_should_respond_to_operating_system
+----------------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------
+ProfilesControllerTest: test_should_get_index
+---------------------------------------------
+Processing by ProfilesController#index as HTML
+Redirected to http://test.host/login
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------------
+ProfilesControllerTest: test_should_show_list_of_profiles
+---------------------------------------------------------
+Processing by ProfilesController#index as HTML
+Redirected to http://test.host/login
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.9ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "conversations" DISABLE TRIGGER ALL;ALTER TABLE "filters" DISABLE TRIGGER ALL;ALTER TABLE "genders" DISABLE TRIGGER ALL;ALTER TABLE "languages" DISABLE TRIGGER ALL;ALTER TABLE "likes" DISABLE TRIGGER ALL;ALTER TABLE "messages" DISABLE TRIGGER ALL;ALTER TABLE "operating_systems" DISABLE TRIGGER ALL;ALTER TABLE "profiles" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "relationship_types" DISABLE TRIGGER ALL;ALTER TABLE "sexual_orientations" DISABLE TRIGGER ALL;ALTER TABLE "sexual_preferences" DISABLE TRIGGER ALL;ALTER TABLE "skills" DISABLE TRIGGER ALL;ALTER TABLE "text_editors" DISABLE TRIGGER ALL;ALTER TABLE "user_filters" DISABLE TRIGGER ALL;ALTER TABLE "user_languages" DISABLE TRIGGER ALL;ALTER TABLE "user_operating_systems" DISABLE TRIGGER ALL;ALTER TABLE "user_seekings" DISABLE TRIGGER ALL;ALTER TABLE "user_skills" DISABLE TRIGGER ALL;ALTER TABLE "user_text_editors" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "genders"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "genders" ("name", "id") VALUES ('male', 361619626)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "genders" ("name", "id") VALUES ('female', 175409773)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "genders" ("name", "id") VALUES ('other', 425211171)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "sexual_orientations"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('straight', 211320500)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('gay', 669423564)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('lesbian', 938747015)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('bi', 578601510)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('trans', 807476926)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('queer', 921495799)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('asexual', 681200162)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "sexual_preferences"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_preferences" ("name", "id") VALUES ('men', 361619626)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_preferences" ("name", "id") VALUES ('women', 175409773)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_preferences" ("name", "id") VALUES ('men and women', 297790511)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("first_name", "last_name", "password_digest", "username", "email", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "created_at", "updated_at", "id", "sexual_preference_id") VALUES ('Tommy', 'Miller', '$2a$04$MFtmfU/Qs.pe4kaSqKQYvOcQosAHEnptUB8r2VacCCjAG.d/ijAZS', 'tmoore', 'tmoore@gmail.com', '34567', '10/10/1997', 2, 1, '2016-02-24 16:09:05', '2016-02-24 16:09:05', 280023622, 471508825)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "users" ("first_name", "last_name", "password_digest", "username", "email", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "sexual_preference_id", "created_at", "updated_at", "id") VALUES ('Gigi', 'Fancy', '$2a$04$AHg1TjtIu.HsjtKxmCpG2uObv1HlRxNqUW20I90GYLC8CapMWxWve', 'gfancy', 'gfancy@gmail.com', '98765', '1/8/1996', 2, 1, 2, '2016-02-24 16:09:05', '2016-02-24 16:09:05', 509723800)
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "conversations" ENABLE TRIGGER ALL;ALTER TABLE "filters" ENABLE TRIGGER ALL;ALTER TABLE "genders" ENABLE TRIGGER ALL;ALTER TABLE "languages" ENABLE TRIGGER ALL;ALTER TABLE "likes" ENABLE TRIGGER ALL;ALTER TABLE "messages" ENABLE TRIGGER ALL;ALTER TABLE "operating_systems" ENABLE TRIGGER ALL;ALTER TABLE "profiles" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "relationship_types" ENABLE TRIGGER ALL;ALTER TABLE "sexual_orientations" ENABLE TRIGGER ALL;ALTER TABLE "sexual_preferences" ENABLE TRIGGER ALL;ALTER TABLE "skills" ENABLE TRIGGER ALL;ALTER TABLE "text_editors" ENABLE TRIGGER ALL;ALTER TABLE "user_filters" ENABLE TRIGGER ALL;ALTER TABLE "user_languages" ENABLE TRIGGER ALL;ALTER TABLE "user_operating_systems" ENABLE TRIGGER ALL;ALTER TABLE "user_seekings" ENABLE TRIGGER ALL;ALTER TABLE "user_skills" ENABLE TRIGGER ALL;ALTER TABLE "user_text_editors" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+ProfilesControllerTest: test_should_get_index
+---------------------------------------------
+Processing by ProfilesController#index as HTML
+Redirected to http://test.host/login
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+ProfilesControllerTest: test_should_show_list_of_profiles
+---------------------------------------------------------
+Processing by ProfilesController#index as HTML
+Redirected to http://test.host/login
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+UserFilterTest: test_should_respond_to_filter_
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+UserFilterTest: test_should_respond_to_user
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------------
+UserOperatingSystemTest: test_should_respond_to_user
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------------------------
+UserOperatingSystemTest: test_should_respond_to_operating_system
+----------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+SkillTest: test_should_not_save_without_name
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+SkillTest: test_should_respond_to_filters
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------
+SkillTest: test_should_save_with_name
+-------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------------
+OperatingSystemTest: test_should_not_save_without_name
+------------------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------------------------
+OperatingSystemTest: test_should_respond_to_user_operating_systems
+------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+OperatingSystemTest: test_should_save_with_name
+-----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+OperatingSystemTest: test_should_respond_to_users
+-------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------
+UserTest: test_should_save_a_valid_user
+---------------------------------------
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'cheeky' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'cheeky@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+UserTest: test_should_respond_to_text_editors
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------
+UserTest: test_should_respond_to_sexual_orientation
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------
+UserTest: test_should_respond_to_gender
+---------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+UserTest: test_should_not_save_without_email
+--------------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'walsh' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------
+UserTest: test_should_not_save_without_last_name
+------------------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'walsh' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'walsh@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+UserTest: test_should_respond_to_operating_system
+-------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+UserTest: test_should_not_save_without_first_name
+-------------------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'walke' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'walker@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+UserTest: test_should_not_save_without_username
+-----------------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'fldance@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------
+UserTest: test_should_respond_to_sexual_preference
+--------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+UserTest: test_should_not_save_without_birthday
+-----------------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'looky@gmail.com' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'cookie@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+UserLanguageTest: test_should_respond_to_language
+-------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+UserLanguageTest: test_should_respond_to_user
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------------
+SexualPreferenceTest: test_should_not_save_without_name
+-------------------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------
+SexualPreferenceTest: test_should_save_with_name
+------------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------------
+SexualPreferenceTest: test_should_respond_to_filters
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+LanguageTest: test_should_not_save_without_name
+-----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+LanguageTest: test_should_respond_to_filters
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------
+LanguageTest: test_should_save_with_name
+----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+---------------------------------------------------
+Registration Feature Test: test_0001_create account
+---------------------------------------------------
+Started GET "/account/new" for 127.0.0.1 at 2016-02-24 10:09:05 -0600
+Processing by UsersController#new as HTML
+  [1m[35mGender Load (0.2ms)[0m  SELECT "genders".* FROM "genders"
+  [1m[36mSexualOrientation Load (0.2ms)[0m  [1mSELECT "sexual_orientations".* FROM "sexual_orientations"[0m
+  [1m[35mSexualPreference Load (0.2ms)[0m  SELECT "sexual_preferences".* FROM "sexual_preferences"
+  Rendered users/new.html.erb within layouts/application (19.6ms)
+Completed 200 OK in 210ms (Views: 202.4ms | ActiveRecord: 0.5ms)
+Started POST "/account" for 127.0.0.1 at 2016-02-24 10:09:05 -0600
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"first_name"=>"Matt", "last_name"=>"Baker", "email"=>"mbaker@today.com", "username"=>"mbeez", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "birthday(1i)"=>"1997", "birthday(2i)"=>"3", "birthday(3i)"=>"2", "zip_code"=>"12345"}, "gender_id"=>"361619626", "sexual_orientation_id"=>"211320500", "sexual_preference_id"=>"175409773", "commit"=>"submit"}
+  [1m[36mGender Load (0.2ms)[0m  [1mSELECT  "genders".* FROM "genders" WHERE "genders"."id" = $1 LIMIT 1[0m  [["id", 361619626]]
+  [1m[35mSexualOrientation Load (0.2ms)[0m  SELECT  "sexual_orientations".* FROM "sexual_orientations" WHERE "sexual_orientations"."id" = $1 LIMIT 1  [["id", 211320500]]
+  [1m[36mSexualPreference Load (0.1ms)[0m  [1mSELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1[0m  [["id", 175409773]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'mbeez' LIMIT 1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'mbaker@today.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("first_name", "last_name", "email", "username", "password_digest", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "sexual_preference_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Matt"], ["last_name", "Baker"], ["email", "mbaker@today.com"], ["username", "mbeez"], ["password_digest", "$2a$04$EZOoJobkwSLFXnM2mndaN.2sb0EQf/4/i1uTj/mvoOKardKBGikHy"], ["zip_code", "12345"], ["birthday", "1997-03-02"], ["gender_id", 361619626], ["sexual_orientation_id", 211320500], ["sexual_preference_id", 175409773], ["created_at", "2016-02-24 16:09:05.431106"], ["updated_at", "2016-02-24 16:09:05.431106"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 509723801], ["created_at", "2016-02-24 16:09:05.450876"], ["updated_at", "2016-02-24 16:09:05.450876"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mFilter Load (0.3ms)[0m  SELECT "filters".* FROM "filters"
+Redirected to http://www.example.com/profile/4
+Completed 302 Found in 44ms (ActiveRecord: 3.8ms)
+Started GET "/profile/4" for 127.0.0.1 at 2016-02-24 10:09:05 -0600
+Processing by ProfilesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.2ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 509723801]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723801]]
+  [1m[35mLanguage Load (0.3ms)[0m  SELECT "languages".* FROM "languages" INNER JOIN "user_languages" ON "languages"."id" = "user_languages"."language_id" WHERE "user_languages"."user_id" = $1  [["user_id", 509723801]]
+  [1m[36mSexualOrientation Load (0.1ms)[0m  [1mSELECT  "sexual_orientations".* FROM "sexual_orientations" WHERE "sexual_orientations"."id" = $1 LIMIT 1[0m  [["id", 211320500]]
+  [1m[35mGender Load (0.1ms)[0m  SELECT  "genders".* FROM "genders" WHERE "genders"."id" = $1 LIMIT 1  [["id", 361619626]]
+  [1m[36mSexualPreference Load (0.1ms)[0m  [1mSELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1[0m  [["id", 175409773]]
+  Rendered profiles/show.html.erb within layouts/application (26.9ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 509723801]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723801]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 509723801]]
+  [1m[36mProfile Load (0.1ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 509723801]]
+Completed 200 OK in 43ms (Views: 37.4ms | ActiveRecord: 1.3ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+UserSeekingTest: test_should_respond_to_operating_system
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+UserSeekingTest: test_should_respond_to_user
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------------------------------
+Login and Visit Profile Feature Test: test_0001_login and view your profile page
+--------------------------------------------------------------------------------
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 280023622]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723800]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["user_id", 280023622], ["created_at", "2016-02-24 16:09:05.517164"], ["updated_at", "2016-02-24 16:09:05.517164"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 509723800], ["created_at", "2016-02-24 16:09:05.519041"], ["updated_at", "2016-02-24 16:09:05.519041"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2016-02-24 10:09:05 -0600
+Processing by SessionsController#new as HTML
+  Rendered users/login.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 8ms (Views: 7.9ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2016-02-24 10:09:05 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"tmoore", "password"=>"[FILTERED]"}, "commit"=>"submit"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1  [["username", "tmoore"]]
+Redirected to http://www.example.com/browse
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms)
+Started GET "/browse" for 127.0.0.1 at 2016-02-24 10:09:05 -0600
+Processing by ProfilesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 280023622]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 280023622]]
+  [1m[36mProfile Load (0.2ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 280023622]]
+  [1m[35mProfile Load (0.2ms)[0m  SELECT "profiles".* FROM "profiles" WHERE ("profiles"."id" != $1)  ORDER BY "profiles"."updated_at" DESC  [["id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 280023622]]
+  [1m[35mSexualPreference Load (0.1ms)[0m  SELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1  [["id", 471508825]]
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.8ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------------
+SexualOrientationTest: test_should_save_with_name
+-------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------
+SexualOrientationTest: test_should_respond_to_users
+---------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------------
+SexualOrientationTest: test_should_not_save_without_name
+--------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------
+GenderTest: test_should_save_with_name
+--------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+----------------------------------------
+GenderTest: test_should_respond_to_users
+----------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------
+GenderTest: test_should_not_save_without_name
+---------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.9ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "conversations" DISABLE TRIGGER ALL;ALTER TABLE "filters" DISABLE TRIGGER ALL;ALTER TABLE "genders" DISABLE TRIGGER ALL;ALTER TABLE "languages" DISABLE TRIGGER ALL;ALTER TABLE "likes" DISABLE TRIGGER ALL;ALTER TABLE "messages" DISABLE TRIGGER ALL;ALTER TABLE "operating_systems" DISABLE TRIGGER ALL;ALTER TABLE "profiles" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "relationship_types" DISABLE TRIGGER ALL;ALTER TABLE "sexual_orientations" DISABLE TRIGGER ALL;ALTER TABLE "sexual_preferences" DISABLE TRIGGER ALL;ALTER TABLE "skills" DISABLE TRIGGER ALL;ALTER TABLE "text_editors" DISABLE TRIGGER ALL;ALTER TABLE "user_filters" DISABLE TRIGGER ALL;ALTER TABLE "user_languages" DISABLE TRIGGER ALL;ALTER TABLE "user_operating_systems" DISABLE TRIGGER ALL;ALTER TABLE "user_seekings" DISABLE TRIGGER ALL;ALTER TABLE "user_skills" DISABLE TRIGGER ALL;ALTER TABLE "user_text_editors" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "genders"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "genders" ("name", "id") VALUES ('male', 361619626)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "genders" ("name", "id") VALUES ('female', 175409773)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "genders" ("name", "id") VALUES ('other', 425211171)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "sexual_orientations"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('straight', 211320500)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('gay', 669423564)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('lesbian', 938747015)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('bi', 578601510)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('trans', 807476926)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('queer', 921495799)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('asexual', 681200162)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "sexual_preferences"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_preferences" ("name", "id") VALUES ('men', 231625436)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_preferences" ("name", "id") VALUES ('women', 471508825)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_preferences" ("name", "id") VALUES ('men and women', 397493184)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("first_name", "last_name", "password_digest", "username", "email", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "created_at", "updated_at", "id", "sexual_preference_id") VALUES ('Tommy', 'Miller', '$2a$04$TuSMsw2qSWWWj6cN97gssuuGatq8ejEMKWAN6TyOOPtaUwMqsDfIe', 'tmoore', 'tmoore@gmail.com', '34567', '10/10/1997', 2, 1, '2016-02-24 16:12:01', '2016-02-24 16:12:01', 280023622, 471508825)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("first_name", "last_name", "password_digest", "username", "email", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "sexual_preference_id", "created_at", "updated_at", "id") VALUES ('Gigi', 'Fancy', '$2a$04$EbUM.pK47rwgPO4fZrIQJuW7hCvO9IL/7NDTw8SFhgMa4x34/L3E6', 'gfancy', 'gfancy@gmail.com', '98765', '1/8/1996', 2, 1, 2, '2016-02-24 16:12:01', '2016-02-24 16:12:01', 509723800)
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "conversations" ENABLE TRIGGER ALL;ALTER TABLE "filters" ENABLE TRIGGER ALL;ALTER TABLE "genders" ENABLE TRIGGER ALL;ALTER TABLE "languages" ENABLE TRIGGER ALL;ALTER TABLE "likes" ENABLE TRIGGER ALL;ALTER TABLE "messages" ENABLE TRIGGER ALL;ALTER TABLE "operating_systems" ENABLE TRIGGER ALL;ALTER TABLE "profiles" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "relationship_types" ENABLE TRIGGER ALL;ALTER TABLE "sexual_orientations" ENABLE TRIGGER ALL;ALTER TABLE "sexual_preferences" ENABLE TRIGGER ALL;ALTER TABLE "skills" ENABLE TRIGGER ALL;ALTER TABLE "text_editors" ENABLE TRIGGER ALL;ALTER TABLE "user_filters" ENABLE TRIGGER ALL;ALTER TABLE "user_languages" ENABLE TRIGGER ALL;ALTER TABLE "user_operating_systems" ENABLE TRIGGER ALL;ALTER TABLE "user_seekings" ENABLE TRIGGER ALL;ALTER TABLE "user_skills" ENABLE TRIGGER ALL;ALTER TABLE "user_text_editors" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+UserLanguageTest: test_should_respond_to_language
+-------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+UserLanguageTest: test_should_respond_to_user
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+LanguageTest: test_should_not_save_without_name
+-----------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+LanguageTest: test_should_respond_to_filters
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------
+LanguageTest: test_should_save_with_name
+----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------------------------------
+Login and Visit Profile Feature Test: test_0001_login and view your profile page
+--------------------------------------------------------------------------------
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 280023622]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723800]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["user_id", 280023622], ["created_at", "2016-02-24 16:12:01.836847"], ["updated_at", "2016-02-24 16:12:01.836847"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 509723800], ["created_at", "2016-02-24 16:12:01.838798"], ["updated_at", "2016-02-24 16:12:01.838798"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2016-02-24 10:12:01 -0600
+Processing by SessionsController#new as HTML
+  Rendered users/login.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 194ms (Views: 186.9ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2016-02-24 10:12:02 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"tmoore", "password"=>"[FILTERED]"}, "commit"=>"submit"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1  [["username", "tmoore"]]
+Redirected to http://www.example.com/browse
+Completed 302 Found in 6ms (ActiveRecord: 0.2ms)
+Started GET "/browse" for 127.0.0.1 at 2016-02-24 10:12:02 -0600
+Processing by ProfilesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 280023622]]
+  [1m[35mCACHE (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 280023622]]
+  [1m[36mProfile Load (0.2ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 280023622]]
+  [1m[35mProfile Load (0.2ms)[0m  SELECT "profiles".* FROM "profiles" WHERE ("profiles"."id" != $1)  ORDER BY "profiles"."updated_at" DESC  [["id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 280023622]]
+  [1m[35mSexualPreference Load (0.1ms)[0m  SELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1  [["id", 471508825]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723800]]
+  [1m[35mGender Load (0.1ms)[0m  SELECT  "genders".* FROM "genders" WHERE "genders"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mGender Load (0.1ms)[0m  [1mSELECT "genders".* FROM "genders" WHERE "genders"."name" = $1[0m  [["name", "female"]]
+  Rendered profiles/index.html.erb within layouts/application (0.4ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 280023622]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 280023622]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 280023622]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 280023622]]
+Completed 200 OK in 27ms (Views: 11.3ms | ActiveRecord: 1.4ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------------
+OperatingSystemTest: test_should_not_save_without_name
+------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+OperatingSystemTest: test_should_save_with_name
+-----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------------------------
+OperatingSystemTest: test_should_respond_to_user_operating_systems
+------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+OperatingSystemTest: test_should_respond_to_users
+-------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------------------------
+UserOperatingSystemTest: test_should_respond_to_operating_system
+----------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------------
+UserOperatingSystemTest: test_should_respond_to_user
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+SkillTest: test_should_not_save_without_name
+--------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+SkillTest: test_should_respond_to_filters
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------
+SkillTest: test_should_save_with_name
+-------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------
+Registration Feature Test: test_0001_create account
+---------------------------------------------------
+Started GET "/account/new" for 127.0.0.1 at 2016-02-24 10:12:02 -0600
+Processing by UsersController#new as HTML
+  [1m[35mGender Load (0.2ms)[0m  SELECT "genders".* FROM "genders"
+  [1m[36mSexualOrientation Load (0.2ms)[0m  [1mSELECT "sexual_orientations".* FROM "sexual_orientations"[0m
+  [1m[35mSexualPreference Load (0.2ms)[0m  SELECT "sexual_preferences".* FROM "sexual_preferences"
+  Rendered users/new.html.erb within layouts/application (12.9ms)
+Completed 200 OK in 22ms (Views: 21.0ms | ActiveRecord: 0.5ms)
+Started POST "/account" for 127.0.0.1 at 2016-02-24 10:12:02 -0600
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"first_name"=>"Matt", "last_name"=>"Baker", "email"=>"mbaker@today.com", "username"=>"mbeez", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "birthday(1i)"=>"1997", "birthday(2i)"=>"3", "birthday(3i)"=>"2", "zip_code"=>"12345"}, "gender_id"=>"361619626", "sexual_orientation_id"=>"211320500", "sexual_preference_id"=>"471508825", "commit"=>"submit"}
+  [1m[36mGender Load (0.5ms)[0m  [1mSELECT  "genders".* FROM "genders" WHERE "genders"."id" = $1 LIMIT 1[0m  [["id", 361619626]]
+  [1m[35mSexualOrientation Load (0.2ms)[0m  SELECT  "sexual_orientations".* FROM "sexual_orientations" WHERE "sexual_orientations"."id" = $1 LIMIT 1  [["id", 211320500]]
+  [1m[36mSexualPreference Load (0.2ms)[0m  [1mSELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1[0m  [["id", 471508825]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'mbeez' LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'mbaker@today.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("first_name", "last_name", "email", "username", "password_digest", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "sexual_preference_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Matt"], ["last_name", "Baker"], ["email", "mbaker@today.com"], ["username", "mbeez"], ["password_digest", "$2a$04$P7cdiwICwVrGGEOnrIXKOO.oYReSt8g3jOSOxBk9dL1SkJ7DNBRHi"], ["zip_code", "12345"], ["birthday", "1997-03-02"], ["gender_id", 361619626], ["sexual_orientation_id", 211320500], ["sexual_preference_id", 471508825], ["created_at", "2016-02-24 16:12:02.213534"], ["updated_at", "2016-02-24 16:12:02.213534"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 509723801], ["created_at", "2016-02-24 16:12:02.216558"], ["updated_at", "2016-02-24 16:12:02.216558"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mFilter Load (0.3ms)[0m  SELECT "filters".* FROM "filters"
+Redirected to http://www.example.com/profile/9
+Completed 302 Found in 25ms (ActiveRecord: 2.5ms)
+Started GET "/profile/9" for 127.0.0.1 at 2016-02-24 10:12:02 -0600
+Processing by ProfilesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mProfile Load (0.2ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 509723801]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723801]]
+  [1m[35mLanguage Load (0.3ms)[0m  SELECT "languages".* FROM "languages" INNER JOIN "user_languages" ON "languages"."id" = "user_languages"."language_id" WHERE "user_languages"."user_id" = $1  [["user_id", 509723801]]
+  [1m[36mSexualOrientation Load (0.1ms)[0m  [1mSELECT  "sexual_orientations".* FROM "sexual_orientations" WHERE "sexual_orientations"."id" = $1 LIMIT 1[0m  [["id", 211320500]]
+  [1m[35mGender Load (0.2ms)[0m  SELECT  "genders".* FROM "genders" WHERE "genders"."id" = $1 LIMIT 1  [["id", 361619626]]
+  [1m[36mSexualPreference Load (0.1ms)[0m  [1mSELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1[0m  [["id", 471508825]]
+  Rendered profiles/show.html.erb within layouts/application (20.6ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 509723801]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723801]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 509723801]]
+  [1m[36mProfile Load (0.2ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 509723801]]
+Completed 200 OK in 27ms (Views: 23.6ms | ActiveRecord: 1.3ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+ProfilesControllerTest: test_should_get_index
+---------------------------------------------
+Processing by ProfilesController#index as HTML
+Redirected to http://test.host/login
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+ProfilesControllerTest: test_should_show_list_of_profiles
+---------------------------------------------------------
+Processing by ProfilesController#index as HTML
+Redirected to http://test.host/login
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+UserFilterTest: test_should_respond_to_filter_
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+UserFilterTest: test_should_respond_to_user
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+GenderTest: test_should_not_save_without_name
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------
+GenderTest: test_should_respond_to_users
+----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------
+GenderTest: test_should_save_with_name
+--------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------------
+SexualPreferenceTest: test_should_not_save_without_name
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------------
+SexualPreferenceTest: test_should_respond_to_filters
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------
+SexualPreferenceTest: test_should_save_with_name
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------
+UserTest: test_should_not_save_without_last_name
+------------------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'walsh' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'walsh@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------
+UserTest: test_should_respond_to_sexual_orientation
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+UserTest: test_should_not_save_without_username
+-----------------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'fldance@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------
+UserTest: test_should_respond_to_gender
+---------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+UserTest: test_should_not_save_without_birthday
+-----------------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'looky@gmail.com' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'cookie@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+UserTest: test_should_not_save_without_email
+--------------------------------------------
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'walsh' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+UserTest: test_should_respond_to_text_editors
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------
+UserTest: test_should_save_a_valid_user
+---------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'cheeky' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'cheeky@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+UserTest: test_should_respond_to_operating_system
+-------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+UserTest: test_should_not_save_without_first_name
+-------------------------------------------------
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'walke' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'walker@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------
+UserTest: test_should_respond_to_sexual_preference
+--------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+SexualOrientationTest: test_should_not_save_without_name
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------
+SexualOrientationTest: test_should_respond_to_users
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+SexualOrientationTest: test_should_save_with_name
+-------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+UserSeekingTest: test_should_respond_to_operating_system
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+UserSeekingTest: test_should_respond_to_user
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.9ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "conversations" DISABLE TRIGGER ALL;ALTER TABLE "filters" DISABLE TRIGGER ALL;ALTER TABLE "genders" DISABLE TRIGGER ALL;ALTER TABLE "languages" DISABLE TRIGGER ALL;ALTER TABLE "likes" DISABLE TRIGGER ALL;ALTER TABLE "messages" DISABLE TRIGGER ALL;ALTER TABLE "operating_systems" DISABLE TRIGGER ALL;ALTER TABLE "profiles" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "relationship_types" DISABLE TRIGGER ALL;ALTER TABLE "sexual_orientations" DISABLE TRIGGER ALL;ALTER TABLE "sexual_preferences" DISABLE TRIGGER ALL;ALTER TABLE "skills" DISABLE TRIGGER ALL;ALTER TABLE "text_editors" DISABLE TRIGGER ALL;ALTER TABLE "user_filters" DISABLE TRIGGER ALL;ALTER TABLE "user_languages" DISABLE TRIGGER ALL;ALTER TABLE "user_operating_systems" DISABLE TRIGGER ALL;ALTER TABLE "user_seekings" DISABLE TRIGGER ALL;ALTER TABLE "user_skills" DISABLE TRIGGER ALL;ALTER TABLE "user_text_editors" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM "genders"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "genders" ("name", "id") VALUES ('male', 361619626)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "genders" ("name", "id") VALUES ('female', 175409773)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "genders" ("name", "id") VALUES ('other', 425211171)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "sexual_orientations"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('straight', 211320500)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('gay', 669423564)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('lesbian', 938747015)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('bi', 578601510)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('trans', 807476926)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('queer', 921495799)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('asexual', 681200162)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "sexual_preferences"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_preferences" ("name", "id") VALUES ('men', 231625436)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_preferences" ("name", "id") VALUES ('women', 471508825)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_preferences" ("name", "id") VALUES ('men and women', 397493184)[0m
+  [1m[35mFixture Delete (0.7ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "users" ("first_name", "last_name", "password_digest", "username", "email", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "sexual_preference_id", "created_at", "updated_at", "id") VALUES ('Tommy', 'Miller', '$2a$04$BOLpFWvgv2veUS0CJP6bz.ZqApd8y05iIO3mYY3iKpflKFei8eKh2', 'tmoore', 'tmoore@gmail.com', '34567', '10/10/1997', 2, 1, 2, '2016-02-24 16:12:54', '2016-02-24 16:12:54', 280023622)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO "users" ("first_name", "last_name", "password_digest", "username", "email", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "sexual_preference_id", "created_at", "updated_at", "id") VALUES ('Gigi', 'Fancy', '$2a$04$gFSBwX/CFWYII4ogFg4dCehMMlT/ci.iwkZaTH8jmyUy6X1/rXZoW', 'gfancy', 'gfancy@gmail.com', '98765', '1/8/1996', 2, 1, 2, '2016-02-24 16:12:54', '2016-02-24 16:12:54', 509723800)
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "conversations" ENABLE TRIGGER ALL;ALTER TABLE "filters" ENABLE TRIGGER ALL;ALTER TABLE "genders" ENABLE TRIGGER ALL;ALTER TABLE "languages" ENABLE TRIGGER ALL;ALTER TABLE "likes" ENABLE TRIGGER ALL;ALTER TABLE "messages" ENABLE TRIGGER ALL;ALTER TABLE "operating_systems" ENABLE TRIGGER ALL;ALTER TABLE "profiles" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "relationship_types" ENABLE TRIGGER ALL;ALTER TABLE "sexual_orientations" ENABLE TRIGGER ALL;ALTER TABLE "sexual_preferences" ENABLE TRIGGER ALL;ALTER TABLE "skills" ENABLE TRIGGER ALL;ALTER TABLE "text_editors" ENABLE TRIGGER ALL;ALTER TABLE "user_filters" ENABLE TRIGGER ALL;ALTER TABLE "user_languages" ENABLE TRIGGER ALL;ALTER TABLE "user_operating_systems" ENABLE TRIGGER ALL;ALTER TABLE "user_seekings" ENABLE TRIGGER ALL;ALTER TABLE "user_skills" ENABLE TRIGGER ALL;ALTER TABLE "user_text_editors" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+LanguageTest: test_should_respond_to_filters
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------
+LanguageTest: test_should_save_with_name
+----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+LanguageTest: test_should_not_save_without_name
+-----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+UserSeekingTest: test_should_respond_to_user
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+UserSeekingTest: test_should_respond_to_operating_system
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------
+SexualPreferenceTest: test_should_save_with_name
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------------
+SexualPreferenceTest: test_should_not_save_without_name
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------------
+SexualPreferenceTest: test_should_respond_to_filters
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+ProfilesControllerTest: test_should_show_list_of_profiles
+---------------------------------------------------------
+Processing by ProfilesController#index as HTML
+Redirected to http://test.host/login
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+ProfilesControllerTest: test_should_get_index
+---------------------------------------------
+Processing by ProfilesController#index as HTML
+Redirected to http://test.host/login
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------------------------------
+Login and Visit Profile Feature Test: test_0001_login and view your profile page
+--------------------------------------------------------------------------------
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 280023622]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723800]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["user_id", 280023622], ["created_at", "2016-02-24 16:12:54.253819"], ["updated_at", "2016-02-24 16:12:54.253819"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 509723800], ["created_at", "2016-02-24 16:12:54.255715"], ["updated_at", "2016-02-24 16:12:54.255715"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2016-02-24 10:12:54 -0600
+Processing by SessionsController#new as HTML
+  Rendered users/login.html.erb within layouts/application (9.8ms)
+Completed 200 OK in 203ms (Views: 196.5ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2016-02-24 10:12:54 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"tmoore", "password"=>"[FILTERED]"}, "commit"=>"submit"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1  [["username", "tmoore"]]
+Redirected to http://www.example.com/browse
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+Started GET "/browse" for 127.0.0.1 at 2016-02-24 10:12:54 -0600
+Processing by ProfilesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 280023622]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 280023622]]
+  [1m[36mProfile Load (0.2ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 280023622]]
+  [1m[35mProfile Load (0.2ms)[0m  SELECT "profiles".* FROM "profiles" WHERE ("profiles"."id" != $1)  ORDER BY "profiles"."updated_at" DESC  [["id", 10]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 280023622]]
+  [1m[35mSexualPreference Load (0.1ms)[0m  SELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1  [["id", 2]]
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.8ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+----------------------------------------------------------------
+UserOperatingSystemTest: test_should_respond_to_operating_system
+----------------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+----------------------------------------------------
+UserOperatingSystemTest: test_should_respond_to_user
+----------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+----------------------------------------
+GenderTest: test_should_respond_to_users
+----------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------
+GenderTest: test_should_save_with_name
+--------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------
+GenderTest: test_should_not_save_without_name
+---------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+------------------------------------------------------
+OperatingSystemTest: test_should_not_save_without_name
+------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-----------------------------------------------
+OperatingSystemTest: test_should_save_with_name
+-----------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+------------------------------------------------------------------
+OperatingSystemTest: test_should_respond_to_user_operating_systems
+------------------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------------
+OperatingSystemTest: test_should_respond_to_users
+-------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------
+Registration Feature Test: test_0001_create account
+---------------------------------------------------
+Started GET "/account/new" for 127.0.0.1 at 2016-02-24 10:12:54 -0600
+Processing by UsersController#new as HTML
+  [1m[36mGender Load (0.2ms)[0m  [1mSELECT "genders".* FROM "genders"[0m
+  [1m[35mSexualOrientation Load (0.1ms)[0m  SELECT "sexual_orientations".* FROM "sexual_orientations"
+  [1m[36mSexualPreference Load (0.2ms)[0m  [1mSELECT "sexual_preferences".* FROM "sexual_preferences"[0m
+  Rendered users/new.html.erb within layouts/application (25.1ms)
+Completed 200 OK in 33ms (Views: 32.2ms | ActiveRecord: 0.5ms)
+Started POST "/account" for 127.0.0.1 at 2016-02-24 10:12:54 -0600
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"first_name"=>"Matt", "last_name"=>"Baker", "email"=>"mbaker@today.com", "username"=>"mbeez", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "birthday(1i)"=>"1997", "birthday(2i)"=>"3", "birthday(3i)"=>"2", "zip_code"=>"12345"}, "gender_id"=>"361619626", "sexual_orientation_id"=>"211320500", "sexual_preference_id"=>"471508825", "commit"=>"submit"}
+  [1m[35mGender Load (0.2ms)[0m  SELECT  "genders".* FROM "genders" WHERE "genders"."id" = $1 LIMIT 1  [["id", 361619626]]
+  [1m[36mSexualOrientation Load (0.1ms)[0m  [1mSELECT  "sexual_orientations".* FROM "sexual_orientations" WHERE "sexual_orientations"."id" = $1 LIMIT 1[0m  [["id", 211320500]]
+  [1m[35mSexualPreference Load (0.2ms)[0m  SELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1  [["id", 471508825]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'mbeez' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'mbaker@today.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("first_name", "last_name", "email", "username", "password_digest", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "sexual_preference_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Matt"], ["last_name", "Baker"], ["email", "mbaker@today.com"], ["username", "mbeez"], ["password_digest", "$2a$04$AU07M8RvITmGiYO61QQtuO.jkc0r9xNsmY0yOfu.DGOSnJxZNEMna"], ["zip_code", "12345"], ["birthday", "1997-03-02"], ["gender_id", 361619626], ["sexual_orientation_id", 211320500], ["sexual_preference_id", 471508825], ["created_at", "2016-02-24 16:12:54.612492"], ["updated_at", "2016-02-24 16:12:54.612492"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["user_id", 509723801], ["created_at", "2016-02-24 16:12:54.615739"], ["updated_at", "2016-02-24 16:12:54.615739"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mFilter Load (0.3ms)[0m  [1mSELECT "filters".* FROM "filters"[0m
+Redirected to http://www.example.com/profile/12
+Completed 302 Found in 22ms (ActiveRecord: 2.4ms)
+Started GET "/profile/12" for 127.0.0.1 at 2016-02-24 10:12:54 -0600
+Processing by ProfilesController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[35mProfile Load (0.2ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."id" = $1 LIMIT 1  [["id", 12]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723801]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 509723801]]
+  [1m[36mLanguage Load (0.3ms)[0m  [1mSELECT "languages".* FROM "languages" INNER JOIN "user_languages" ON "languages"."id" = "user_languages"."language_id" WHERE "user_languages"."user_id" = $1[0m  [["user_id", 509723801]]
+  [1m[35mSexualOrientation Load (0.1ms)[0m  SELECT  "sexual_orientations".* FROM "sexual_orientations" WHERE "sexual_orientations"."id" = $1 LIMIT 1  [["id", 211320500]]
+  [1m[36mGender Load (0.1ms)[0m  [1mSELECT  "genders".* FROM "genders" WHERE "genders"."id" = $1 LIMIT 1[0m  [["id", 361619626]]
+  [1m[35mSexualPreference Load (0.1ms)[0m  SELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1  [["id", 471508825]]
+  Rendered profiles/show.html.erb within layouts/application (24.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723801]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 509723801]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723801]]
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 509723801]]
+Completed 200 OK in 37ms (Views: 32.2ms | ActiveRecord: 2.1ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+----------------------------------------------
+UserFilterTest: test_should_respond_to_filter_
+----------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------
+UserFilterTest: test_should_respond_to_user
+-------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-----------------------------------------------
+UserTest: test_should_not_save_without_username
+-----------------------------------------------
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'fldance@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------------
+UserTest: test_should_not_save_without_first_name
+-------------------------------------------------
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'walke' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'walker@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------
+UserTest: test_should_not_save_without_email
+--------------------------------------------
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'walsh' LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------
+UserTest: test_should_respond_to_gender
+---------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------
+UserTest: test_should_respond_to_sexual_preference
+--------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-----------------------------------------------
+UserTest: test_should_not_save_without_birthday
+-----------------------------------------------
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'looky@gmail.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'cookie@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+------------------------------------------------
+UserTest: test_should_not_save_without_last_name
+------------------------------------------------
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'walsh' LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'walsh@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------
+UserTest: test_should_respond_to_text_editors
+---------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------------
+UserTest: test_should_respond_to_operating_system
+-------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------
+UserTest: test_should_save_a_valid_user
+---------------------------------------
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'cheeky' LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'cheeky@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------
+UserTest: test_should_respond_to_sexual_orientation
+---------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------------------
+SexualOrientationTest: test_should_not_save_without_name
+--------------------------------------------------------
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------------
+SexualOrientationTest: test_should_respond_to_users
+---------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------------
+SexualOrientationTest: test_should_save_with_name
+-------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------------------
+UserLanguageTest: test_should_respond_to_language
+-------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+---------------------------------------------
+UserLanguageTest: test_should_respond_to_user
+---------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-----------------------------------------
+SkillTest: test_should_respond_to_filters
+-----------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+--------------------------------------------
+SkillTest: test_should_not_save_without_name
+--------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+-------------------------------------
+SkillTest: test_should_save_with_name
+-------------------------------------
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.0ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "conversations" DISABLE TRIGGER ALL;ALTER TABLE "filters" DISABLE TRIGGER ALL;ALTER TABLE "genders" DISABLE TRIGGER ALL;ALTER TABLE "languages" DISABLE TRIGGER ALL;ALTER TABLE "likes" DISABLE TRIGGER ALL;ALTER TABLE "messages" DISABLE TRIGGER ALL;ALTER TABLE "operating_systems" DISABLE TRIGGER ALL;ALTER TABLE "profiles" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "relationship_types" DISABLE TRIGGER ALL;ALTER TABLE "sexual_orientations" DISABLE TRIGGER ALL;ALTER TABLE "sexual_preferences" DISABLE TRIGGER ALL;ALTER TABLE "skills" DISABLE TRIGGER ALL;ALTER TABLE "text_editors" DISABLE TRIGGER ALL;ALTER TABLE "user_filters" DISABLE TRIGGER ALL;ALTER TABLE "user_languages" DISABLE TRIGGER ALL;ALTER TABLE "user_operating_systems" DISABLE TRIGGER ALL;ALTER TABLE "user_seekings" DISABLE TRIGGER ALL;ALTER TABLE "user_skills" DISABLE TRIGGER ALL;ALTER TABLE "user_text_editors" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "genders"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "genders" ("name", "id") VALUES ('male', 361619626)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "genders" ("name", "id") VALUES ('female', 175409773)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "genders" ("name", "id") VALUES ('other', 425211171)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "sexual_orientations"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('straight', 211320500)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('gay', 669423564)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('lesbian', 938747015)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('bi', 578601510)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('trans', 807476926)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_orientations" ("name", "id") VALUES ('queer', 921495799)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_orientations" ("name", "id") VALUES ('asexual', 681200162)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "sexual_preferences"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_preferences" ("name", "id") VALUES ('men', 231625436)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "sexual_preferences" ("name", "id") VALUES ('women', 471508825)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "sexual_preferences" ("name", "id") VALUES ('men and women', 397493184)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("first_name", "last_name", "password_digest", "username", "email", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "created_at", "updated_at", "id", "sexual_preference_id") VALUES ('Tommy', 'Miller', '$2a$04$W/KwSfe3RRq8NxXp1A2t6.Rk7nKuV9uI3QDVMtEKSzfETi3foOpXm', 'tmoore', 'tmoore@gmail.com', '34567', '10/10/1997', 2, 1, '2016-02-24 16:13:11', '2016-02-24 16:13:11', 280023622, 471508825)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("first_name", "last_name", "password_digest", "username", "email", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "sexual_preference_id", "created_at", "updated_at", "id") VALUES ('Gigi', 'Fancy', '$2a$04$4j3gVDwhmils7dhPggGAWOWl6dEId4hiDZdcttmpweI6CWMuv8z6S', 'gfancy', 'gfancy@gmail.com', '98765', '1/8/1996', 2, 1, 2, '2016-02-24 16:13:11', '2016-02-24 16:13:11', 509723800)
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "conversations" ENABLE TRIGGER ALL;ALTER TABLE "filters" ENABLE TRIGGER ALL;ALTER TABLE "genders" ENABLE TRIGGER ALL;ALTER TABLE "languages" ENABLE TRIGGER ALL;ALTER TABLE "likes" ENABLE TRIGGER ALL;ALTER TABLE "messages" ENABLE TRIGGER ALL;ALTER TABLE "operating_systems" ENABLE TRIGGER ALL;ALTER TABLE "profiles" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "relationship_types" ENABLE TRIGGER ALL;ALTER TABLE "sexual_orientations" ENABLE TRIGGER ALL;ALTER TABLE "sexual_preferences" ENABLE TRIGGER ALL;ALTER TABLE "skills" ENABLE TRIGGER ALL;ALTER TABLE "text_editors" ENABLE TRIGGER ALL;ALTER TABLE "user_filters" ENABLE TRIGGER ALL;ALTER TABLE "user_languages" ENABLE TRIGGER ALL;ALTER TABLE "user_operating_systems" ENABLE TRIGGER ALL;ALTER TABLE "user_seekings" ENABLE TRIGGER ALL;ALTER TABLE "user_skills" ENABLE TRIGGER ALL;ALTER TABLE "user_text_editors" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+UserLanguageTest: test_should_respond_to_user
+---------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+UserLanguageTest: test_should_respond_to_language
+-------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------------------------------
+Login and Visit Profile Feature Test: test_0001_login and view your profile page
+--------------------------------------------------------------------------------
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 280023622]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723800]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["user_id", 280023622], ["created_at", "2016-02-24 16:13:12.009314"], ["updated_at", "2016-02-24 16:13:12.009314"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 509723800], ["created_at", "2016-02-24 16:13:12.011340"], ["updated_at", "2016-02-24 16:13:12.011340"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2016-02-24 10:13:12 -0600
+Processing by SessionsController#new as HTML
+  Rendered users/login.html.erb within layouts/application (14.8ms)
+Completed 200 OK in 201ms (Views: 193.0ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2016-02-24 10:13:12 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"tmoore", "password"=>"[FILTERED]"}, "commit"=>"submit"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1  [["username", "tmoore"]]
+Redirected to http://www.example.com/browse
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms)
+Started GET "/browse" for 127.0.0.1 at 2016-02-24 10:13:12 -0600
+Processing by ProfilesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 280023622]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 280023622]]
+  [1m[36mProfile Load (0.2ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 280023622]]
+  [1m[35mProfile Load (0.2ms)[0m  SELECT "profiles".* FROM "profiles" WHERE ("profiles"."id" != $1)  ORDER BY "profiles"."updated_at" DESC  [["id", 13]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 280023622]]
+  [1m[35mSexualPreference Load (0.1ms)[0m  SELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1  [["id", 471508825]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723800]]
+  [1m[35mGender Load (0.2ms)[0m  SELECT  "genders".* FROM "genders" WHERE "genders"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mGender Load (0.1ms)[0m  [1mSELECT "genders".* FROM "genders" WHERE "genders"."name" = $1[0m  [["name", "female"]]
+  Rendered profiles/index.html.erb within layouts/application (0.7ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 280023622]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 280023622]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 280023622]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 280023622]]
+Completed 200 OK in 28ms (Views: 11.2ms | ActiveRecord: 1.3ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------------
+OperatingSystemTest: test_should_not_save_without_name
+------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+OperatingSystemTest: test_should_save_with_name
+-----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------------------------
+OperatingSystemTest: test_should_respond_to_user_operating_systems
+------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+OperatingSystemTest: test_should_respond_to_users
+-------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------
+SexualPreferenceTest: test_should_save_with_name
+------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------------
+SexualPreferenceTest: test_should_not_save_without_name
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------------
+SexualPreferenceTest: test_should_respond_to_filters
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+UserSeekingTest: test_should_respond_to_operating_system
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+UserSeekingTest: test_should_respond_to_user
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------------------------
+UserOperatingSystemTest: test_should_respond_to_operating_system
+----------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------------
+UserOperatingSystemTest: test_should_respond_to_user
+----------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------
+GenderTest: test_should_save_with_name
+--------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------
+GenderTest: test_should_respond_to_users
+----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+GenderTest: test_should_not_save_without_name
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+UserTest: test_should_not_save_without_email
+--------------------------------------------
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'walsh' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+UserTest: test_should_not_save_without_first_name
+-------------------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'walke' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'walker@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+UserTest: test_should_not_save_without_birthday
+-----------------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'looky@gmail.com' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'cookie@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+UserTest: test_should_respond_to_operating_system
+-------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------
+UserTest: test_should_save_a_valid_user
+---------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'cheeky' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'cheeky@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------
+UserTest: test_should_respond_to_sexual_orientation
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------------
+UserTest: test_should_not_save_without_last_name
+------------------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'walsh' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'walsh@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+UserTest: test_should_respond_to_text_editors
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------
+UserTest: test_should_respond_to_gender
+---------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+UserTest: test_should_not_save_without_username
+-----------------------------------------------
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'fldance@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------
+UserTest: test_should_respond_to_sexual_preference
+--------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------
+Registration Feature Test: test_0001_create account
+---------------------------------------------------
+Started GET "/account/new" for 127.0.0.1 at 2016-02-24 10:13:12 -0600
+Processing by UsersController#new as HTML
+  [1m[35mGender Load (0.3ms)[0m  SELECT "genders".* FROM "genders"
+  [1m[36mSexualOrientation Load (0.2ms)[0m  [1mSELECT "sexual_orientations".* FROM "sexual_orientations"[0m
+  [1m[35mSexualPreference Load (0.1ms)[0m  SELECT "sexual_preferences".* FROM "sexual_preferences"
+  Rendered users/new.html.erb within layouts/application (15.3ms)
+Completed 200 OK in 27ms (Views: 25.6ms | ActiveRecord: 0.6ms)
+Started POST "/account" for 127.0.0.1 at 2016-02-24 10:13:12 -0600
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"first_name"=>"Matt", "last_name"=>"Baker", "email"=>"mbaker@today.com", "username"=>"mbeez", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "birthday(1i)"=>"1997", "birthday(2i)"=>"3", "birthday(3i)"=>"2", "zip_code"=>"12345"}, "gender_id"=>"361619626", "sexual_orientation_id"=>"211320500", "sexual_preference_id"=>"471508825", "commit"=>"submit"}
+  [1m[36mGender Load (0.2ms)[0m  [1mSELECT  "genders".* FROM "genders" WHERE "genders"."id" = $1 LIMIT 1[0m  [["id", 361619626]]
+  [1m[35mSexualOrientation Load (0.1ms)[0m  SELECT  "sexual_orientations".* FROM "sexual_orientations" WHERE "sexual_orientations"."id" = $1 LIMIT 1  [["id", 211320500]]
+  [1m[36mSexualPreference Load (0.1ms)[0m  [1mSELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1[0m  [["id", 471508825]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'mbeez' LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'mbaker@today.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("first_name", "last_name", "email", "username", "password_digest", "zip_code", "birthday", "gender_id", "sexual_orientation_id", "sexual_preference_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Matt"], ["last_name", "Baker"], ["email", "mbaker@today.com"], ["username", "mbeez"], ["password_digest", "$2a$04$oNep0opfYdyXkALVSYKWCO2QZ1lxUTLMa9dlfz8I44PoZw.ZWHe/S"], ["zip_code", "12345"], ["birthday", "1997-03-02"], ["gender_id", 361619626], ["sexual_orientation_id", 211320500], ["sexual_preference_id", 471508825], ["created_at", "2016-02-24 16:13:12.439452"], ["updated_at", "2016-02-24 16:13:12.439452"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 509723801], ["created_at", "2016-02-24 16:13:12.441875"], ["updated_at", "2016-02-24 16:13:12.441875"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mFilter Load (0.3ms)[0m  SELECT "filters".* FROM "filters"
+Redirected to http://www.example.com/profile/15
+Completed 302 Found in 21ms (ActiveRecord: 2.2ms)
+Started GET "/profile/15" for 127.0.0.1 at 2016-02-24 10:13:12 -0600
+Processing by ProfilesController#show as HTML
+  Parameters: {"id"=>"15"}
+  [1m[36mProfile Load (0.2ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."id" = $1 LIMIT 1[0m  [["id", 15]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 509723801]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723801]]
+  [1m[35mLanguage Load (0.3ms)[0m  SELECT "languages".* FROM "languages" INNER JOIN "user_languages" ON "languages"."id" = "user_languages"."language_id" WHERE "user_languages"."user_id" = $1  [["user_id", 509723801]]
+  [1m[36mSexualOrientation Load (0.1ms)[0m  [1mSELECT  "sexual_orientations".* FROM "sexual_orientations" WHERE "sexual_orientations"."id" = $1 LIMIT 1[0m  [["id", 211320500]]
+  [1m[35mGender Load (0.1ms)[0m  SELECT  "genders".* FROM "genders" WHERE "genders"."id" = $1 LIMIT 1  [["id", 361619626]]
+  [1m[36mSexualPreference Load (0.1ms)[0m  [1mSELECT  "sexual_preferences".* FROM "sexual_preferences" WHERE "sexual_preferences"."id" = $1 LIMIT 1[0m  [["id", 471508825]]
+  Rendered profiles/show.html.erb within layouts/application (16.1ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 509723801]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 509723801]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 509723801]]
+  [1m[36mProfile Load (0.2ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 509723801]]
+Completed 200 OK in 22ms (Views: 18.6ms | ActiveRecord: 2.0ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+UserFilterTest: test_should_respond_to_filter_
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+UserFilterTest: test_should_respond_to_user
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+ProfilesControllerTest: test_should_get_index
+---------------------------------------------
+Processing by ProfilesController#index as HTML
+Redirected to http://test.host/login
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------------
+ProfilesControllerTest: test_should_show_list_of_profiles
+---------------------------------------------------------
+Processing by ProfilesController#index as HTML
+Redirected to http://test.host/login
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------------
+SexualOrientationTest: test_should_respond_to_users
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------------------
+SexualOrientationTest: test_should_not_save_without_name
+--------------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+SexualOrientationTest: test_should_save_with_name
+-------------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------------
+LanguageTest: test_should_not_save_without_name
+-----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------
+LanguageTest: test_should_save_with_name
+----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+LanguageTest: test_should_respond_to_filters
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------
+SkillTest: test_should_save_with_name
+-------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+SkillTest: test_should_not_save_without_name
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+SkillTest: test_should_respond_to_filters
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
