@@ -26,6 +26,13 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages
   end
+  
+  
+  # get list of all likes where user is the liker
+  get '/pull-requests/puller', to: 'likes#liker_index', as: 'puller_index'
+  # get list of all likes where user is the liked person
+  get '/pull-requests/pullee', to: 'likes#likee_index', as: 'pullee_index'
+  post '/pull-requests', to: 'likes#create', as: 'create_pull_request'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

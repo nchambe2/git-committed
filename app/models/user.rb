@@ -32,4 +32,13 @@ class User < ActiveRecord::Base
   def age
     (Date.today - birthday).to_i / 365
   end
+  
+  def get_likees
+    Like.where(liker_id: id)
+  end
+  
+  def get_likers
+    Like.where(liked_id: id)
+  end
+  
 end
