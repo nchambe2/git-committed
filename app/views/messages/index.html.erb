@@ -17,3 +17,9 @@
     <%= f.submit "commit -m", class: "ui blue labeled submit icon button" %>
   </div>
 <% end %>
+
+<% if @errors %>
+  <% @errors.each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>

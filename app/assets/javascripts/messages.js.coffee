@@ -1,6 +1,6 @@
 @MessagePoller =
   poll: ->
-    setTimeout @request, 500
+    setTimeout @request, 2000
 
   request: ->
     $.ajax({
