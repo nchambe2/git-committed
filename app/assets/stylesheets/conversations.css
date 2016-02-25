@@ -31,13 +31,15 @@
   margin: 0 auto;
   color: black;
 }
-.conversation-bar {
- /* position: absolute;
-  height: 100%;
-  width: 220px;
-  background-color: #F9F3E9;
-  border-right: 3px solid black;
-  padding-top: 50px;
-  overflow: scroll;
-  top: 0;*/
+
+.grow {
+  display: inline-block;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  -webkit-tap-highlight-color: transparent;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px transparent;
+}
+.grow:hover {
+  transform: scale(1.1);
 }

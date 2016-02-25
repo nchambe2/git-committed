@@ -11,7 +11,7 @@
             <% recipient = User.find(conversation.sender_id) %>
           <% end %>
           <a href="<%= conversation_messages_path(conversation) %>">
-            <div class="recipient">
+            <div class="recipient grow">
               <div class="clipped inlineblock" style="background-image: url(<%=recipient.profile.picture.url(:thumb) %>);">
               </div>
               <div class="username align-center">
