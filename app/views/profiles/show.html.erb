@@ -1,10 +1,10 @@
-<article class="add-body-margin">
+<article class="add-body-margin center show-profile">
   <section id="profile-show" class="left">
     <aside id="profile-aside" class="white-smoke-background-color padding-all-around">
     	<% if @profile.picture_file_name %>
-    		<%= image_tag @profile.picture.url(:square, class: "profile_pic")%>
+    		<%= image_tag @profile.picture.url(:square, class: "profile-pic")%>
     	<% else %>
-    		<%= image_tag("ninja.png", class: "profile-pic-padding-bottom profile_pic") %>
+    		<%= image_tag("ninja.png", class: "profile-pic-padding-bottom profile-pic") %>
     	<% end %>
      <div class="username-age">
        <p class="lead">
@@ -15,14 +15,13 @@
         <span id="age">Age:</span>
         <%= @user.age %> years old
       </p>
-    </div>
 
      <p class="lead">
         <% if @profile.user == current_user %>
           <%= link_to("Edit Profile", edit_profile_path(@profile), class: "btn btn-default") %>
         <% end %>
      </p>
-
+    </div>
     </aside>
   </section>
 
@@ -80,7 +79,7 @@
   </section>
 
   <div id="block">
-   <section id="user-skills" clas="user-skills-margin-top white-smoke-background-color padding-all-around inlineblock">
+   <section id="user-skills" clas="white-smoke-background-color padding-all-around inlineblock">
 
     <div class="overflow-hidden">
       <% unless @user.profile.about_me.nil? %>

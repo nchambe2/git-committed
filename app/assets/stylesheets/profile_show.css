@@ -85,26 +85,69 @@ table {
   #user-info {
     float: right;
   }
+  #user-skills {
+    padding-top: 1em;
+  }
+  #profile-aside {
+   padding-top: 1em;
+   padding-left: 5em;
+  }
 }
 @media only screen and (max-width: 750px) and (min-width: 476px){
   #profile-aside {
+    width: 100%;
     display: inline-block;
+    padding-top: 1em;
   }
-  .username-age {
-    display: inline-block;
+  #about-me {
+    width: 100%;
   }
   #profile-show {
-    width: 75%;
+    width: 100%;
     margin: 0 auto;
   }
   #user-info {
+    width: 100%;
     display: block;
     clear: both;
+  }
+  #user-skills {
+    padding-top: 1em;
+  }
+  .show-profile {
+    width: 85%;
+  }
+   .username-age {
+    display: inline-block;
   }
 }
 
 @media only screen and (max-width: 475px){
+  #profile-aside {
+    width: 100%;
+    display: inline-block;
+    padding-top: 1em;
+  }
+  #about-me {
+    width: 100%;
+  }
   #profile-show {
     width: 100%;
+    margin: 0 auto;
+  }
+  #user-info {
+    width: 100%;
+    display: block;
+    clear: both;
+  }
+  #user-skills {
+    padding-top: 1em;
+  }
+  .show-profile {
+    width: 100%;
+    padding: 0em 2em;
+  }
+   .username-age {
+    display: inline-block;
   }
 }
