@@ -81,3 +81,12 @@ label {
 .full-width {
 	width: 100%;
 }
+
+.overflow-hidden {
+	overflow: hidden;
+}
+
+.inline {
+	display: inline;
+}
+

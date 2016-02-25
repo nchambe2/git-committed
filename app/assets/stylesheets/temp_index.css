@@ -54,7 +54,7 @@ h2 {
   padding: 20px;
 }
 
-section {
+.homepage-section {
   /*height: 90vh;*/
 	width: 100%;
   display: -webkit-box;
@@ -98,7 +98,7 @@ section {
     padding: 10em 3em 5em 3em;
   }
 
-  section {
+  .homepage-section {
 		height: 87vh;
 	}
 }
@@ -125,7 +125,7 @@ section {
     padding: 3em;
   }
 
-  section {
+  .homepage-section {
 		height: 50vh;
 	}
 }

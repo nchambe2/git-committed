@@ -1,5 +1,5 @@
 <article class="push-down">
-  <section id="profile-show" class="profile-show-margin-top">
+  <section id="profile-show" class="profile-show-margin-top left inlineblock">
     <aside id="profile-aside" class="white-smoke-background-color padding-all-around">
     	<% if @profile.picture_file_name %>
     		<%= image_tag @profile.picture.url(:square), class: "left" %>
@@ -25,7 +25,7 @@
     </aside>
   </section>
 
- <section id="user-info">
+ <section id="user-info" class="right inlineblock">
   <section id="about-me">
    <div id="table-div">
      <table class="white-smoke-background-color padding-all-around">
@@ -76,40 +76,61 @@
     </div>
   </section>
 
-   <section id="user-skills" class="user-skills-margin-top white-smoke-background-color padding-all-around">
-    <% unless @user.profile.about_me.length == 0 %>
-     <h2><%= image_tag "user.jpg" %>About Me</h2>
-      <p class="lead"><%= @user.profile.about_me %></p>
-    <% end %>
+  <div id="block">
+   <section id="user-skills" class="user-skills-margin-top white-smoke-background-color padding-all-around inlineblock">
 
-    <h2><%= image_tag "code.jpg" %>Programming Languages</h2>
-    <p>
-      <% @user.languages.each do |language| %>
-        <p class="lead"><%= language.name %><p>
+    <div class="overflow-hidden">
+      <% unless @user.profile.about_me.length == 0 %>
+        <div class="left help-image"><%= image_tag "user.jpg", class: "user-skills-imgs" %></div>
+        <div class="left help">
+          <h2 class="user-skills-header">About Me</h2>
+          <div class="lead"><%= @user.profile.about_me %></div>
+        </div>
       <% end %>
-    </p>
+   </div>
 
-    <h2><%= image_tag "text_editor.jpg" %>Text Editors</h2>
-    <p>
-      <% @user.text_editors.each do |editor| %>
-        <p class="lead"><%= editor.name %><p>
-      <% end %>
-    </p>
+    <div class="overflow-hidden">
+       <div class="left help-image"><%= image_tag "code.jpg", class: "user_skills_imgs" %></div>
+       <div class="left help">
+         <h2 class="user-skills-header" >Programming Languages</h2>
+            <% @user.languages.each do |language| %>
+              <div class="lead user-pills inlineblock"><%= language.name %></div>
+            <% end %>
+       </div>
+    </div>
 
-    <h2><%= image_tag "system_information.jpg" %>Operating Systems</h2>
-    <p>
-      <% @user.operating_systems.each do |operating_system| %>
-        <p class="lead"><%= operating_system.name %><p>
-      <% end %>
-    </p>
+    <div class="overflow-hidden">
+      <div class="left help-image"><%= image_tag "text_editor.jpg", class: "user_skills_imgs" %></div>
+      <div class="left help">
+        <h2 class="user-skills-header">Text Editors</h2>
+          <% @user.text_editors.each do |editor| %>
+            <p class="lead user-pills inlineblock"><%= editor.name %><p>
+          <% end %>
+    </div>
+    </div>
 
-    <h2><%= image_tag "skill.jpg" %>Skills</h2>
-    <p>
-      <% @user.skills.each do |skill| %>
-        <p class="lead"><%= skill.name %><p>
-      <% end %>
-    </p>
+    <div class="overflow-hidden">
+     <div class="left help-image"><%= image_tag "system_information.jpg", class: "user_skills_imgs" %></div>
+      <div class="left help">
+        <h2 class="user-skills-header">Operating Systems</h2>
+          <% @user.operating_systems.each do |operating_system| %>
+            <p class="lead user-pills inline"><%= operating_system.name %><p>
+          <% end %>
+      </div>
+    </div>
+
+    <div class="overflow-hidden">
+      <div class="left help-image"><%= image_tag "skill.jpg", class: "user_skills_imgs" %></div>
+      <div class="left help">
+        <h2 class="user-skills-header">Skills</h2>
+          <% @user.skills.each do |skill| %>
+            <p class="lead user-pills inlineblock"><%= skill.name %><p>
+          <% end %>
+      </div>
+    </div>
+
+     </section>
    </section>
-  </section>
+ </div>
 </article>
 
