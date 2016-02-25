@@ -92,6 +92,9 @@ table {
    padding-top: 1em;
    padding-left: 5em;
   }
+  .show-profile {
+    padding: 1em 3em;
+  }
 }
 @media only screen and (max-width: 750px) and (min-width: 476px){
   #profile-aside {
