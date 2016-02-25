@@ -1,20 +1,21 @@
-<article class="push-down">
-  <section id="profile-show" class="profile-show-margin-top left inlineblock">
+<article class="add-body-margin">
+  <section id="profile-show" class="left">
     <aside id="profile-aside" class="white-smoke-background-color padding-all-around">
     	<% if @profile.picture_file_name %>
-    		<%= image_tag @profile.picture.url(:square), class: "left" %>
+    		<%= image_tag @profile.picture.url(:square, class: "profile_pic")%>
     	<% else %>
-    		<%= image_tag("ninja.png", class: "left profile-pic-padding-bottom") %>
+    		<%= image_tag("ninja.png", class: "profile-pic-padding-bottom profile_pic") %>
     	<% end %>
+     <div class="username-age">
+       <p class="lead">
+         <%= @user.username %>
+       </p>
 
-     <p class="lead">
-       <%= @user.username %>
-     </p>
-
-     <p class="lead">
-      <span id="age">Age:</span>
-      <%= @user.age %> years old
-    </p>
+       <p class="lead">
+        <span id="age">Age:</span>
+        <%= @user.age %> years old
+      </p>
+    </div>
 
      <p class="lead">
         <% if @profile.user == current_user %>
@@ -25,29 +26,31 @@
     </aside>
   </section>
 
- <section id="user-info" class="right inlineblock">
+ <section id="user-info" class="right">
   <section id="about-me">
    <div id="table-div">
      <table class="white-smoke-background-color padding-all-around">
       <tr>
         <th class="lead align-left"><h2>User Information</h2></th>
       </tr>
-      <tr>
-        <td class="bold padding-left lead">First Name:</td>
-        <td class="lead"><%= @user.first_name %></td>
-      </tr>
-      <tr>
-        <td class="bold padding-left lead">Last Name:</td>
-         <td class="lead"><%= @user.last_name %></td>
-      </tr>
-      <tr>
-        <td class="bold padding-left lead">Birthday:</td>
-        <td class="lead"><%= @user.birthday %></td>
-      </tr>
-      <tr>
-        <td class="bold padding-left lead">Email:</td>
-        <td class="lead"><%= @user.email %></td>
-      </tr>
+      <% if current_user == @user %>
+        <tr>
+          <td class="bold padding-left lead">First Name:</td>
+          <td class="lead"><%= @user.first_name %></td>
+        </tr>
+        <tr>
+          <td class="bold padding-left lead">Last Name:</td>
+           <td class="lead"><%= @user.last_name %></td>
+        </tr>
+        <tr>
+          <td class="bold padding-left lead">Birthday:</td>
+          <td class="lead"><%= @user.birthday %></td>
+        </tr>
+        <tr>
+          <td class="bold padding-left lead">Email:</td>
+          <td class="lead"><%= @user.email %></td>
+        </tr>
+      <% end %>
       <tr>
         <td class="bold padding-left lead">Zip Code:</td>
         <td class="lead"><%= @user.zip_code %></td>
@@ -69,7 +72,7 @@
         <% if @user.profile.github_link.nil? %>
           <td class="lead">N/A</td>
         <% else %>
-          <td class="lead"><%= @user.profile.github_link %></td>
+          <td class="lead"><%= link_to "Github", @user.profile.github_link %></td>
         <% end %>
       </tr>
      </table>
@@ -81,7 +84,7 @@
 
     <div class="overflow-hidden">
       <% unless @user.profile.about_me.nil? %>
-        <div class="left help-image"><%= image_tag "user.jpg", class: "user-skills-imgs" %></div>
+        <div class="left help-image"><%= image_tag "user.jpg", class: "user_skills_imgs" %></div>
         <div class="left help">
           <h2 class="user-skills-header">About Me</h2>
           <div class="lead"><%= @user.profile.about_me %></div>

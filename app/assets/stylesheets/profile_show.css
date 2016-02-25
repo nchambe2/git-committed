@@ -8,15 +8,14 @@ table {
 }
 
 #profile-show {
-  margin-left: 5em;
+  width: 40%;
 }
 
 #profile-aside {
-  border-top: 5px solid #bf3de2;
+  border-top: 5px solid #5F9EA0;
 }
 
 #user-info {
-  margin-right: 5em;
   width: 60%;
 }
 
@@ -29,12 +28,12 @@ table {
 }
 
 #table-div {
-  border-top: 5px solid purple;
+  border-top: 5px solid #5F9EA0;
 }
 
 
 #block {
-  border-top: 5px solid #8f38c1;
+  border-top: 5px solid #5F9EA0;
 }
 
 .profile-pic-padding-bottom {
@@ -53,10 +52,8 @@ table {
   margin-right: .5em;
 }
 
-.user-skills-imgs {
+.user_skills_imgs {
   width: 100%;
-  padding-bottom: 1em;
-  padding-left: 1em;
 }
 
 .user-skills-header {
@@ -81,10 +78,19 @@ table {
 }
 
 .help {
-  width: 90%;
+  width: 93%;
   padding-left: 3em;
 }
 
 .help-image {
-  width: 10%;
+  width: 7%;
+}
+
+@media only screen and (max-width: 750px) and (min-width: 476px){
+  #profile-aside {
+    display: inline-block;
+  }
+  .username-age {
+    display: inline-block;
+  }
 }
