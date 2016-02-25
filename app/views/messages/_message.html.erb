@@ -1,7 +1,8 @@
 <%= div_for message, data: {id: message.id} do %>
-  <% user = User.find(message.user_id) %>
+  <% user = message.user %>
     <div class="header">
-      <strong><%= user.first_name %></strong>     <%= message.message_time %>
+      <strong><%= user.first_name %></strong>
+      <%= message.message_time %>
     </div>
     <div class="list">
       <div class="item">
