@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   def index
     if current_user
       filtered = Profile.where.not(id: [current_user.profile.id, current_user.get_likees]).order(updated_at: :desc).select {|profile| get_gender.include?(profile.user.gender) && fits_filter(profile)}
-      @profiles = filtered.paginate(:per_page => 10)
+      @profiles = filtered.paginate page: params[:page], per_page: 10
     else
       redirect_to login_path
     end
