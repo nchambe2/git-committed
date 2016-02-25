@@ -16,19 +16,39 @@
 //= require s3_direct_upload
 //= require_tree .
 
-
 $(document).ready(function() {
   $("div.username a").on("click", function(event) {
     event.preventDefault();
-    // var recipientId = $(this).attr("id")
     var conversationUrl = $(this).attr("href")
     var request = $.ajax({
       method: "get",
       url: conversationUrl
     });
     request.done(function(responseData){
-      $(".messages-container").html(responseData)
+      $(".big-container").html(responseData)
     });
+  });
+
+  $("div.big-container").on("click", "input.message-button", function(event){
+    event.preventDefault();
+    if ($("textarea#message_body").val() !== "") {
+      var details = $("textarea#message_body").val();
+      var newMessageUrl = $(this).closest("form").attr("action")
+
+      $.ajax({
+        method: "post",
+        url: newMessageUrl,
+        details: details
+      });
+      // var request = $.ajax({
+      //   method: "get",
+      //   url: newMessageUrl
+      // });
+      // request.done(function(responseData){
+      //   $(".big-container").html(responseData)
+      // });
+    }
+
   });
 });
 
