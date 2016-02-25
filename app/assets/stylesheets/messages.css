@@ -1,0 +1,9 @@
+.big-container{
+  width: 910px;
+  height: 500px;
+  background-color: purple;
+  float: right;
+  margin-right: 15px;
+  position: relative;
+  top: -20px;
+}
