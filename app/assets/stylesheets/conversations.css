@@ -10,17 +10,11 @@
   border-bottom: 2px solid black;
 }
 
-.clipped {/*
-  overflow: hidden;
-  width: 100px;
-  height: 80px;
+.clipped {
+  width: 70px;
+  height: 70px;
   position: relative;
-  top: 22px;*/
-  /*background-image: url(<%= recipient.profile.picture.url(:thumb) %>);*/
-    width: 70px;
-    height: 70px;
-    position: relative;
-    top: 22px;
+  top: 22px;
 }
 
 .resized-image{
@@ -39,7 +33,6 @@
   width: 220px;
   background-color: #F9F3E9;
   border-right: 3px solid black;
-  /*position: relative;*/
   margin-top: 50px;
   overflow: scroll;
   top: 0;
