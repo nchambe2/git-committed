@@ -1,51 +1,53 @@
-<h1 class="center">Create an Account</h1>
+<div class="add-body-margin">
+  <h1 class="center">Create an Account</h1>
 
-<%= form_for @user, url: account_path do |f| %>
-  <div class="input-group">
-    <%= f.label :first_name, class: "input-group-addon" %>
-    <%= f.text_field :first_name, class: "form-control", validate: true %>
-	</div>
-  <div class="input-group">
-    <%= f.label :last_name, class: "input-group-addon" %>
-    <%= f.text_field :last_name, class: "form-control" %>
-	</div>
-  <div class="input-group">
-    <%= f.label :email, class: "input-group-addon" %>
-    <%= f.email_field :email, class: "form-control" %>
-	</div>
-  <div class="input-group">
-    <%= f.label :username, class: "input-group-addon" %>
-    <%= f.text_field :username, class: "form-control" %>
-	</div>
-	<div class="input-group">
-    <%= f.label :password, class: "input-group-addon" %>
-    <%= f.password_field :password, placeholder: "Password", class: "form-control" %>
-	</div>
-	<div class="input-group">
-    <div class="input-group-addon"></div>
-    <%= f.password_field :password_confirmation, placeholder: "Confirm password", class: "form-control" %>
-	</div>
-	<div class="input-group">
-	  <%= f.label :birthday %><br>
-	  <%= f.date_select :birthday, start_year: Date.today.year - 99, end_year: Date.today.year - 18, default: {year: Date.today.year - 18} %>
-	</div>
-	<div class="input-group">
-	  <%= label_tag :gender_id, "Gender" %><br>
-	  <%= select_tag(:gender_id, options_for_select(Gender.all.map{ |gender| [gender.name, gender.id]} )) %>
-	</div>
-	<div class="input-group">
-	  <%= label_tag :sexual_orientation_id, "Sexual orientation" %><br>
-	  <%= select_tag(:sexual_orientation_id, options_for_select(SexualOrientation.all.map{|sexual_orientation| [sexual_orientation.name, sexual_orientation.id]})) %>
-	</div>
-	<div class="input-group">
-	  <%= label_tag :sexual_preference_id, "Sexual preference" %><br>
-	  <%= select_tag(:sexual_preference_id, options_for_select(SexualPreference.all.map{|sexual_preference| [sexual_preference.name, sexual_preference.id]})) %>
-	</div>
-	<div class="input-group">
-	  <%= f.label :zip_code, class: "input-group-addon" %>
-	  <%= f.text_field :zip_code, class: "form-control" %>
-	</div>
-	<div class="center input-group">
-	  <%= f.submit :submit, class: 'submit btn btn-default' %>
-	</div>
-<% end %>
+  <%= form_for @user, url: account_path do |f| %>
+    <div class="input-group">
+      <%= f.label :first_name, class: "input-group-addon" %>
+      <%= f.text_field :first_name, class: "form-control", validate: true %>
+  	</div>
+    <div class="input-group">
+      <%= f.label :last_name, class: "input-group-addon" %>
+      <%= f.text_field :last_name, class: "form-control" %>
+  	</div>
+    <div class="input-group">
+      <%= f.label :email, class: "input-group-addon" %>
+      <%= f.email_field :email, class: "form-control" %>
+  	</div>
+    <div class="input-group">
+      <%= f.label :username, class: "input-group-addon" %>
+      <%= f.text_field :username, class: "form-control" %>
+  	</div>
+  	<div class="input-group">
+      <%= f.label :password, class: "input-group-addon" %>
+      <%= f.password_field :password, placeholder: "Password", class: "form-control" %>
+  	</div>
+  	<div class="input-group">
+      <div class="input-group-addon"></div>
+      <%= f.password_field :password_confirmation, placeholder: "Confirm password", class: "form-control" %>
+  	</div>
+  	<div class="input-group">
+  	  <%= f.label :birthday %><br>
+  	  <%= f.date_select :birthday, start_year: Date.today.year - 99, end_year: Date.today.year - 18, default: {year: Date.today.year - 18} %>
+  	</div>
+  	<div class="input-group">
+  	  <%= label_tag :gender_id, "Gender" %><br>
+  	  <%= select_tag(:gender_id, options_for_select(Gender.all.map{ |gender| [gender.name, gender.id]} )) %>
+  	</div>
+  	<div class="input-group">
+  	  <%= label_tag :sexual_orientation_id, "Sexual orientation" %><br>
+  	  <%= select_tag(:sexual_orientation_id, options_for_select(SexualOrientation.all.map{|sexual_orientation| [sexual_orientation.name, sexual_orientation.id]})) %>
+  	</div>
+  	<div class="input-group">
+  	  <%= label_tag :sexual_preference_id, "Sexual preference" %><br>
+  	  <%= select_tag(:sexual_preference_id, options_for_select(SexualPreference.all.map{|sexual_preference| [sexual_preference.name, sexual_preference.id]})) %>
+  	</div>
+  	<div class="input-group">
+  	  <%= f.label :zip_code, class: "input-group-addon" %>
+  	  <%= f.text_field :zip_code, class: "form-control" %>
+  	</div>
+  	<div class="center input-group">
+  	  <%= f.submit :submit, class: 'submit btn btn-default' %>
+  	</div>
+  <% end %>
+</div>
