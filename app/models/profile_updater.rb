@@ -1,10 +1,7 @@
 class ProfileUpdater
   def call(user, params)
     user.update_attributes(update_user(params))
-    Rails.logger.info("updating profile")
     user.profile.update_attributes(update_profile(params))
-    Rails.logger.error(user.profile.errors.full_messages.join(":::")) unless user.profile.valid?
-    Rails.logger.info("updated profile")
     update_user_lang(user, params.fetch(:languages, []))
     update_user_editors(user, params.fetch(:editors, []))
     update_user_operating_systems(user, params.fetch(:operating_systems, []))
