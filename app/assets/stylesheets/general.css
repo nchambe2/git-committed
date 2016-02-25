@@ -55,6 +55,30 @@
 	margin: 0;
 }
 
+.push-down {
+	margin-top: 7em;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.border-radius {
+	border-radius: 5em;
+}
+
+tr td:first-child, th {
+	padding-left: 3em;
+}
+
+tr:last-child td {
+	padding-bottom: 3em;
+}
+
 label {
 	padding: 0;
 }
@@ -65,6 +89,14 @@ label {
 
 .full-width {
 	width: 100%;
+}
+
+.overflow-hidden {
+	overflow: hidden;
+}
+
+.inline {
+	display: inline;
 }
 
 select {
@@ -120,3 +152,7 @@ select {
   opacity: 1;
   transform: scale(1);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> d44e66e10efb23007e72baee2991532ad221e035

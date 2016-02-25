@@ -25,7 +25,8 @@ feature "Login and Visit Profile"  do
   scenario "login and view your profile page" do
     tommy = users :tommy
     gigi  = users :gigi
-    Profile.create(user: tommy)
+    profile = Profile.create(user: tommy)
+    profile.github_link = "https://github.com/fjksljf"
     Profile.create(user: gigi)
     visit login_path
     fill_in('Username', :with => 'tmoore')
