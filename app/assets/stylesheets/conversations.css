@@ -25,6 +25,7 @@
   height: 20px;
   position: relative;
   top: 45px;
+  padding-left: 10px;
 }
 
 .conversation-bar {

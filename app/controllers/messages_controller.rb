@@ -10,12 +10,9 @@ class MessagesController < ApplicationController
     end
     @message = @conversation.messages.new
     respond_to do |format|
-      format.html do
-       render 'index.html.erb'
-     end
-      format.js do
-        render 'index.js.erb'
-      end
+      format.html { render :layout => false }
+      format.js { render :layout => false }
+      format.json { render :layout => false }
     end
   end
 

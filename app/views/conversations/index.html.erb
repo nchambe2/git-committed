@@ -1,26 +1,27 @@
-<div class=”ui segment”>
+<!-- <div class="ui segment"> -->
   <h3>Gitlogs</h3>
-  <div class=”ui list”>
-    <div class=”item”>
+<!--   <div class="ui list">
+    <div class="item"> -->
       <div class="conversation-bar left">
-      <% @conversations.each do |conversation| %>
-        <% if conversation.sender_id == current_user.id ||      conversation.recipient_id == current_user.id %>
-          <% if conversation.sender_id == current_user.id %>
-            <% recipient = User.find(conversation.recipient_id) %>
-          <% else %>
-            <% recipient = User.find(conversation.sender_id) %>
+        <% @conversations.each do |conversation| %>
+          <% if conversation.sender_id == current_user.id ||      conversation.recipient_id == current_user.id %>
+            <% if conversation.sender_id == current_user.id %>
+              <% recipient = User.find(conversation.recipient_id) %>
+            <% else %>
+              <% recipient = User.find(conversation.sender_id) %>
+            <% end %>
+            <div class="recipient">
+              <div class="clipped inlineblock left" style="background-image: url(<%=recipient.profile.picture.url(:thumb) %>)">
+              </div>
+              <div class="username left">
+                <%= link_to recipient.username,   conversation_messages_path(conversation), class:"inlineblock right", id: recipient.id%>
+              </div>
+            </div>
           <% end %>
-          <div class="recipient">
-            <div class="clipped inlineblock left" style="background-image: url(<%=recipient.profile.picture.url(:thumb) %>);">
-
-            </div>
-            <div class="username left">
-            <%= link_to recipient.username,   conversation_messages_path(conversation), class:"inlineblock right" %>
-            </div>
-          </div>
         <% end %>
-      <% end %>
       </div>
-    </div>
+      <div class="messages-container">
+      </div>
+   <!--  </div>
   </div>
-</div>
+</div> -->

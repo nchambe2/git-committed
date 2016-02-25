@@ -17,7 +17,18 @@
 //= require_tree .
 
 
-// $(document).ready(function() {
-
-// });
+$(document).ready(function() {
+  $("div.username a").on("click", function(event) {
+    event.preventDefault();
+    // var recipientId = $(this).attr("id")
+    var conversationUrl = $(this).attr("href")
+    var request = $.ajax({
+      method: "get",
+      url: conversationUrl
+    });
+    request.done(function(responseData){
+      $(".messages-container").html(responseData)
+    });
+  });
+});
 
