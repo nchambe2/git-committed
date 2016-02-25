@@ -1,48 +1,47 @@
 <div class="add-body-margin">
-	<%= form_for @user, :html => { :multipart => true }, url: update_profile_path, method: :patch do |f| %>
+	<%= form_for @user, :html => { :multipart => true, class: "edit-profile-info" }, url: update_profile_path, method: :patch do |f| %>
+		<fieldset>
+      <legend>Personal Information:</legend>
+      <p>
+  		  <%= f.label :first_name, class: "bold" %>:
+  		  <%= f.text_field :first_name, class: "edit-profile-border-radius", size: 50 %>
+  		</p>
+  		<p>
+  		  <%= f.label :last_name, class: "bold" %>:
+  		  <%= f.text_field :last_name, class: "edit-profile-border-radius", size: 50 %>
+  		</p>
 
-  <%= fields_for(@profile, multipart: true) do |p| %>
-    <p>
-      <%= p.label :picture %>
-      <%= p.file_field :picture %>
-    </p>
-    <p>
-      <%= p.label :about_me %><br>
-      <%= p.text_area :about_me %>
-    </p>
-    <p>
-      <%= p.label :github_link %><br>
-      <%= p.text_field :github_link %>
-   </p>
-  <% end %>
+  	  <%= fields_for :profile, @profile do |p| %>
+        <p>
+          <%= p.label :github_link, class: "bold" %>:
+          <%= p.text_field :github_link, class: "edit-profile-border-radius", size: 50 %>
+        </p>
+  	    <p>
+  	      <%= p.label :picture, class: "bold" %>
+  	      <%= p.file_field :picture %>
+  	    </p>
+  	    <p>
+  	      <%= p.label :about_me, class: "bold" %><br>
+  	      <%= p.text_area :about_me, id: 'profile_about_me', class: "edit-profile-border-radius", cols: 60, rows: 5 %> <br>
+  			</p>
 
-		<p>
-		  <%= f.label :first_name %>
-		  <%= f.text_field :first_name %>
-		</p>
-		<p>
-		  <%= f.label :last_name %>
-		  <%= f.text_field :last_name %>
-		</p>
-		<p>
-			<%= f.label "Gender:" %><br>
-			<%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] }, {:selected => @user.gender_id} %>
-		</p>
+  	  <% end %>
 
-	  <%= fields_for :profile, @profile do |p| %>
-	    <p>
-	      <%= p.label :picture %>
-	      <%= p.file_field :picture %>
-	    </p>
-	    <p>
-	      <%= p.label :about_me %><br>
-	      <%= p.text_area :about_me, id: 'profile_about_me' %> <br>
-			</p>
-	    <p>
-	      <%= p.label :github_link %><br>
-	      <%= p.text_field :github_link %>
-			</p>
-	  <% end %>
+      <p>
+        <%= f.label "Gender:", class: "bold" %><br>
+        <%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] }, {:selected => @user.gender_id} %>
+      </p>
+
+      <p>
+        <%= f.label "Sexual Preference:", class: "bold" %><br>
+        <%= f.select :sexual_preference_id, @sexual_preferences.collect {|sp| [sp.name, sp.id]} %>
+      </p>
+
+      <p>
+        <%= f.label "Sexual Orientation:", class: "bold" %><br>
+        <%= f.select :sexual_orientation_id, @sexual_orientations.collect { |so| [so.name, so.id]  } %>
+     </p>
+    </fieldset>
 
 	  <fieldset>
 	    <%= fields_for :languages, @programming_languages do |l| %>
@@ -91,16 +90,6 @@
 				<% end %>
 	  	<% end %>
 	  </fieldset>
-
-	  <p>
-	    <%= f.label "Sexual Preference:" %><br>
-	    <%= f.select :sexual_preference_id, @sexual_preferences.collect {|sp| [sp.name, sp.id]} %>
-	  </p>
-
-	  <p>
-	    <%= f.label "Sexual Orientation:" %><br>
-	    <%= f.select :sexual_orientation_id, @sexual_orientations.collect { |so| [so.name, so.id]  } %>
-	  </p>
 
 	  <%= f.submit %>
 	<% end %>
