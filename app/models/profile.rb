@@ -11,7 +11,7 @@ class Profile < ActiveRecord::Base
 
   validates :about_me,  length:  { maximum: 140,
                                    too_long: "140 characters is the maximum allowed" },
-                                   on: :update
+                                   on: :update, allow_blank: :true
 
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
 
