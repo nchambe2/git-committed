@@ -10,6 +10,10 @@
 	margin: 3em 0;
 }
 
+.add-body-margin {
+	margin: 5em 3em 0em 3em;
+}
+
 .heading {
 	border-bottom: 1px solid grey;
 }

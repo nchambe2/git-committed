@@ -11,6 +11,13 @@
 	overflow: hidden;
 }
 
+.profile_heading {
+	overflow: hidden;
+	margin-bottom: 0.5em;
+	background-color: powderblue;
+	padding: 0.5em;
+}
+
 @media only screen and (max-width: 675px) {
 	.profile_pic {
 		display: block;
@@ -19,10 +26,6 @@
 
 	.profile_heading {
 		display: block;
-		overflow: hidden;
-		margin-bottom: 0.5em;
-		background-color: #A6E7CE;
-		padding: 0.5em;
 	}
 
 	.profile_card_info {
@@ -54,10 +57,6 @@
 	}
 
 	.profile_heading {
-		overflow: hidden;
-		margin-bottom: 0.5em;
-		background-color: #A6E7CE;
-		padding: 0.5em;
 	}
 
 }
