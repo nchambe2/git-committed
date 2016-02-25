@@ -37,12 +37,6 @@
 			<% end %>
 		</fieldset>
 
-		<fieldset>
-			<legend>Age</legend>
-			<p><%= f.label "Minimum Age:" %> <%= f.select :age, options_for_select((18..99).step(1))%></p>
-			<p><%= f.label "Maximum Age:" %> <%= f.select :age, options_for_select((18..99).step(1)) %></p>
-		</fieldset>
-
 		<div class="center"><%= f.submit 'save', class: "submit btn btn-default" %></div>
 
 	<% end %>

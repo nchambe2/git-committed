@@ -17,8 +17,6 @@ class Profile < ActiveRecord::Base
 
   validates_format_of :github_link, with: /github\.((com)|(io))/, message: "url is not in proper format" , on: :update
 
-  paginates_per 2
-
   def get_traits
     [user.languages, user.text_editors, user.skills, user.operating_systems].flatten
   end
