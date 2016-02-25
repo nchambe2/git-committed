@@ -21,21 +21,27 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile = Profile.find_by(id: params[:id])
+    if @profile != current_user.profile
+      redirect_to edit_profile_path(current_user.profile)
+    end
+
     @user = current_user
     @user_languages = @user.languages
     @user_skills = @user.skills
 
-    if @profile != current_user.profile
-      redirect_to edit_profile_path(current_user.profile)
-    end
+    @maximum_length = Profile.validators_on(:about_me).first.options[:maximum]
+    @current_length = @maximum_length - @user.profile.about_me.length
+    # if @user.profile.about_me != nil
+    #   @current_length = @maximum_length - @user.profile.about_me.length
+    # else
+    #   @current_length = @maximum_length
+    # end
 
   end
 
   def update
     @user = User.find(current_user.id)
-
     ProfileUpdater.new.call(@user, params)
-
     redirect_to profile_path(@user.profile)
  end
 
@@ -55,7 +61,6 @@ class ProfilesController < ApplicationController
   def fits_filter(profile)
     return profile if !(get_user_filters & profile.get_traits).empty?
   end
-
 
   def get_gender
     pref = current_user.sexual_preference

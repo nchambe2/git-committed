@@ -7,6 +7,10 @@ body {
 	font-size: 2em;
 }
 
+.navbar-default .navbar-brand, .light_grey {
+	color: #ccc;
+}
+
 .grey, .grey:hover {
 	color: darkslategray;
 }
@@ -33,6 +37,10 @@ body {
   margin: -1px -17px;
 }
 
+.navbar-default {
+	border: none;
+}
+
 .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
    max-height: none;
 }
@@ -42,7 +50,7 @@ body {
 }
 
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
-	background-color: #313B74;
+	background-color: #ccc;
 }
 
 @media only screen and (max-width: 767px){
@@ -51,7 +59,7 @@ body {
 	}
 
 	ul.nav > li:hover {
-		background-color: #E7E7E7;
+		background-color: #ccc;
 	}
 }
 
@@ -61,6 +69,6 @@ body {
 	}
 
 	ul.nav li:hover {
-		background-color: #97cfb9;
+/*		background-color: #97cfb9;*/
 	}
 }

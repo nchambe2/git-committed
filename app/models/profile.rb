@@ -9,8 +9,11 @@ class Profile < ActiveRecord::Base
     medium: '300x300>'
   }
 
+  validates :about_me,  length:  { maximum: 140,
+                                   too_long: "140 characters is the maximum allowed" },
+                                   on: :update
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
-
+  validates_format_of :github_link, with: /github\.((com)|(io))/, message: "url is not in proper format" , on: :update
   paginates_per 15
 
   def get_traits

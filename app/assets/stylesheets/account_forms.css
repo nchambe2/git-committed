@@ -8,10 +8,10 @@ form {
 	width: 19em;
 }
 
-.center {
+/*.center {
 	text-align: center;
 	margin: 0 auto;
-}
+}*/
 
 .submit, .submit:hover {
 	margin: 0.75em 0;

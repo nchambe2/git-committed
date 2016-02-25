@@ -2,39 +2,29 @@ h2 {
   font-weight: bold;
 }
 
-.content {
-  margin: 0;
+.opaque-bg {
+  background-color: #555;
+  opacity: .7;
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+}
+.text-overlay {
+  z-index: 100;
+  opacity: 1;
 }
 
 #main {
-  width: 100%;
-  height: 700px;
   background-image: url("dock_couple.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-
-#main p:nth-child(1) {
-  padding-top: 200px;
 }
 
 #main p {
-  text-align: center;
   font-size: 50px;
-  color: #fff;
-}
-
-
-#how-it-works {
-  width: 100%;
-  height: 700px;
 }
 
 #how-it-works-header {
-  font-size: 50px;
-  text-align: center;
-  margin-top: 80px;
-  margin-bottom: 60px;
+  font-size: 4em;
+  margin-bottom: 1em;
 }
 
 .numberCircle {
@@ -45,34 +35,97 @@ h2 {
   background: #fff;
   border: 2px solid #000;
   color: #000;
-  text-align: center;
-  display: inline-block;
+}
+
+.step-info {
+  width: 80%
+}
+
+.step-num {
+  width: 20%;
 }
 
 #register {
-  width: 100%;
-  height: 700px;
   background-image: url("love_hands.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-
-#register h2 {
-  padding-top: 180px;
-}
-
-.register-info {
-  color: #fff;
-  text-align: center;
-}
-
-#regiser-link {
-  margin: 0 auto;
 }
 
 #footer {
   background-color: #000;
-  color: #fff;
-  text-align: center;
   padding: 20px;
+}
+
+section {
+  /*height: 90vh;*/
+	width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+	display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+	-webkit-background-size: cover;
+  background-size: cover;
+  background-position-y: 50%;
+}
+
+@media only screen and (min-width: 600px) {
+  .opaque-bg {
+    height: 11em;
+  }
+
+  .steps {
+    width: 32%;
+  }
+
+  .steps:not(:last-child) {
+    margin-right: 1%;
+  }
+
+  #register {
+    background-position: 36%
+  }
+
+  #how-it-works {
+    height: 39em;
+    padding: 10em 3em 5em 3em;
+  }
+
+  section {
+		height: 87vh;
+	}
+}
+
+@media only screen and (max-width: 599px) {
+  .opaque-bg {
+    height: 10em;
+  }
+
+  .steps {
+    width: 100%;
+  }
+
+  #main p {
+    font-size: 2.5em;
+  }
+
+  #register {
+    background-position: 36%
+  }
+
+  #how-it-works {
+    height: auto;
+    padding: 3em;
+  }
+
+  section {
+		height: 50vh;
+	}
 }
