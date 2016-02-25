@@ -1,0 +1,90 @@
+th {
+  font-size: 2em;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#profile-show {
+  margin-left: 5em;
+}
+
+#profile-aside {
+  border-top: 5px solid #bf3de2;
+}
+
+#user-info {
+  margin-right: 5em;
+  width: 60%;
+}
+
+#age {
+  font-weight: bold;
+}
+
+#about-me {
+  display: inline;
+}
+
+#table-div {
+  border-top: 5px solid purple;
+}
+
+
+#block {
+  border-top: 5px solid #8f38c1;
+}
+
+.profile-pic-padding-bottom {
+  padding-bottom: 2em;
+}
+
+.white-smoke-background-color {
+  background-color: #fff;
+}
+
+.padding-all-around {
+  padding: 3em;
+}
+
+.user-skills-margin-top {
+  margin-right: .5em;
+}
+
+.user-skills-imgs {
+  width: 100%;
+  padding-bottom: 1em;
+  padding-left: 1em;
+}
+
+.user-skills-header {
+  margin-left: 1em;
+  margin: 0;
+}
+
+.img-left {
+  width: 6%;
+}
+
+.img-right {
+  width: 90%;
+}
+
+.user-pills {
+  border: 1px solid #000;
+  background-color: azure;
+  border-radius: .5em;
+  padding: .25em 1em;
+  margin-top: 1em;
+}
+
+.help {
+  width: 90%;
+  padding-left: 3em;
+}
+
+.help-image {
+  width: 10%;
+}
