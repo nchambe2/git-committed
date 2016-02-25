@@ -1,23 +1,25 @@
-<h1 class="center">Account Settings</h1>
+<div class="add-body-margin">
+  <h1 class="center">Account Settings</h1>
 
-<%= form_for @user, url: account_path, method: :patch do |f| %>
-  <div class="input-group">
-    <%= f.label :username, class: "input-group-addon" %>
-    <%= f.text_field :username, class: "form-control", validate: true %>
-  </div>
-  <div class="input-group">
-    <%= f.label :email, class: "input-group-addon" %>
-    <%= f.text_field :email, class: "form-control", validate: true %>
-  </div>
-  <div class="input-group">
-    <%= f.label :password, class: "input-group-addon" %>
-    <%= f.password_field :password, placeholder: "Password", class: "form-control" %>
-  </div>
-  <div class="input-group">
-    <div class="input-group-addon"></div>
-    <%= f.password_field :password_confirmation, placeholder: "Confirm password", class: "form-control" %>
-  </div>
-  <div class="center input-group">
-    <%= f.submit :submit, class: "submit btn btn-default" %>
-  </div>
-<% end %>
+  <%= form_for @user, url: account_path, method: :patch do |f| %>
+    <div class="input-group">
+      <%= f.label :username, class: "input-group-addon" %>
+      <%= f.text_field :username, class: "form-control", validate: true %>
+    </div>
+    <div class="input-group">
+      <%= f.label :email, class: "input-group-addon" %>
+      <%= f.text_field :email, class: "form-control", validate: true %>
+    </div>
+    <div class="input-group">
+      <%= f.label :password, class: "input-group-addon" %>
+      <%= f.password_field :password, placeholder: "Password", class: "form-control" %>
+    </div>
+    <div class="input-group">
+      <div class="input-group-addon"></div>
+      <%= f.password_field :password_confirmation, placeholder: "Confirm password", class: "form-control" %>
+    </div>
+    <div class="center input-group">
+      <%= f.submit :submit, class: "submit btn btn-default" %>
+    </div>
+  <% end %>
+</div>

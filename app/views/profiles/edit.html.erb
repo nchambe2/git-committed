@@ -1,98 +1,92 @@
-<%= form_for @user, :html => { :multipart => true }, url: update_profile_path, method: :patch do |f| %>
+<div class="add-body-margin">
+	<%= form_for @user, :html => { :multipart => true }, url: update_profile_path, method: :patch do |f| %>
 
-	<p>
-	  <%= f.label :first_name %>
-	  <%= f.text_field :first_name %>
-	</p>
-	<p>
-	  <%= f.label :last_name %>
-	  <%= f.text_field :last_name %>
-	</p>
-	<p>
-		<%= f.label "Gender:" %><br>
-		<%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] }, {:selected => @user.gender_id} %>
-	</p>
-
-  <%= fields_for :profile, @profile do |p| %>
-    <p>
-      <%= p.label :picture %>
-      <%= p.file_field :picture %>
-    </p>
-    <p>
-      <%= p.label :about_me %><br>
-      <%= p.text_area :about_me, id: 'profile_about_me' %> <br>
-
-   </p>
-    <p>
-      <%= p.label :github_link %><br>
-      <%= p.text_field :github_link %>
-   </p>
-  <% end %>
-
-  <fieldset>
-    <%= fields_for :languages, @programming_languages do |l| %>
-      <legend>Programming Languages:</legend>
-      <% @programming_languages.each do |programming_language| %>
-         <div class="inlineblock checkbox_cols">
-            <%= l.check_box programming_language.id, { checked: @user_languages.include?(programming_language) } %>
-            <%= l.label programming_language.name, for: "languages_#{programming_language.id}" %>
-        </div>
-      <% end %>
-    <% end %>
-  </fieldset>
-
-  <fieldset>
-    <%= fields_for :editors, @text_editors do |t| %>
-			<legend><%= t.label "Text Editors:" %></legend>
-			<% @text_editors.each do |text_editor| %>
-        <div class="inlineblock checkbox_cols">
-					<%= t.check_box text_editor.id, {checked: @user.text_editors.include?(text_editor) } %>
-					<%= t.label text_editor.name, for: "editors_#{text_editor.id}" %>
-				</div>
-			<% end %>
-  	<% end %>
-  </fieldset>
-
-  <fieldset>
-  	<%= fields_for :operating_systems, @operating_systems do |o| %>
-  			<legend>Operating Systems:</legend>
-  			<% @operating_systems.each do |operating_system| %>
-  				<div class="inlineblock checkbox_cols">
-  					<%= o.check_box operating_system.id, {checked: @user.operating_systems.include?(operating_system) } %>
-  					<%= o.label operating_system.name, for: "operating_systems_#{operating_system.id}" %>
-  				</div>
-  			<% end %>
-  	<% end %>
-  </fieldset>
-
-  <fieldset>
-  	<%= fields_for :skills, @skills do |s| %>
-			<legend>Skills:</legend>
-			<% @skills.each do |skill| %>
-				<div class="inlineblock checkbox_cols">
-					<%= s.check_box skill.id, { checked: @user_skills.include?(skill) } %>
-					<%= s.label skill.name, for: "skills_#{skill.id}" %>
-				</div>
-			<% end %>
-  	<% end %>
-  </fieldset>
-
-  <%= fields_for :relationship_types, @relationship_types do |rt| %>
 		<p>
-			<%= rt.label "Seeking:" %><br>
-			<%= rt.select :name, @relationship_types.collect {|r| [r.name, r.id] } %>
+		  <%= f.label :first_name %>
+		  <%= f.text_field :first_name %>
 		</p>
+		<p>
+		  <%= f.label :last_name %>
+		  <%= f.text_field :last_name %>
+		</p>
+		<p>
+			<%= f.label "Gender:" %><br>
+			<%= f.select :gender_id, @genders.collect {|g| [g.name, g.id] }, {:selected => @user.gender_id} %>
+		</p>
+
+	  <%= fields_for :profile, @profile do |p| %>
+	    <p>
+	      <%= p.label :picture %>
+	      <%= p.file_field :picture %>
+	    </p>
+	    <p>
+	      <%= p.label :about_me %><br>
+	      <%= p.text_area :about_me, id: 'profile_about_me' %> <br>
+			</p>
+	    <p>
+	      <%= p.label :github_link %><br>
+	      <%= p.text_field :github_link %>
+			</p>
+	  <% end %>
+
+	  <fieldset>
+	    <%= fields_for :languages, @programming_languages do |l| %>
+	      <legend>Programming Languages:</legend>
+	      <% @programming_languages.each do |programming_language| %>
+	         <div class="inlineblock checkbox_cols">
+	            <%= l.check_box programming_language.id, { checked: @user_languages.include?(programming_language) } %>
+	            <%= l.label programming_language.name, for: "languages_#{programming_language.id}" %>
+	        </div>
+	      <% end %>
+	    <% end %>
+	  </fieldset>
+
+	  <fieldset>
+	    <%= fields_for :editors, @text_editors do |t| %>
+				<legend><%= t.label "Text Editors:" %></legend>
+				<% @text_editors.each do |text_editor| %>
+	        <div class="inlineblock checkbox_cols">
+						<%= t.check_box text_editor.id, {checked: @user.text_editors.include?(text_editor) } %>
+						<%= t.label text_editor.name, for: "editors_#{text_editor.id}" %>
+					</div>
+				<% end %>
+	  	<% end %>
+	  </fieldset>
+
+	  <fieldset>
+	  	<%= fields_for :operating_systems, @operating_systems do |o| %>
+	  			<legend>Operating Systems:</legend>
+	  			<% @operating_systems.each do |operating_system| %>
+	  				<div class="inlineblock checkbox_cols">
+	  					<%= o.check_box operating_system.id, {checked: @user.operating_systems.include?(operating_system) } %>
+	  					<%= o.label operating_system.name, for: "operating_systems_#{operating_system.id}" %>
+	  				</div>
+	  			<% end %>
+	  	<% end %>
+	  </fieldset>
+
+	  <fieldset>
+	  	<%= fields_for :skills, @skills do |s| %>
+				<legend>Skills:</legend>
+				<% @skills.each do |skill| %>
+					<div class="inlineblock checkbox_cols">
+						<%= s.check_box skill.id, { checked: @user_skills.include?(skill) } %>
+						<%= s.label skill.name, for: "skills_#{skill.id}" %>
+					</div>
+				<% end %>
+	  	<% end %>
+	  </fieldset>
+
+	  <p>
+	    <%= f.label "Sexual Preference:" %><br>
+	    <%= f.select :sexual_preference_id, @sexual_preferences.collect {|sp| [sp.name, sp.id]} %>
+	  </p>
+
+	  <p>
+	    <%= f.label "Sexual Orientation:" %><br>
+	    <%= f.select :sexual_orientation_id, @sexual_orientations.collect { |so| [so.name, so.id]  } %>
+	  </p>
+
+	  <%= f.submit %>
 	<% end %>
-
-  <p>
-    <%= f.label "Sexual Preference:" %><br>
-    <%= f.select :sexual_preference_id, @sexual_preferences.collect {|sp| [sp.name, sp.id]} %>
-  </p>
-
-  <p>
-    <%= f.label "Sexual Orientation:" %><br>
-    <%= f.select :sexual_orientation_id, @sexual_orientations.collect { |so| [so.name, so.id]  } %>
-  </p>
-
-  <%= f.submit %>
-<% end %>
+</div>
