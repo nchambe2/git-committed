@@ -5,19 +5,10 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @conversation.messages.where("id > ?", params[:data].to_i )
-    # if @messages.length > 10
-    #   @over_ten = true
-    #   @messages = @messages[-10..-1]
-    # end
-    # if params[:m]
-    #   @over_ten = false
-    #   @messages = @conversation.messages
-    # end
     if @messages.last && @messages.last.user_id != current_user.id
       @messages.last.read = true;
     end
     @message = @conversation.messages.new
-
     respond_to do |format|
       format.html do
        render 'index.html.erb'
@@ -26,7 +17,6 @@ class MessagesController < ApplicationController
         render 'index.js.erb'
       end
     end
-
   end
 
   def new
@@ -37,8 +27,10 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.new(message_params)
     if @message.save
       redirect_to conversation_messages_path(@conversation)
-    # else
-      # render template: "conversations/"
+    else
+      @messages = @conversation.messages
+      @errors = @message.errors.full_messages
+      render "index.html"
     end
   end
 

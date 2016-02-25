@@ -59,6 +59,11 @@ label {
 	padding: 0;
 }
 
+.vert-middle {
+	vertical-align: middle;
+}
+
 .full-width {
 	width: 100%;
 }
+
