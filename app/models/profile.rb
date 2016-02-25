@@ -15,7 +15,7 @@ class Profile < ActiveRecord::Base
 
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
 
-  validates_format_of :github_link, with: /github\.((com)|(io))/, message: "url is not in proper format" , on: :update
+  validates_format_of :github_link, with: /github\.((com)|(io))/, message: "url is not in proper format" , on: :update, allow_blank: :true
 
   paginates_per 15
 

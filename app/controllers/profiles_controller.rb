@@ -31,11 +31,10 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    p params[:seeking]
     @user = User.find(current_user.id)
     ProfileUpdater.new.call(@user, params)
     redirect_to profile_path(@user.profile)
- end
+  end
 
   private
 
