@@ -13,7 +13,6 @@
 
 .profile_heading {
 	overflow: hidden;
-	margin-bottom: 0.5em;
 	background-color: powderblue;
 	padding: 0.5em;
 }
@@ -50,10 +49,13 @@
 		width: 45em;
 	}
 
+	.profile_card_info {
+		border-left: 1px solid lightgrey;
+	}
+
 	.profile_pic {
 		width: 17em;
 		height: 17em;
-		border-right: 1px solid grey;
 	}
 
 	.profile_heading {
