@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
   has_many :languages, through: :user_languages
 
 
-  validates :first_name, presence: true, presence: true
-  validates :last_name, presence: true, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :password, presence: true, allow_nil: true, length: {minimum: 8, maximum: 25}
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
