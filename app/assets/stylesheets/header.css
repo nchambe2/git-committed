@@ -12,7 +12,7 @@ body {
 }
 
 .grey, .grey:hover {
-	color: darkslategray;
+	color: slategray;
 }
 
 .btn {
@@ -47,15 +47,16 @@ body {
 
 .navbar-toggle, .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
 	background-color: white;
-}
-
-.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
-	background-color: #ccc;
+	color: black;
 }
 
 @media only screen and (max-width: 767px){
 	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-		background-color: honeydew;
+		background-color: #eee;
+	}
+
+	.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+		background-color: #aaa;
 	}
 
 	ul.nav > li:hover {
@@ -68,7 +69,24 @@ body {
 		background-color: transparent;
 	}
 
+	.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+		background-color: #333;
+		color: #eee;
+	}
+
 	ul.nav li:hover {
-/*		background-color: #97cfb9;*/
+		background-color: #333;
+	}
+
+	ul.nav li:hover a:hover {
+		color: #eee;
+	}
+
+	.navbar-nav>li>.dropdown-menu li a:hover {
+		color: black;
+	}
+
+	.navbar-default .navbar-nav>li>a {
+		color: #ccc;
 	}
 }

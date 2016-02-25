@@ -1,7 +1,7 @@
-<div id="browse-page">
- </div>
- <% @profiles.each do |profile| %>
-	<%= render partial: 'profiles/profile_card', locals: {profile: profile} %>
-<% end %>
+<div id="profile-browse" class="add-body-margin">
+  <% @profiles.each do |profile| %>
+  	<%= render partial: 'profiles/profile_card', locals: {profile: profile} %>
+  <% end %>
 
-<div class="pagination_div"><%= will_paginate @profiles %></div>
+  <div class="pagination_div"><%= will_paginate @profiles %></div>
+</div>

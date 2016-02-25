@@ -32,8 +32,7 @@ feature "Login and Visit Profile"  do
     fill_in('Username', :with => 'tmoore')
     fill_in('Password', :with => 'password')
     click_button('submit')
-    debugger
-    page.must_have_css('#browse-page')
+    page.must_have_css('#profile-browse')
   end
 end
 

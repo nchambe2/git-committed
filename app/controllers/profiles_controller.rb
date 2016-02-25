@@ -28,15 +28,12 @@ class ProfilesController < ApplicationController
     if @profile != current_user.profile
       redirect_to edit_profile_path(current_user.profile)
     end
-
   end
 
   def update
     p params[:seeking]
     @user = User.find(current_user.id)
-
     ProfileUpdater.new.call(@user, params)
-
     redirect_to profile_path(@user.profile)
  end
 
