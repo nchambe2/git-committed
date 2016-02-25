@@ -104,7 +104,7 @@
       <div class="left help">
         <h2 class="user-skills-header">Text Editors</h2>
           <% @user.text_editors.each do |editor| %>
-            <p class="lead user-pills inlineblock"><%= editor.name %><p>
+           <div class="lead user-pills inlineblock"><%= editor.name %></div>
           <% end %>
     </div>
     </div>
@@ -114,7 +114,7 @@
       <div class="left help">
         <h2 class="user-skills-header">Operating Systems</h2>
           <% @user.operating_systems.each do |operating_system| %>
-            <p class="lead user-pills inline"><%= operating_system.name %><p>
+            <div class="lead user-pills inlineblock"><%= operating_system.name %></div>
           <% end %>
       </div>
     </div>
@@ -124,7 +124,7 @@
       <div class="left help">
         <h2 class="user-skills-header">Skills</h2>
           <% @user.skills.each do |skill| %>
-            <p class="lead user-pills inlineblock"><%= skill.name %><p>
+            <div  class="lead user-pills inlineblock"><%= skill.name %></div>
           <% end %>
       </div>
     </div>
