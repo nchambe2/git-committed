@@ -38,3 +38,7 @@
 label {
 	padding: 0;
 }
+
+.vert-middle {
+	vertical-align: middle;
+}

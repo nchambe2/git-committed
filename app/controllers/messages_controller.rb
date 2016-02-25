@@ -9,7 +9,6 @@ class MessagesController < ApplicationController
       @messages.last.read = true;
     end
     @message = @conversation.messages.new
-
     respond_to do |format|
       format.html do
        render 'index.html.erb'
@@ -18,7 +17,6 @@ class MessagesController < ApplicationController
         render 'index.js.erb'
       end
     end
-
   end
 
   def new

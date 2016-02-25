@@ -1,11 +1,11 @@
 class Profile < ActiveRecord::Base
-  
+
   belongs_to :user
   has_many :answers
   has_many :questions, through: :answers
   has_attached_file :picture, styles: {
     thumb: '100x100>',
-    square: '200x200#',
+    square: '200x200',
     medium: '300x300>'
   }
 
@@ -16,5 +16,5 @@ class Profile < ActiveRecord::Base
   def get_traits
     [user.languages, user.text_editors, user.skills, user.operating_systems].flatten
   end
-  
+
 end

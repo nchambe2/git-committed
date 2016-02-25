@@ -11,5 +11,5 @@
     })
 
 jQuery ->
-  if $('#messages_container').length > 0
+  if $('#messages_container').length > 0 and $('#message_body').val() isnt ''
     MessagePoller.poll()
