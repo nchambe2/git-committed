@@ -66,7 +66,7 @@
       </tr>
       <tr>
        <td class="bold padding-left padding-bottom lead">Github Link:</td>
-        <% if @user.profile.github_link.length == 0 %>
+        <% if @user.profile.github_link.nil? %>
           <td class="lead">N/A</td>
         <% else %>
           <td class="lead"><%= @user.profile.github_link %></td>
@@ -80,7 +80,7 @@
    <section id="user-skills" class="user-skills-margin-top white-smoke-background-color padding-all-around inlineblock">
 
     <div class="overflow-hidden">
-      <% unless @user.profile.about_me.length == 0 %>
+      <% unless @user.profile.about_me.nil? %>
         <div class="left help-image"><%= image_tag "user.jpg", class: "user-skills-imgs" %></div>
         <div class="left help">
           <h2 class="user-skills-header">About Me</h2>
