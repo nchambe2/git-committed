@@ -33,7 +33,7 @@ border-radius: 5px;
 max-width: 3px;
 }
 #messages_container::-webkit-scrollbar-track {
-background: #9F6905;
+background: #76c9d4;
   border-radius:5px;
 }
 .Area
@@ -60,9 +60,9 @@ background: #9F6905;
 }
 .messenger-image:hover
 {
-    -moz-box-shadow: 0 5px 5px rgba(223, 120, 8, 1);
--webkit-box-shadow: 0 5px 5px rgba(223, 120, 8, 1);
-box-shadow: 0 5px 5px rgba(223, 120, 8, 1);
+    -moz-box-shadow: 0 5px 5px rgba(118, 201, 212, 1);
+-webkit-box-shadow: 0 5px 5px rgba(118, 201, 212, 1);
+box-shadow: 0 5px 5px rgba(118, 201, 212, 1);
        -webkit-transition: all 1.5s;
     -moz-transition: all 1.5s;
     transition: all 1.5s;
