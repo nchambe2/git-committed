@@ -1,0 +1,19 @@
+#messages_container{
+  margin: 0 auto;
+  width: 75%;
+  background-color: powderblue;
+  border: 2px solid yellow;
+}
+
+.message {
+  margin-left: 5em;
+
+}
+
+.header {
+  width: 15em;
+  float: right;
+  margin-right: -2em;
+}
+}
+
