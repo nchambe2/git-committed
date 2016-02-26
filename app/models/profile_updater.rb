@@ -6,6 +6,7 @@ class ProfileUpdater
     update_user_editors(user, params.fetch(:editors, []))
     update_user_operating_systems(user, params.fetch(:operating_systems, []))
     update_user_skills(user, params.fetch(:skills, []))
+    update_user_relationship_types(user, params.fetch(:relationship_types, []))
   end
 
   private
@@ -25,7 +26,8 @@ class ProfileUpdater
                                  :skill_id,
                                  :seeking_id,
                                  :sexual_preference_id,
-                                 :sexual_orientation_id)
+                                 :sexual_orientation_id,
+                                 :relationship_type_id)
   end
 
   def update_user_lang(user, languages)
@@ -80,8 +82,17 @@ class ProfileUpdater
     end
  end
 
- def update_user_relationship_type(user, relationship_type)
-
+ def update_user_relationship_types(user, relationship_types)
+   relationship_types.each do |rt|
+      selection_value = rt.last
+      if selection_value == "1"
+        r = RelationshipType.find_by(id: rt.first.to_i)
+        user.relationship_types.push(r) unless user.relationship_types.include?(r)
+      elsif selection_value == "0"
+        r = RelationshipType.find_by(id: rt.first.to_i)
+        user.relationship_types.delete(r)
+      end
+    end
  end
 
 end
