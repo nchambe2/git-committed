@@ -36,11 +36,19 @@
 	.profile_card {
 		width: 100%;
 	}
+
+	.thumbnail>img {
+		width: 100%;
+	}
 }
 
 @media only screen and (max-width: 675px) and (min-width: 476px){
 	.profile_card {
 		width: 30em;
+	}
+
+	.thumbnail>img.default-pic {
+		width: 60%;
 	}
 }
 
@@ -56,9 +64,6 @@
 	.profile_pic {
 		width: 17em;
 		height: 17em;
-	}
-
-	.profile_heading {
 	}
 
 }

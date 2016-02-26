@@ -4,7 +4,7 @@ class LikesController < ApplicationController
   def liker_index
     @pull_requests = current_user.get_likees
   end
-  
+
   def likee_index
     @pull_requests = current_user.get_likers
   end
@@ -18,12 +18,12 @@ class LikesController < ApplicationController
       redirect_to browse_path
     end
   end
-  
+
   def destroy
     liked = User.find_by(id: params[:liked])
     like = Like.find_by(liker: current_user, liked: liked)
     like.destroy if like
     redirect_to puller_index_path
   end
-  
+
 end

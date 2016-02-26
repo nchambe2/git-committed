@@ -25,24 +25,26 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :password, presence: true, allow_nil: true, length: {minimum: 8, maximum: 25}
   validates :username, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true
   validates :zip_code, presence: true
   validates :birthday, presence: true
+  validates :email, presence: true, uniqueness: true
+
+  validates_format_of :email, with: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
   def age
     (Date.today - birthday).to_i / 365
   end
-  
+
   def get_likees
     Like.where(liker_id: id).map(&:liked)
   end
-  
+
   def get_likers
-    Like.where(liked_id: id).map(&:liked)
+    Like.where(liked_id: id).map(&:liker)
   end
-  
+
   def pull_request_exists?(user)
     get_likees.include?(user)
   end
-  
+
 end
