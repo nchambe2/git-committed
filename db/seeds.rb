@@ -15,7 +15,7 @@ OperatingSystem.destroy_all
 User.destroy_all
 RelationshipType.destroy_all
 
-programming_languages = ['Ruby', 'Javascript', 'C', 'Java', 'C#', 'C++', 'Scala', 'Haskell', 'Objective-C', 'Python', 'PHP']
+programming_languages = ['Ruby', 'Javascript', 'C', 'Java', 'C#', 'C++', 'Scala', 'Haskell', 'Objective-C', 'Python', 'PHP', 'Assembly', 'Coffeescript', 'COBOL', 'Lisp', 'Perl', 'Pascal', 'Swift', 'VBScript']
 
 programming_languages.each do |programming_language|
   lang = Language.create!(name: programming_language)
@@ -51,7 +51,7 @@ preferences.each do |preference|
  SexualPreference.create!(name: preference)
 end
 
-text_editors = ['Sublime Text', 'Atom', 'Vim', 'Emacs', 'Notepad++', 'BBEdit', 'UltraEdit', 'Dreamweaver', 'Coda', 'Brackets','TextMate']
+text_editors = ['Sublime Text', 'Atom', 'Vim', 'Emacs', 'Notepad++', 'BBEdit', 'UltraEdit', 'Dreamweaver', 'Coda', 'Brackets','TextMate', 'Text Edit', 'Text Wrangler']
 text_editors.each do |editor|
  te = TextEditor.create!(name: editor)
  te.filters.create

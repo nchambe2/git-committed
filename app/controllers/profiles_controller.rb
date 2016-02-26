@@ -3,8 +3,8 @@ class ProfilesController < ApplicationController
   before_action :load_preference_data, only: [:edit]
   def index
     if current_user
-      filtered = Profile.where.not(id: current_user.profile.id).order(updated_at: :desc).select {|profile| get_gender.include?(profile.user.gender) && fits_filter(profile)}
-      @profiles = filtered.paginate(:per_page => 10)
+      filtered = Profile.where.not(id: [current_user.profile.id, current_user.get_likees].flatten).order(updated_at: :desc).select {|profile| get_gender.include?(profile.user.gender) && fits_filter(profile)}
+      @profiles = filtered.paginate page: params[:page], per_page: 10
     else
       redirect_to login_path
     end
@@ -24,6 +24,7 @@ class ProfilesController < ApplicationController
     @user = current_user
     @user_languages = @user.languages
     @user_skills = @user.skills
+    @user_relationship_types = @user.relationship_types
 
     if @profile != current_user.profile
       redirect_to edit_profile_path(current_user.profile)

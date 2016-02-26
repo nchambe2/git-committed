@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def get_likers
-    Like.where(liked_id: id).map(&:liked)
+    Like.where(liked_id: id).map(&:liker)
   end
 
   def pull_request_exists?(user)

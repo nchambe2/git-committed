@@ -17,12 +17,12 @@ feature "Registration" do
     select('women',                             :from => 'Sexual preference')
     fill_in('Zip code',                         :with => '12345')
     click_button('submit')
-    page.must_have_css('#profile-show')
+    page.must_have_css('#edit-profile-form')
   end
 end
 
 feature "Login and Visit Profile"  do
-  scenario "login and view your profile page" do
+  scenario "login and view browse page" do
     tommy = users :tommy
     gigi  = users :gigi
     profile = Profile.create(user: tommy)
