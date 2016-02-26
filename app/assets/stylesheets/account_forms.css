@@ -13,8 +13,15 @@ form {
 	margin: 0 auto;
 }*/
 
+.submit {
+  background-color: #fff;
+}
 .submit, .submit:hover {
 	margin: 0.75em 0;
 	width: 19em;
-	background-color: peachpuff;
+	background-color: #fff;
 }
+
+.submit:hover {
+  background-color: lightgrey;
+};

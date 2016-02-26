@@ -1,13 +1,12 @@
 <%= div_for message, data: {id: message.id} do %>
-  <% user = message.user %>
-    <div class="header">
-      <strong><%= user.first_name %></strong>
-      <%= message.message_time %>
+   <div class="Area">
+    <div class="<%= get_side(current_user.id, message)%>">
+      <a class="messenger-anchor" href="<%= profile_path(message.user.id)%>">
+    <img class="messenger-image" src="<%= message.user.profile.picture %>"/>
+        <div class="tooltip"><%= message.user.username %></div></a>
     </div>
-    <div class="list">
-      <div class="item">
-        <em class="right triangle icon"></em>
-        <%= message.body %>
-      </div>
+    <div class="text <%= get_opposite_side(current_user.id, message) %> text<%= get_opposite_side(current_user.id, message) %>"><%= message.body %>
     </div>
+  </div>
 <% end %>
+

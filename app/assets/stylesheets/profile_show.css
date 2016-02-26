@@ -44,10 +44,6 @@ table {
   background-color: #fff;
 }
 
-.padding-all-around {
-  padding: 3em;
-}
-
 .user-skills-margin-top {
   margin-right: .5em;
 }
@@ -85,12 +81,76 @@ table {
 .help-image {
   width: 7%;
 }
-
+@media only screen and (min-width: 751px) {
+  #user-info {
+    float: right;
+  }
+  #user-skills {
+    padding-top: 1em;
+  }
+  #profile-aside {
+   padding-top: 1em;
+   padding-left: 5em;
+  }
+  .show-profile {
+    padding: 1em 3em;
+  }
+}
 @media only screen and (max-width: 750px) and (min-width: 476px){
   #profile-aside {
+    width: 100%;
+    display: inline-block;
+    padding-top: 1em;
+  }
+  #about-me {
+    width: 100%;
+  }
+  #profile-show {
+    width: 100%;
+    margin: 0 auto;
+  }
+  #user-info {
+    width: 100%;
+    display: block;
+    clear: both;
+  }
+  #user-skills {
+    padding-top: 1em;
+  }
+  .show-profile {
+    width: 85%;
+  }
+   .username-age {
     display: inline-block;
   }
-  .username-age {
+}
+
+@media only screen and (max-width: 475px){
+  #profile-aside {
+    width: 100%;
+    display: inline-block;
+    padding-top: 1em;
+  }
+  #about-me {
+    width: 100%;
+  }
+  #profile-show {
+    width: 100%;
+    margin: 0 auto;
+  }
+  #user-info {
+    width: 100%;
+    display: block;
+    clear: both;
+  }
+  #user-skills {
+    padding-top: 1em;
+  }
+  .show-profile {
+    width: 100%;
+    padding: 0em 2em;
+  }
+   .username-age {
     display: inline-block;
   }
 }

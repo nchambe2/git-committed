@@ -2,7 +2,7 @@
   <h3>Gitlogs</h3>
   <div class=”ui list”>
     <div class=”item”>
-      <div class="conversation-bar left">
+      <div class="conversation-bar ">
       <% @conversations.each do |conversation| %>
         <% if conversation.sender_id == current_user.id ||      conversation.recipient_id == current_user.id %>
           <% if conversation.sender_id == current_user.id %>
@@ -10,14 +10,15 @@
           <% else %>
             <% recipient = User.find(conversation.sender_id) %>
           <% end %>
-          <div class="recipient">
-            <div class="clipped inlineblock left" style="background-image: url(<%=recipient.profile.picture.url(:thumb) %>);">
-
+          <a href="<%= conversation_messages_path(conversation) %>">
+            <div class="recipient grow">
+              <div class="clipped inlineblock" style="background-image: url(<%=recipient.profile.picture.url(:thumb) %>);">
+              </div>
+              <div class="username align-center">
+              <%= recipient.username %>
+              </div>
             </div>
-            <div class="username left">
-            <%= link_to recipient.username,   conversation_messages_path(conversation), class:"inlineblock right" %>
-            </div>
-          </div>
+          </a>
         <% end %>
       <% end %>
       </div>
